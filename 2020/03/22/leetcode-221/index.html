@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="result: Runtime: 4 ms, faster than 84.73% of Java online submissions for Maximal Square. Memory Usage: 43.4 MB, less than 91.18% of Java online submissions for Maximal Square. Approach 1 - Dynamic Pro">
+  <meta name="description" content="ResultRuntime: 4 ms, faster than 84.73% of Java online submissions for Maximal Square. Memory Usage: 43.4 MB, less than 91.18% of Java online submissions for Maximal Square. Approach 1 - Dynamic Progr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode 221 - Maximal Square (Dynamic Programming)">
 <meta property="og:url" content="http://delia13.me/2020/03/22/leetcode-221/index.html">
 <meta property="og:site_name" content="Delia">
-<meta property="og:description" content="result: Runtime: 4 ms, faster than 84.73% of Java online submissions for Maximal Square. Memory Usage: 43.4 MB, less than 91.18% of Java online submissions for Maximal Square. Approach 1 - Dynamic Pro">
+<meta property="og:description" content="ResultRuntime: 4 ms, faster than 84.73% of Java online submissions for Maximal Square. Memory Usage: 43.4 MB, less than 91.18% of Java online submissions for Maximal Square. Approach 1 - Dynamic Progr">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-23T00:43:20.000Z">
-<meta property="article:modified_time" content="2020-03-23T03:55:24.551Z">
+<meta property="article:modified_time" content="2020-03-27T19:19:42.411Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Array">
@@ -206,10 +206,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-03-22 20:43:20 / Modified: 23:55:24" itemprop="dateCreated datePublished" datetime="2020-03-22T20:43:20-04:00">2020-03-22</time>
+              <time title="Created: 2020-03-22 20:43:20" itemprop="dateCreated datePublished" datetime="2020-03-22T20:43:20-04:00">2020-03-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-27 15:19:42" itemprop="dateModified" datetime="2020-03-27T15:19:42-04:00">2020-03-27</time>
+              </span>
 
           
 
@@ -222,8 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>result:</strong></p>
-<p>Runtime: 4 ms, faster than 84.73% of Java online submissions for Maximal Square.</p>
+        <h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 4 ms, faster than 84.73% of Java online submissions for Maximal Square.</p>
 <p>Memory Usage: 43.4 MB, less than 91.18% of Java online submissions for Maximal Square.</p>
 <h3 id="Approach-1-Dynamic-Programming"><a href="#Approach-1-Dynamic-Programming" class="headerlink" title="Approach 1 - Dynamic Programming"></a>Approach 1 - Dynamic Programming</h3><p>Space Complexity: O(MN), Time Complexity: O(MN).</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[matrix.length][matrix[<span class="number">0</span>].length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; matrix[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][j] == <span class="string">'0'</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span> || j == <span class="number">0</span>) &#123;</span><br><span class="line">                dp[i][j] = <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j] = Math.min(dp[i-<span class="number">1</span>][j], Math.min(dp[i-<span class="number">1</span>][j-<span class="number">1</span>], dp[i][j-<span class="number">1</span>])) + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            result = Math.max(result, dp[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result * result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -317,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Approach-1-Dynamic-Programming"><span class="nav-number">1.</span> <span class="nav-text">Approach 1 - Dynamic Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Approach-2-Better-Dynamic-Progrmming"><span class="nav-number">2.</span> <span class="nav-text">Approach 2 - Better Dynamic Progrmming</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Approach-1-Dynamic-Programming"><span class="nav-number">2.</span> <span class="nav-text">Approach 1 - Dynamic Programming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Approach-2-Better-Dynamic-Progrmming"><span class="nav-number">3.</span> <span class="nav-text">Approach 2 - Better Dynamic Progrmming</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -332,7 +337,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -345,7 +350,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

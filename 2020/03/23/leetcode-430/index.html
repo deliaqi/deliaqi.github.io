@@ -46,15 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="result:Runtime: 0 ms, faster than 100.00% of Java online submissions for Flatten a Multilevel Doubly Linked List.Memory Usage: 37.9 MB, less than 72.50% of Java online submissions for Flatten a Multil">
+  <meta name="description" content="ResultRuntime: 0 ms, faster than 100.00% of Java online submissions for Flatten a Multilevel Doubly Linked List.Memory Usage: 37.9 MB, less than 72.50% of Java online submissions for Flatten a Multile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode 430 - Flatten a Multilevel Doubly Linked List (DFS)">
 <meta property="og:url" content="http://delia13.me/2020/03/23/leetcode-430/index.html">
 <meta property="og:site_name" content="Delia">
-<meta property="og:description" content="result:Runtime: 0 ms, faster than 100.00% of Java online submissions for Flatten a Multilevel Doubly Linked List.Memory Usage: 37.9 MB, less than 72.50% of Java online submissions for Flatten a Multil">
+<meta property="og:description" content="ResultRuntime: 0 ms, faster than 100.00% of Java online submissions for Flatten a Multilevel Doubly Linked List.Memory Usage: 37.9 MB, less than 72.50% of Java online submissions for Flatten a Multile">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-24T02:20:34.000Z">
-<meta property="article:modified_time" content="2020-03-24T02:24:33.550Z">
+<meta property="article:modified_time" content="2020-03-27T19:19:04.395Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Google">
@@ -206,10 +206,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-03-23 22:20:34 / Modified: 22:24:33" itemprop="dateCreated datePublished" datetime="2020-03-23T22:20:34-04:00">2020-03-23</time>
+              <time title="Created: 2020-03-23 22:20:34" itemprop="dateCreated datePublished" datetime="2020-03-23T22:20:34-04:00">2020-03-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-27 15:19:04" itemprop="dateModified" datetime="2020-03-27T15:19:04-04:00">2020-03-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -233,9 +239,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>result:</strong><br>Runtime: 0 ms, faster than 100.00% of Java online submissions for Flatten a Multilevel Doubly Linked List.<br>Memory Usage: 37.9 MB, less than 72.50% of Java online submissions for Flatten a Multilevel Doubly Linked List.</p>
-<p>Space Complexity: O(depth of child), because of recursion,<br>Time Complexity: O(number of nodes).</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">    public int val;</span></span><br><span class="line"><span class="comment">    public Node prev;</span></span><br><span class="line"><span class="comment">    public Node next;</span></span><br><span class="line"><span class="comment">    public Node child;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">flatten</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        Node dummy = <span class="keyword">new</span> Node();</span><br><span class="line">        Node tail = dummy;</span><br><span class="line">        dfs(head, tail);</span><br><span class="line">        <span class="keyword">if</span> (dummy.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            dummy.next.prev = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">dfs</span><span class="params">(Node head, Node tail)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) <span class="keyword">return</span> tail;</span><br><span class="line">        <span class="comment">// add itself</span></span><br><span class="line">        Node next = head.next;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        head.prev = tail;</span><br><span class="line">        tail = tail.next;</span><br><span class="line">        <span class="comment">// add child list</span></span><br><span class="line">        tail = dfs(head.child, tail);</span><br><span class="line">        head.child = <span class="keyword">null</span>; <span class="comment">// important!</span></span><br><span class="line">        <span class="comment">// add next node</span></span><br><span class="line">        <span class="keyword">return</span> dfs(next, tail);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 0 ms, faster than 100.00% of Java online submissions for Flatten a Multilevel Doubly Linked List.<br>Memory Usage: 37.9 MB, less than 72.50% of Java online submissions for Flatten a Multilevel Doubly Linked List.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(depth of child), because of recursion,<br>Time Complexity: O(number of nodes).</p>
+<h3 id="Java-Code"><a href="#Java-Code" class="headerlink" title="Java Code"></a>Java Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">    public int val;</span></span><br><span class="line"><span class="comment">    public Node prev;</span></span><br><span class="line"><span class="comment">    public Node next;</span></span><br><span class="line"><span class="comment">    public Node child;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">flatten</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        Node dummy = <span class="keyword">new</span> Node();</span><br><span class="line">        Node tail = dummy;</span><br><span class="line">        dfs(head, tail);</span><br><span class="line">        <span class="keyword">if</span> (dummy.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            dummy.next.prev = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">dfs</span><span class="params">(Node head, Node tail)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) <span class="keyword">return</span> tail;</span><br><span class="line">        <span class="comment">// add itself</span></span><br><span class="line">        Node next = head.next;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        head.prev = tail;</span><br><span class="line">        tail = tail.next;</span><br><span class="line">        <span class="comment">// add child list</span></span><br><span class="line">        tail = dfs(head.child, tail);</span><br><span class="line">        head.child = <span class="keyword">null</span>; <span class="comment">// important!</span></span><br><span class="line">        <span class="comment">// add next node</span></span><br><span class="line">        <span class="keyword">return</span> dfs(next, tail);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -260,7 +266,10 @@
     <a href="/2020/03/22/leetcode-221/" rel="prev" title="Leetcode 221 - Maximal Square (Dynamic Programming)">
       <i class="fa fa-chevron-left"></i> Leetcode 221 - Maximal Square (Dynamic Programming)
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/27/leetcode-1110/" rel="next" title="Leetcode 1110 - Delete Nodes And Return Forest (DFS)">
+      Leetcode 1110 - Delete Nodes And Return Forest (DFS) <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -320,6 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Code"><span class="nav-number">3.</span> <span class="nav-text">Java Code</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -334,7 +344,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -347,7 +357,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
