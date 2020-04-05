@@ -40,8 +40,8 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
@@ -58,8 +58,8 @@
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Array">
-<meta property="article:tag" content="HashMap">
 <meta property="article:tag" content="Java">
+<meta property="article:tag" content="HashMap">
 <meta property="article:tag" content="LinkedIn">
 <meta property="article:tag" content="Amazon">
 <meta property="article:tag" content="Facebook">
@@ -160,9 +160,34 @@
     <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -203,6 +228,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -253,8 +279,8 @@
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
               <a href="/tags/Array/" rel="tag"># Array</a>
-              <a href="/tags/HashMap/" rel="tag"># HashMap</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/HashMap/" rel="tag"># HashMap</a>
               <a href="/tags/LinkedIn/" rel="tag"># LinkedIn</a>
               <a href="/tags/Amazon/" rel="tag"># Amazon</a>
               <a href="/tags/Facebook/" rel="tag"># Facebook</a>
@@ -269,7 +295,10 @@
     <a href="/2020/03/28/leetcode-222/" rel="prev" title="Leetcode 222 - Count Complete Tree Nodes (Binary Search)">
       <i class="fa fa-chevron-left"></i> Leetcode 222 - Count Complete Tree Nodes (Binary Search)
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/05/leetcode-698/" rel="next" title="Leetcode 698 - Partition to K Equal Sum Subsets">
+      Leetcode 698 - Partition to K Equal Sum Subsets <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -344,7 +373,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -357,7 +386,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -433,6 +462,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

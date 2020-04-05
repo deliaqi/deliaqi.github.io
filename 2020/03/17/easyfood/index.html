@@ -40,31 +40,38 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
-  <meta name="description" content="好吃好玩又好做的食物～">
+  <meta name="description" content="(〃’▽’〃) 好吃好玩又好做的食物  微甜甜品 各种饭饭 好多肉啊 花式素菜">
 <meta property="og:type" content="article">
 <meta property="og:title" content="懒人做法实践之路">
 <meta property="og:url" content="http://delia13.me/2020/03/17/easyfood/index.html">
 <meta property="og:site_name" content="Delia">
-<meta property="og:description" content="好吃好玩又好做的食物～">
+<meta property="og:description" content="(〃’▽’〃) 好吃好玩又好做的食物  微甜甜品 各种饭饭 好多肉啊 花式素菜">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://delia13.me/images/life/%E6%A4%B0%E8%93%89%E5%B0%8F%E6%96%B9.jpg">
 <meta property="og:image" content="http://delia13.me/images/life/%E9%A6%99%E8%8A%8B%E6%B4%BE1.jpg">
 <meta property="og:image" content="http://delia13.me/images/life/%E9%A6%99%E8%8A%8B%E6%B4%BE2.jpg">
 <meta property="og:image" content="http://delia13.me/images/life/%E6%8E%92%E9%AA%A8%E7%84%96%E9%A5%AD1.jpg">
 <meta property="og:image" content="http://delia13.me/images/life/%E6%8E%92%E9%AA%A8%E7%84%96%E9%A5%AD2.jpg">
-<meta property="og:image" content="http://delia13.me/Users/liujiaqi/Pictures/%E7%85%A7%E7%89%87%E5%9B%BE%E5%BA%93.photoslibrary/resources/proxies/derivatives/60/00/60a9/BwUYA1tJRLSNtMjCpmR8%Q_thumb_60a9.jpg">
+<meta property="og:image" content="http://delia13.me/images/life/%E5%92%96%E5%96%B1%E7%84%97%E9%A5%AD.jpeg">
 <meta property="og:image" content="http://delia13.me/images/life/%E6%A4%92%E7%9B%90%E6%8E%92%E9%AA%A8.jpg">
 <meta property="og:image" content="http://delia13.me/images/life/%E8%9C%9C%E6%B1%81%E9%B8%A1%E7%BF%85.jpg">
 <meta property="og:image" content="http://delia13.me/images/life/%E8%82%89%E6%9C%AB%E8%B1%86%E8%85%90.jpg">
 <meta property="og:image" content="http://delia13.me/images/life/%E7%89%9B%E8%82%89%E4%B8%B8%E5%AD%90%E6%B1%A4.jpg">
+<meta property="og:image" content="http://delia13.me/images/life/%E7%9B%90%E7%84%97%E9%B8%A1.jpeg">
+<meta property="og:image" content="http://delia13.me/images/life/%E6%A4%B0%E5%AD%90%E9%B8%A1.jpeg">
+<meta property="og:image" content="http://delia13.me/images/life/%E8%84%86%E7%9A%AE%E7%83%A4%E9%B8%A1.jpeg">
+<meta property="og:image" content="http://delia13.me/images/life/%E8%98%91%E8%8F%87%E7%83%A7%E9%B8%A1.jpeg">
+<meta property="og:image" content="http://delia13.me/images/life/%E7%8C%AA%E8%82%89%E4%B8%B8%E5%AD%90%E6%B1%A4.jpeg">
+<meta property="og:image" content="http://delia13.me/images/life/%E9%85%B1%E6%B1%81%E6%9D%8F%E9%B2%8D%E8%8F%87.jpeg">
+<meta property="og:image" content="http://delia13.me/images/life/%E9%85%BF%E8%B1%86%E8%85%90.jpeg">
 <meta property="article:published_time" content="2020-03-17T21:04:34.000Z">
-<meta property="article:modified_time" content="2020-04-03T16:25:06.810Z">
+<meta property="article:modified_time" content="2020-04-05T19:32:22.740Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="food">
 <meta name="twitter:card" content="summary">
@@ -165,9 +172,34 @@
     <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -208,6 +240,11 @@
         </h1>
 
         <div class="post-meta">
+          
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>Sticky</font>
+            <span class="post-meta-divider">|</span>
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -221,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-03 12:25:06" itemprop="dateModified" datetime="2020-04-03T12:25:06-04:00">2020-04-03</time>
+                <time title="Modified: 2020-04-05 15:32:22" itemprop="dateModified" datetime="2020-04-05T15:32:22-04:00">2020-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +283,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>好吃好玩又好做的食物～</p>
+        <p>(〃’▽’〃) 好吃好玩又好做的食物</p>
+<ol>
+<li>微甜甜品</li>
+<li>各种饭饭</li>
+<li>好多肉啊</li>
+<li>花式素菜</li>
+</ol>
 <a id="more"></a>
 <h1 id="微甜甜品"><a href="#微甜甜品" class="headerlink" title="微甜甜品"></a>微甜甜品</h1><h2 id="牛奶椰蓉小方"><a href="#牛奶椰蓉小方" class="headerlink" title="牛奶椰蓉小方"></a>牛奶椰蓉小方</h2><p><img src="/images/life/%E6%A4%B0%E8%93%89%E5%B0%8F%E6%96%B9.jpg" alt="Op5XehMqQCuGxmCTNr+eLg_thumb_60b3"></p>
 <p>[<a href="https://www.zhihu.com/question/34583573/answer/764259693]" target="_blank" rel="noopener">https://www.zhihu.com/question/34583573/answer/764259693]</a>(有哪些不用烤箱就能自制的甜品？ - 琪小姐的回答 - 知乎)</p>
@@ -260,11 +303,23 @@
 <p><img src="/images/life/%E6%8E%92%E9%AA%A8%E7%84%96%E9%A5%AD2.jpg" alt="UNADJUSTEDNONRAW_thumb_60c4"></p>
 <p><a href="https://www.xiachufang.com/recipe/1065180/" target="_blank" rel="noopener">https://www.xiachufang.com/recipe/1065180/</a></p>
 <p>DIY空间很大～自己加了玉米粒，只蒸了一次米饭，依然超！级！香！</p>
-<p><img src="/Users/liujiaqi/Pictures/%E7%85%A7%E7%89%87%E5%9B%BE%E5%BA%93.photoslibrary/resources/proxies/derivatives/60/00/60a9/BwUYA1tJRLSNtMjCpmR8%Q_thumb_60a9.jpg" alt="BwUYA1tJRLSNtMjCpmR8%Q_thumb_60a9"></p>
-<h1 id="好多肉"><a href="#好多肉" class="headerlink" title="好多肉"></a>好多肉</h1><h2 id="椒盐排骨"><a href="#椒盐排骨" class="headerlink" title="椒盐排骨"></a>椒盐排骨</h2><p><img src="/images/life/%E6%A4%92%E7%9B%90%E6%8E%92%E9%AA%A8.jpg" alt="L%QA38JpTP66BfX9Jl6H%g_thumb_5fe5"></p>
+<h2 id="咖喱焗饭"><a href="#咖喱焗饭" class="headerlink" title="咖喱焗饭"></a>咖喱焗饭</h2><p><img src="/images/life/%E5%92%96%E5%96%B1%E7%84%97%E9%A5%AD.jpeg" alt="咖喱焗饭"><br>先蒸好菜饭，加点水拌入咖喱，最后把略微煎了下的培根虾仁和饭混匀，上面撒一层芝士就可以放进烤箱了。<br>发挥空间很大，其实直接咖喱饭或者芝士焗饭就挺好吃吧。</p>
+<h1 id="好多肉啊"><a href="#好多肉啊" class="headerlink" title="好多肉啊"></a>好多肉啊</h1><h2 id="椒盐排骨"><a href="#椒盐排骨" class="headerlink" title="椒盐排骨"></a>椒盐排骨</h2><p><img src="/images/life/%E6%A4%92%E7%9B%90%E6%8E%92%E9%AA%A8.jpg" alt="L%QA38JpTP66BfX9Jl6H%g_thumb_5fe5"></p>
 <h2 id="蜜汁鸡翅-amp-鸡腿"><a href="#蜜汁鸡翅-amp-鸡腿" class="headerlink" title="蜜汁鸡翅&amp;鸡腿"></a>蜜汁鸡翅&amp;鸡腿</h2><p><img src="/images/life/%E8%9C%9C%E6%B1%81%E9%B8%A1%E7%BF%85.jpg" alt="9wo%YPQ0S7+rHBQ0JglSSQ_thumb_5f17"></p>
 <h2 id="肉末豆腐"><a href="#肉末豆腐" class="headerlink" title="肉末豆腐"></a>肉末豆腐</h2><p><img src="/images/life/%E8%82%89%E6%9C%AB%E8%B1%86%E8%85%90.jpg" alt="9yb%6dTXRIyAeSiTBseVjA_thumb_5fcb"></p>
 <h2 id="牛肉丸子汤"><a href="#牛肉丸子汤" class="headerlink" title="牛肉丸子汤"></a>牛肉丸子汤</h2><p><img src="/images/life/%E7%89%9B%E8%82%89%E4%B8%B8%E5%AD%90%E6%B1%A4.jpg" alt="UNADJUSTEDNONRAW_thumb_5fcf"></p>
+<h2 id="盐焗鸡"><a href="#盐焗鸡" class="headerlink" title="盐焗鸡"></a>盐焗鸡</h2><p><img src="/images/life/%E7%9B%90%E7%84%97%E9%B8%A1.jpeg" alt="盐焗鸡"><br>直接用的盐焗粉，葱姜片垫底，抹好直接放电饭煲蒸半小时就好啦。<br>事先腌一下应该更入味。</p>
+<h2 id="椰子鸡"><a href="#椰子鸡" class="headerlink" title="椰子鸡"></a>椰子鸡</h2><p><img src="/images/life/%E6%A4%B0%E5%AD%90%E9%B8%A1.jpeg" alt="椰子鸡"><br>主要参考的曼食慢语的菜谱：<a href="https://www.xiachufang.com/recipe/103465588/" target="_blank" rel="noopener">https://www.xiachufang.com/recipe/103465588/</a><br>跟着广东室友做的。用了一只老椰🥥的椰水，椰肉用了一半。鸡用的是一整只小母鸡，只用煮十分钟，非常嫩！</p>
+<h2 id="脆皮烤鸡"><a href="#脆皮烤鸡" class="headerlink" title="脆皮烤鸡"></a>脆皮烤鸡</h2><p><img src="/images/life/%E8%84%86%E7%9A%AE%E7%83%A4%E9%B8%A1.jpeg" alt="脆皮烤鸡"><br>这算是看了那么多菜单过后自己总结出来的。</p>
+<ol>
+<li>椒盐按摩鸡身，然后用牙签猛插孔（为了腌得更入味），放冰箱里面一晚上。</li>
+<li>预热到425度，烤鸡刷少许花椒油放入。</li>
+<li>30-40分钟后再刷一层蜂蜜，最后烤5分钟就好啦！</li>
+</ol>
+<h2 id="蘑菇烧鸡"><a href="#蘑菇烧鸡" class="headerlink" title="蘑菇烧鸡"></a>蘑菇烧鸡</h2><p><img src="/images/life/%E8%98%91%E8%8F%87%E7%83%A7%E9%B8%A1.jpeg" alt="蘑菇烧鸡"><br>最近做了好多鸡诶，这个做法很家常啦。</p>
+<h2 id="猪肉丸子汤"><a href="#猪肉丸子汤" class="headerlink" title="猪肉丸子汤"></a>猪肉丸子汤</h2><p><img src="/images/life/%E7%8C%AA%E8%82%89%E4%B8%B8%E5%AD%90%E6%B1%A4.jpeg" alt="猪肉丸子汤"><br>丸子还是猪肉香呀（潮汕牛肉丸除外）</p>
+<h1 id="花式素菜"><a href="#花式素菜" class="headerlink" title="花式素菜"></a>花式素菜</h1><h2 id="酱汁杏鲍菇"><a href="#酱汁杏鲍菇" class="headerlink" title="酱汁杏鲍菇"></a>酱汁杏鲍菇</h2><p><img src="/images/life/%E9%85%B1%E6%B1%81%E6%9D%8F%E9%B2%8D%E8%8F%87.jpeg" alt="酱汁杏鲍菇"><br>下厨房链接：<a href="https://www.xiachufang.com/recipe/104527015/" target="_blank" rel="noopener">https://www.xiachufang.com/recipe/104527015/</a><br>先煎后焖，比肉还好吃的杏鲍菇！</p>
+<h2 id="酿豆腐"><a href="#酿豆腐" class="headerlink" title="酿豆腐"></a>酿豆腐</h2><p><img src="/images/life/%E9%85%BF%E8%B1%86%E8%85%90.jpeg" alt="酿豆腐"><br>下厨房链接：<a href="https://www.xiachufang.com/recipe/100054342/" target="_blank" rel="noopener">https://www.xiachufang.com/recipe/100054342/</a><br>没有吃过正宗的，感觉自己做的味道还不错，就是焖的时间有点短了。</p>
 
     </div>
 
@@ -349,7 +404,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微甜甜品"><span class="nav-number">1.</span> <span class="nav-text">微甜甜品</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#牛奶椰蓉小方"><span class="nav-number">1.1.</span> <span class="nav-text">牛奶椰蓉小方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#香芋派"><span class="nav-number">1.2.</span> <span class="nav-text">香芋派</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#各种饭饭"><span class="nav-number">2.</span> <span class="nav-text">各种饭饭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#排骨焖饭"><span class="nav-number">2.1.</span> <span class="nav-text">排骨焖饭</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#好多肉"><span class="nav-number">3.</span> <span class="nav-text">好多肉</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#椒盐排骨"><span class="nav-number">3.1.</span> <span class="nav-text">椒盐排骨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#蜜汁鸡翅-amp-鸡腿"><span class="nav-number">3.2.</span> <span class="nav-text">蜜汁鸡翅&amp;鸡腿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#肉末豆腐"><span class="nav-number">3.3.</span> <span class="nav-text">肉末豆腐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#牛肉丸子汤"><span class="nav-number">3.4.</span> <span class="nav-text">牛肉丸子汤</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微甜甜品"><span class="nav-number">1.</span> <span class="nav-text">微甜甜品</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#牛奶椰蓉小方"><span class="nav-number">1.1.</span> <span class="nav-text">牛奶椰蓉小方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#香芋派"><span class="nav-number">1.2.</span> <span class="nav-text">香芋派</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#各种饭饭"><span class="nav-number">2.</span> <span class="nav-text">各种饭饭</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#排骨焖饭"><span class="nav-number">2.1.</span> <span class="nav-text">排骨焖饭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#咖喱焗饭"><span class="nav-number">2.2.</span> <span class="nav-text">咖喱焗饭</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#好多肉啊"><span class="nav-number">3.</span> <span class="nav-text">好多肉啊</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#椒盐排骨"><span class="nav-number">3.1.</span> <span class="nav-text">椒盐排骨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#蜜汁鸡翅-amp-鸡腿"><span class="nav-number">3.2.</span> <span class="nav-text">蜜汁鸡翅&amp;鸡腿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#肉末豆腐"><span class="nav-number">3.3.</span> <span class="nav-text">肉末豆腐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#牛肉丸子汤"><span class="nav-number">3.4.</span> <span class="nav-text">牛肉丸子汤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盐焗鸡"><span class="nav-number">3.5.</span> <span class="nav-text">盐焗鸡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#椰子鸡"><span class="nav-number">3.6.</span> <span class="nav-text">椰子鸡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脆皮烤鸡"><span class="nav-number">3.7.</span> <span class="nav-text">脆皮烤鸡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#蘑菇烧鸡"><span class="nav-number">3.8.</span> <span class="nav-text">蘑菇烧鸡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#猪肉丸子汤"><span class="nav-number">3.9.</span> <span class="nav-text">猪肉丸子汤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#花式素菜"><span class="nav-number">4.</span> <span class="nav-text">花式素菜</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#酱汁杏鲍菇"><span class="nav-number">4.1.</span> <span class="nav-text">酱汁杏鲍菇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#酿豆腐"><span class="nav-number">4.2.</span> <span class="nav-text">酿豆腐</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -364,7 +419,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -377,7 +432,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -453,6 +508,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
