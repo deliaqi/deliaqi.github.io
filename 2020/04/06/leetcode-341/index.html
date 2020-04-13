@@ -46,18 +46,22 @@
   };
 </script>
 
-  <meta name="description" content="Appraoch 1: Stack">
+  <meta name="description" content="Approach 1: StackResultRuntime: 9 ms, faster than 6.91% of Java online submissions for Flatten Nested List Iterator.Memory Usage: 43.8 MB, less than 5.00% of Java online submissions for Flatten Nested">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode 341 - Flatten Nested List Iterator">
 <meta property="og:url" content="http://delia13.me/2020/04/06/leetcode-341/index.html">
 <meta property="og:site_name" content="Delia">
-<meta property="og:description" content="Appraoch 1: Stack">
+<meta property="og:description" content="Approach 1: StackResultRuntime: 9 ms, faster than 6.91% of Java online submissions for Flatten Nested List Iterator.Memory Usage: 43.8 MB, less than 5.00% of Java online submissions for Flatten Nested">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-07T00:38:17.000Z">
-<meta property="article:modified_time" content="2020-04-07T00:43:29.756Z">
+<meta property="article:modified_time" content="2020-04-13T01:03:16.086Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
-<meta property="article:tag" content="Stack - LinkedIn - Apple - Java - Pending">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="LinkedIn">
+<meta property="article:tag" content="Pending">
+<meta property="article:tag" content="Stack">
+<meta property="article:tag" content="Apple">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://delia13.me/2020/04/06/leetcode-341/">
@@ -229,10 +233,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-04-06 20:38:17 / Modified: 20:43:29" itemprop="dateCreated datePublished" datetime="2020-04-06T20:38:17-04:00">2020-04-06</time>
+              <time title="Created: 2020-04-06 20:38:17" itemprop="dateCreated datePublished" datetime="2020-04-06T20:38:17-04:00">2020-04-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-12 21:03:16" itemprop="dateModified" datetime="2020-04-12T21:03:16-04:00">2020-04-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -256,9 +266,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Appraoch-1-Stack"><a href="#Appraoch-1-Stack" class="headerlink" title="Appraoch 1: Stack"></a>Appraoch 1: Stack</h3><a id="more"></a>
+        <h2 id="Approach-1-Stack"><a href="#Approach-1-Stack" class="headerlink" title="Approach 1: Stack"></a>Approach 1: Stack</h2><h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 9 ms, faster than 6.91% of Java online submissions for Flatten Nested List Iterator.<br>Memory Usage: 43.8 MB, less than 5.00% of Java online submissions for Flatten Nested List Iterator.</p>
+<a id="more"></a>
 
-<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 9 ms, faster than 6.91% of Java online submissions for Flatten Nested List Iterator.<br>Memory Usage: 43.8 MB, less than 5.00% of Java online submissions for Flatten Nested List Iterator.</p>
+
 <h3 id="Java-Code"><a href="#Java-Code" class="headerlink" title="Java Code"></a>Java Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * // This is the interface that allows for creating nested lists.</span></span><br><span class="line"><span class="comment"> * // You should not implement it, or speculate about its implementation</span></span><br><span class="line"><span class="comment"> * public interface NestedInteger &#123;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     // <span class="doctag">@return</span> true if this NestedInteger holds a single integer, rather than a nested list.</span></span><br><span class="line"><span class="comment"> *     public boolean isInteger();</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     // <span class="doctag">@return</span> the single integer that this NestedInteger holds, if it holds a single integer</span></span><br><span class="line"><span class="comment"> *     // Return null if this NestedInteger holds a nested list</span></span><br><span class="line"><span class="comment"> *     public Integer getInteger();</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     // <span class="doctag">@return</span> the nested list that this NestedInteger holds, if it holds a nested list</span></span><br><span class="line"><span class="comment"> *     // Return null if this NestedInteger holds a single integer</span></span><br><span class="line"><span class="comment"> *     public List&lt;NestedInteger&gt; getList();</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NestedIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> Stack&lt;NestedInteger&gt; stack;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NestedIterator</span><span class="params">(List&lt;NestedInteger&gt; nestedList)</span> </span>&#123;</span><br><span class="line">        stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nestedList.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            stack.push(nestedList.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!hasNext()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.pop().getInteger();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        updateStack();</span><br><span class="line">        <span class="keyword">return</span> !stack.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">updateStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; !stack.peek().isInteger()) &#123;</span><br><span class="line">            List&lt;NestedInteger&gt; nestedList = stack.pop().getList();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = nestedList.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                stack.push(nestedList.get(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your NestedIterator object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * NestedIterator i = new NestedIterator(nestedList);</span></span><br><span class="line"><span class="comment"> * while (i.hasNext()) v[f()] = i.next();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
 
@@ -277,7 +288,11 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
-              <a href="/tags/Stack-LinkedIn-Apple-Java-Pending/" rel="tag"># Stack - LinkedIn - Apple - Java - Pending</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/LinkedIn/" rel="tag"># LinkedIn</a>
+              <a href="/tags/Pending/" rel="tag"># Pending</a>
+              <a href="/tags/Stack/" rel="tag"># Stack</a>
+              <a href="/tags/Apple/" rel="tag"># Apple</a>
           </div>
 
         
@@ -289,7 +304,10 @@
     <a href="/2020/04/05/leetcode-373/" rel="prev" title="Leetcode 373 - Find K Pairs with Smallest Sums">
       <i class="fa fa-chevron-left"></i> Leetcode 373 - Find K Pairs with Smallest Sums
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/08/leetcode-297/" rel="next" title="Leetcode 297 - Serialize and Deserialize Binary Tree">
+      Leetcode 297 - Serialize and Deserialize Binary Tree <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -349,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Appraoch-1-Stack"><span class="nav-number">1.</span> <span class="nav-text">Appraoch 1: Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">2.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Code"><span class="nav-number">3.</span> <span class="nav-text">Java Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#To-do"><span class="nav-number">4.</span> <span class="nav-text">To do</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Approach-1-Stack"><span class="nav-number">1.</span> <span class="nav-text">Approach 1: Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Code"><span class="nav-number">1.2.</span> <span class="nav-text">Java Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#To-do"><span class="nav-number">1.3.</span> <span class="nav-text">To do</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -364,7 +382,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -377,7 +395,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
