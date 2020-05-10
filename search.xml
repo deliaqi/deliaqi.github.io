@@ -49,6 +49,496 @@
       </tags>
   </entry>
   <entry>
+    <title>Leetcode 138 - Copy List with Random Pointer</title>
+    <url>/2020/05/10/leetcode-138/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.</p>
+<p>Return a deep copy of the list.</p>
+<p>The Linked List is represented in the input/output as a list of n nodes. Each node is represented as a pair of [val, random_index] where:</p>
+<pre><code>val: an integer representing Node.val
+random_index: the index of the node (range from 0 to n-1) where random pointer points to, or null if it does not point to any node.</code></pre><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 0 ms, faster than 100.00% of Java online submissions.<br>Memory Usage: 39.3 MB, less than 5.61% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node next;</span></span><br><span class="line"><span class="comment">    Node random;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    public Node(int val) &#123;</span></span><br><span class="line"><span class="comment">        this.val = val;</span></span><br><span class="line"><span class="comment">        this.next = null;</span></span><br><span class="line"><span class="comment">        this.random = null;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">copyRandomList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="comment">// &lt;old, new&gt;</span></span><br><span class="line">        Map&lt;Node, Node&gt; copyMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Node newhead = <span class="keyword">new</span> Node(head.val);</span><br><span class="line">        copyMap.put(head, newhead);</span><br><span class="line">        searchRandom(head, copyMap);</span><br><span class="line">        </span><br><span class="line">        Node cur = head.next, newPrev = newhead, newCur;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!copyMap.containsKey(cur)) &#123;</span><br><span class="line">                copyMap.put(cur, <span class="keyword">new</span> Node(cur.val));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// search random list</span></span><br><span class="line">            searchRandom(cur, copyMap);</span><br><span class="line">            </span><br><span class="line">            newCur = copyMap.get(cur);</span><br><span class="line">            newPrev.next = newCur;</span><br><span class="line">            newPrev = newCur;</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">searchRandom</span><span class="params">(Node oldNode, Map&lt;Node, Node&gt; copyMap)</span> </span>&#123;</span><br><span class="line">        Node newPrev = copyMap.get(oldNode), newCur = <span class="keyword">null</span>;</span><br><span class="line">        Node cur = oldNode.random;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!copyMap.containsKey(cur)) &#123;</span><br><span class="line">                copyMap.put(cur, <span class="keyword">new</span> Node(cur.val));</span><br><span class="line">            &#125;</span><br><span class="line">            newCur = copyMap.get(cur);</span><br><span class="line">            newPrev.random = newCur;</span><br><span class="line">            newPrev = newCur;</span><br><span class="line">            cur = cur.random;</span><br><span class="line">            <span class="keyword">if</span> (newCur.random != <span class="keyword">null</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+        <tag>LinkedList</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 939 - Minimum Area Rectangle</title>
+    <url>/2020/05/10/leetcode-939/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given a set of points in the xy-plane, determine the minimum area of a rectangle formed from these points, with sides parallel to the x and y axes.</p>
+<p>If there isn’t any rectangle, return 0.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 196 ms, faster than 69.12% of Java online submissions.<br>Memory Usage: 58.6 MB, less than 15.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minAreaRect</span><span class="params">(<span class="keyword">int</span>[][] points)</span> </span>&#123;</span><br><span class="line">        TreeMap&lt;Integer, TreeSet&lt;Integer&gt;&gt; map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] point : points) &#123;</span><br><span class="line">            TreeSet&lt;Integer&gt; set = map.getOrDefault(point[<span class="number">0</span>], <span class="keyword">new</span> TreeSet&lt;&gt;());</span><br><span class="line">            set.add(point[<span class="number">1</span>]);</span><br><span class="line">            map.put(point[<span class="number">0</span>], set);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> result = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (Integer x : map.keySet()) &#123;</span><br><span class="line">            Integer curX = x;</span><br><span class="line">            Integer nextX = map.higherKey(curX);</span><br><span class="line">            <span class="keyword">int</span> curArea = Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">while</span> (nextX != <span class="keyword">null</span> &amp;&amp; curArea == Integer.MAX_VALUE) &#123;</span><br><span class="line">                TreeSet&lt;Integer&gt; curYs = map.get(curX);</span><br><span class="line">                TreeSet&lt;Integer&gt; nextYs = map.get(nextX);</span><br><span class="line">                <span class="keyword">for</span> (Integer curY1 : curYs) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!nextYs.contains(curY1)) <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">for</span> (Integer curY2 = curYs.higher(curY1); curY2 != <span class="keyword">null</span>; curY2 = curYs.higher(curY2)) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (curArea != Integer.MAX_VALUE) <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">if</span> (nextYs.contains(curY2)) &#123;</span><br><span class="line">                            curArea = (nextX - curX) * (curY2 - curY1);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                nextX = map.higherKey(nextX);</span><br><span class="line">            &#125;</span><br><span class="line">            result = Math.min(result, curArea);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// return result == Integer.MAX_VALUE ? 0 : result;</span></span><br><span class="line">        </span><br><span class="line">        Map&lt;Integer, List&lt;Integer&gt;&gt; rows = <span class="keyword">new</span> TreeMap();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] point: points) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = point[<span class="number">0</span>], y = point[<span class="number">1</span>];</span><br><span class="line">            rows.computeIfAbsent(x, z-&gt; <span class="keyword">new</span> ArrayList()).add(y);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> ans = Integer.MAX_VALUE;</span><br><span class="line">        Map&lt;Integer, Integer&gt; lastx = <span class="keyword">new</span> HashMap();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: rows.keySet()) &#123;</span><br><span class="line">            List&lt;Integer&gt; row = rows.get(x);</span><br><span class="line">            Collections.sort(row);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row.size(); ++i)</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; row.size(); ++j) &#123;</span><br><span class="line">                    <span class="keyword">int</span> y1 = row.get(i), y2 = row.get(j);</span><br><span class="line">                    <span class="keyword">int</span> code = <span class="number">40001</span> * y1 + y2;</span><br><span class="line">                    <span class="keyword">if</span> (lastx.containsKey(code))</span><br><span class="line">                        ans = Math.min(ans, (x - lastx.get(code)) * (y2-y1));</span><br><span class="line">                    lastx.put(code, x);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans &lt; Integer.MAX_VALUE ? ans : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 659 - Split Array into Consecutive Subsequences</title>
+    <url>/2020/05/10/leetcode-659/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given an array nums sorted in ascending order, return true if and only if you can split it into 1 or more subsequences such that each subsequence consists of consecutive integers and has length at least 3.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 22 ms, faster than 64.77% of Java online submissions.<br>Memory Usage: 41 MB, less than 94.44% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPossible</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; freqMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;Integer, Integer&gt; chainfreq = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) freqMap.put(i, freqMap.getOrDefault(i,<span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (freqMap.get(i) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (chainfreq.getOrDefault(i,<span class="number">0</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                chainfreq.put(i, chainfreq.get(i) - <span class="number">1</span>);</span><br><span class="line">                chainfreq.put(i+<span class="number">1</span>, chainfreq.getOrDefault(i+<span class="number">1</span>,<span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (freqMap.getOrDefault(i+<span class="number">1</span>,<span class="number">0</span>) &gt; <span class="number">0</span> &amp;&amp; freqMap.getOrDefault(i+<span class="number">2</span>,<span class="number">0</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                freqMap.put(i+<span class="number">1</span>, freqMap.get(i+<span class="number">1</span>) - <span class="number">1</span>);</span><br><span class="line">                freqMap.put(i+<span class="number">2</span>, freqMap.get(i+<span class="number">2</span>) - <span class="number">1</span>);</span><br><span class="line">                chainfreq.put(i+<span class="number">3</span>, chainfreq.getOrDefault(i+<span class="number">3</span>,<span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            freqMap.put(i, freqMap.get(i) - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Pending</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 75 - Sort Colors</title>
+    <url>/2020/05/10/leetcode-75/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given an array with n objects colored red, white or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white and blue.<br>Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.<br>Note: You are not suppose to use the library’s sort function for this problem.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 0 ms, faster than 100.00% of Java online submissions.<br>Memory Usage: 38.3 MB, less than 5.51% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pos0 = <span class="number">0</span>, pos2 = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= pos2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                swap(nums, pos0++, i++);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] == <span class="number">2</span>) &#123;</span><br><span class="line">                swap(nums, pos2--, i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = nums[x];</span><br><span class="line">        nums[x] = nums[y];</span><br><span class="line">        nums[y] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Pending</tag>
+        <tag>Frequent</tag>
+        <tag>LinkedIn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 5 - Longest Palindromic Substring</title>
+    <url>/2020/05/09/leetcode-5/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 24 ms, faster than 67.08% of Java online submissions.<br>Memory Usage: 39.9 MB, less than 18.15% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxLength;</span><br><span class="line">    String result;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> s;</span><br><span class="line">        maxLength = <span class="number">1</span>;</span><br><span class="line">        result = s.substring(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            update(s, i, i);</span><br><span class="line">            update(s, i, i + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(String s, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = i, right = j, curLength = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (i == j) curLength = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &gt;=<span class="number">0</span> &amp;&amp; right &lt; s.length()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(left) != s.charAt(right)) <span class="keyword">break</span>;</span><br><span class="line">            curLength += <span class="number">2</span>;</span><br><span class="line">            left--;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (curLength &gt; maxLength) &#123;</span><br><span class="line">            maxLength = curLength;</span><br><span class="line">            result = s.substring(left + <span class="number">1</span>, right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+        <tag>String</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1268 - Search Suggestions System</title>
+    <url>/2020/05/08/leetcode-1268/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given an array of strings products and a string searchWord. We want to design a system that suggests at most three product names from products after each character of searchWord is typed. Suggested products should have common prefix with the searchWord. If there are more than three products with a common prefix return the three lexicographically minimums products.</p>
+<p>Return list of lists of the suggested products after each character of searchWord is typed. </p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 40 ms, faster than 30.92% of Java online submissions.<br>Memory Usage: 47.9 MB, less than 100.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        TreeMap&lt;Character, Node&gt; nexts;</span><br><span class="line">        TreeSet&lt;String&gt; words;</span><br><span class="line">        Node parent;</span><br><span class="line">        <span class="keyword">boolean</span> isEnd;</span><br><span class="line">        Node(<span class="keyword">char</span> newC, Node p) &#123;</span><br><span class="line">            c = newC;</span><br><span class="line">            nexts = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">            words = <span class="keyword">new</span> TreeSet&lt;&gt;();</span><br><span class="line">            parent = p;</span><br><span class="line">            isEnd = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; suggestedProducts(String[] products, String searchWord) &#123;</span><br><span class="line">        Node root = <span class="keyword">new</span> Node(<span class="string">' '</span>, <span class="keyword">null</span>);</span><br><span class="line">        <span class="comment">// build tree</span></span><br><span class="line">        <span class="keyword">for</span> (String word : products) &#123;</span><br><span class="line">            Node tmp = root;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; word.length(); i++) &#123;</span><br><span class="line">                <span class="keyword">char</span> curC = word.charAt(i);</span><br><span class="line">                Node curNode = tmp.nexts.getOrDefault(curC, <span class="keyword">new</span> Node(curC, tmp));</span><br><span class="line">                tmp.nexts.put(curC, curNode);</span><br><span class="line">                tmp = curNode;</span><br><span class="line">            &#125;</span><br><span class="line">            tmp.isEnd = <span class="keyword">true</span>;</span><br><span class="line">            <span class="comment">// fill in word set</span></span><br><span class="line">            <span class="keyword">while</span> (tmp != root) &#123;</span><br><span class="line">                tmp.words.add(word);</span><br><span class="line">                <span class="keyword">if</span> (tmp.words.size() &gt; <span class="number">3</span>) tmp.words.pollLast();</span><br><span class="line">                tmp = tmp.parent;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// search tree</span></span><br><span class="line">        <span class="keyword">int</span> length = searchWord.length();</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;(length);</span><br><span class="line">        Node tmp = root;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> curC = searchWord.charAt(i);</span><br><span class="line">            List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">            <span class="keyword">if</span> (tmp != <span class="keyword">null</span>) &#123;</span><br><span class="line">                tmp = tmp.nexts.getOrDefault(curC, <span class="keyword">null</span>);</span><br><span class="line">                <span class="keyword">if</span> (tmp != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    list.addAll(tmp.words);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            result.add(list);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 450 - Delete Node in a BST</title>
+    <url>/2020/05/07/leetcode-450/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.</p>
+<p>Basically, the deletion can be divided into two stages:</p>
+<ol>
+<li>Search for a node to remove.</li>
+<li>If the node is found, delete the node.<br>Note: Time complexity should be O(height of tree).</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span></span><br><span class="line"><span class="comment"> *         this.val = val;</span></span><br><span class="line"><span class="comment"> *         this.left = left;</span></span><br><span class="line"><span class="comment"> *         this.right = right;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">deleteNode</span><span class="params">(TreeNode root, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// find node</span></span><br><span class="line">        TreeNode prev = <span class="keyword">null</span>, cur = root;</span><br><span class="line">        <span class="keyword">boolean</span> isLeftChild = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span> &amp;&amp; cur.val != key) &#123;</span><br><span class="line">            prev = cur;</span><br><span class="line">            <span class="keyword">if</span> (cur.val &gt; key) &#123; </span><br><span class="line">                cur = cur.left;</span><br><span class="line">                isLeftChild = <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur = cur.right;</span><br><span class="line">                isLeftChild = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// cannot find key</span></span><br><span class="line">        <span class="keyword">if</span> (cur == <span class="keyword">null</span>) <span class="keyword">return</span> root;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// delete leaf node</span></span><br><span class="line">        <span class="keyword">if</span> (cur.left == <span class="keyword">null</span> &amp;&amp; cur.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur == root) <span class="keyword">return</span> <span class="keyword">null</span>; <span class="comment">// if delete root</span></span><br><span class="line">            <span class="keyword">if</span> (isLeftChild) prev.left = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">else</span> prev.right = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// has right child</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cur.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur == root) <span class="keyword">return</span> cur.right; <span class="comment">// if delete root</span></span><br><span class="line">            <span class="keyword">if</span> (isLeftChild) prev.left = cur.right;</span><br><span class="line">            <span class="keyword">else</span> prev.right = cur.right;</span><br><span class="line">        <span class="comment">// has right child</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cur.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cur == root) <span class="keyword">return</span> cur.left; <span class="comment">// if delete root</span></span><br><span class="line">            <span class="keyword">if</span> (isLeftChild) prev.left = cur.left;</span><br><span class="line">            <span class="keyword">else</span> prev.right = cur.left;</span><br><span class="line">        <span class="comment">// has left and right child</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            TreeNode succesor = findSuccesor(cur);</span><br><span class="line">            succesor.left = cur.left;</span><br><span class="line">            <span class="keyword">if</span> (cur == root) <span class="keyword">return</span> succesor;</span><br><span class="line">            <span class="keyword">if</span> (isLeftChild) prev.left = succesor;</span><br><span class="line">            <span class="keyword">else</span> prev.right = succesor;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">findSuccesor</span><span class="params">(TreeNode toDelete)</span> </span>&#123;</span><br><span class="line">        TreeNode cur = toDelete.right, parent = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(cur.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">            parent = cur;</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (cur != toDelete.right) &#123;</span><br><span class="line">            parent.left = cur.right;</span><br><span class="line">            cur.right = toDelete.right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Tree</tag>
+        <tag>Java</tag>
+        <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 240 - Search a 2D Matrix II</title>
+    <url>/2020/05/07/leetcode-240/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<pre><code>Integers in each row are sorted in ascending from left to right.
+Integers in each column are sorted in ascending from top to bottom.</code></pre><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 7 ms, faster than 31.64% of Java online submissions.<br>Memory Usage: 44.6 MB, less than 94.34% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rowNum, colNum;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> rowNum = matrix.length, colNum = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> i = rowNum - <span class="number">1</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; j &lt; colNum) &#123;</span><br><span class="line">            <span class="keyword">if</span> (target &lt; matrix[i][j]) &#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target == matrix[i][j]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 146 - LRU Cache</title>
+    <url>/2020/05/06/leetcode-146/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and put.</p>
+<p>get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br>put(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</p>
+<p>The cache is initialized with a positive capacity.</p>
+<p>Follow up:<br>Could you do both operations in O(1) time complexity?</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 12 ms, faster than 95.09% of Java online submissions.<br>Memory Usage: 47.9 MB, less than 100.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">LRUMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> cacheSize;</span><br><span class="line">        LRUMap(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">            <span class="keyword">super</span>(<span class="number">16</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</span><br><span class="line">            cacheSize = capacity;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;K, V&gt; eldest)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> size() &gt; cacheSize;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    LRUMap&lt;Integer, Integer&gt; map;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> LRUMap&lt;&gt;(capacity);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> map.getOrDefault(key, -<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        map.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * LRUCache obj = new LRUCache(capacity);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj.get(key);</span></span><br><span class="line"><span class="comment"> * obj.put(key,value);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+        <tag>HashMap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 692 - Top K Frequent Words</title>
+    <url>/2020/05/05/leetcode-692/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given a non-empty list of words, return the k most frequent elements.</p>
+<p>Your answer should be sorted by frequency from highest to lowest. If two words have the same frequency, then the word with the lower alphabetical order comes first.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 5 ms, faster than 88.29% of Java online submissions.<br>Memory Usage: 39.7 MB, less than 41.07% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">topKFrequent</span><span class="params">(String[] words, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Integer&gt; freqMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        PriorityQueue&lt;String&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(<span class="keyword">new</span> Comparator&lt;String&gt;()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (freqMap.get(a) == freqMap.get(b)) <span class="keyword">return</span> b.compareTo(a);</span><br><span class="line">                <span class="keyword">return</span> freqMap.get(a) - freqMap.get(b);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (String word : words) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = freqMap.getOrDefault(word, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">            freqMap.put(word, count);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (String word : freqMap.keySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (queue.size() &lt; k) &#123;</span><br><span class="line">                queue.add(word);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (freqMap.get(word) &gt;= freqMap.get(queue.peek())) &#123;</span><br><span class="line">                queue.add(word);</span><br><span class="line">                queue.poll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        LinkedList&lt;String&gt; result = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            result.addFirst(queue.poll());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+        <tag>PriorityQueue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 200 - Number of Islands</title>
+    <url>/2020/05/03/leetcode-200/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given a 2d grid map of ‘1’s (land) and ‘0’s (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 1 ms, faster than 99.96% of Java online submissions.<br>Memory Usage: 41.9 MB, less than 47.44% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span> || grid[<span class="number">0</span>].length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="string">'1'</span>) &#123;</span><br><span class="line">                    result ++;</span><br><span class="line">                    dfs(grid, i, j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (row &lt; <span class="number">0</span> || col &lt; <span class="number">0</span> || row &gt;= grid.length || col &gt;= grid[<span class="number">0</span>].length || grid[row][col] == <span class="string">'0'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        grid[row][col] = <span class="string">'0'</span>;</span><br><span class="line">        dfs(grid, row, col + <span class="number">1</span>);</span><br><span class="line">        dfs(grid, row, col - <span class="number">1</span>);</span><br><span class="line">        dfs(grid, row + <span class="number">1</span>, col);</span><br><span class="line">        dfs(grid, row - <span class="number">1</span>, col);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 994 - Rotting Oranges</title>
+    <url>/2020/05/02/leetcode-994/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>In a given grid, each cell can have one of three values:<br>    the value 0 representing an empty cell;<br>    the value 1 representing a fresh orange;<br>    the value 2 representing a rotten orange.</p>
+<p>Every minute, any fresh orange that is adjacent (4-directionally) to a rotten orange becomes rotten.</p>
+<p>Return the minimum number of minutes that must elapse until no cell has a fresh orange.  If this is impossible, return -1 instead.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 2 ms, faster than 97.55% of Java online submissions.<br>Memory Usage: 39 MB, less than 81.25% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">orangesRotting</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span> || grid[<span class="number">0</span>].length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = grid.length, n = grid[<span class="number">0</span>].length;</span><br><span class="line">        Queue&lt;Integer&gt; rottens = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> freshNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>) freshNum++;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (grid[i][j] == <span class="number">2</span>) &#123;</span><br><span class="line">                    <span class="keyword">int</span> num = i * <span class="number">100</span> + j;</span><br><span class="line">                    rottens.add(num);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> timer = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] direction = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">0</span>,-<span class="number">1</span>&#125;,&#123;<span class="number">0</span>, <span class="number">1</span>&#125;,&#123;-<span class="number">1</span>, <span class="number">0</span>&#125;,&#123;<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">while</span> (!rottens.isEmpty()) &#123;</span><br><span class="line">            timer++;</span><br><span class="line">            <span class="keyword">int</span> count = rottens.size();</span><br><span class="line">            <span class="keyword">while</span> (count-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> num = rottens.poll();</span><br><span class="line">                <span class="keyword">int</span> row = num / <span class="number">100</span>, col = num % <span class="number">100</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                    <span class="keyword">int</span> tmpRow = row + direction[i][<span class="number">0</span>], tmpCol = col + direction[i][<span class="number">1</span>];</span><br><span class="line">                    <span class="keyword">if</span> (tmpRow &lt; <span class="number">0</span> || tmpCol &lt; <span class="number">0</span> || tmpRow &gt;= m || tmpCol &gt;= n)</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span> (grid[tmpRow][tmpCol] == <span class="number">1</span>) &#123;</span><br><span class="line">                        freshNum--;</span><br><span class="line">                        grid[tmpRow][tmpCol] = <span class="number">2</span>;</span><br><span class="line">                        rottens.add(tmpRow * <span class="number">100</span> + tmpCol);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (freshNum == <span class="number">0</span>) <span class="keyword">return</span> timer == <span class="number">0</span> ? <span class="number">0</span> : timer - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Amazon</tag>
+        <tag>Frequent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1192 - Critical Connections in a Network</title>
+    <url>/2020/05/01/leetcode-1192/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>There are n servers numbered from 0 to n-1 connected by undirected server-to-server connections forming a network where connections[i] = [a, b] represents a connection between servers a and b. Any server can reach any other server directly or indirectly through the network.</p>
+<p>A critical connection is a connection that, if removed, will make some server unable to reach some other server.</p>
+<p>Return all critical connections in the network in any order.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 178 ms, faster than 20.85% of Java online submissions.<br>Memory Usage: 137.5 MB, less than 100.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; criticalConnections(<span class="keyword">int</span> n, List&lt;List&lt;Integer&gt;&gt; connections) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> result;</span><br><span class="line">        List&lt;Set&lt;Integer&gt;&gt; graph = <span class="keyword">new</span> ArrayList&lt;&gt;(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            graph.add(<span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (List&lt;Integer&gt; conn : connections) &#123;</span><br><span class="line">            graph.get(conn.get(<span class="number">0</span>)).add(conn.get(<span class="number">1</span>));</span><br><span class="line">            graph.get(conn.get(<span class="number">1</span>)).add(conn.get(<span class="number">0</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">        <span class="keyword">int</span>[] smallestCount = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        dfs(graph, -<span class="number">1</span>, <span class="number">0</span>, visited, smallestCount);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(List&lt;Set&lt;Integer&gt;&gt; graph, <span class="keyword">int</span> lastNode, <span class="keyword">int</span> curNode, <span class="keyword">boolean</span>[] visited, <span class="keyword">int</span>[] smallestCount)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> curCount = counter;</span><br><span class="line">        smallestCount[curNode] = counter++;</span><br><span class="line">        visited[curNode] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> nextNode : graph.get(curNode)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nextNode == lastNode) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (!visited[nextNode]) &#123;</span><br><span class="line">                dfs(graph, curNode, nextNode, visited, smallestCount);</span><br><span class="line">            &#125;</span><br><span class="line">            smallestCount[curNode] = Math.min(smallestCount[curNode], smallestCount[nextNode]);</span><br><span class="line">            <span class="keyword">if</span> (curCount &lt; smallestCount[nextNode]) &#123;</span><br><span class="line">                result.add(Arrays.asList(<span class="keyword">new</span> Integer[]&#123;curNode, nextNode&#125;));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+        <tag>Amazon</tag>
+        <tag>Hard</tag>
+        <tag>Frequent</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1334 - Find the City With the Smallest Number of Neighbors at a Threshold Distance</title>
+    <url>/2020/04/30/leetcode-1334/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>There are n cities numbered from 0 to n-1. Given the array edges where edges[i] = [fromi, toi, weighti] represents a bidirectional and weighted edge between cities fromi and toi, and given the integer distanceThreshold.</p>
+<p>Return the city with the smallest number of cities that are reachable through some path and whose distance is at most distanceThreshold, If there are multiple such cities, return the city with the greatest number.</p>
+<p>Notice that the distance of a path connecting cities i and j is equal to the sum of the edges’ weights along that path.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 110 ms, faster than 21.53% of Java online submissions.<br>Memory Usage: 40.1 MB, less than 100.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTheCity</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span>[][] edges, <span class="keyword">int</span> distanceThreshold)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, HashMap&lt;Integer, Integer&gt;&gt; edgeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] edge : edges)&#123;</span><br><span class="line">            edgeMap.putIfAbsent(edge[<span class="number">0</span>], <span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">            edgeMap.get(edge[<span class="number">0</span>]).put(edge[<span class="number">1</span>], edge[<span class="number">2</span>]);</span><br><span class="line">            edgeMap.putIfAbsent(edge[<span class="number">1</span>], <span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">            edgeMap.get(edge[<span class="number">1</span>]).put(edge[<span class="number">0</span>], edge[<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> result = -<span class="number">1</span>, min = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            Queue&lt;<span class="keyword">int</span>[]&gt; q = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a1, a2) -&gt; (a2[<span class="number">1</span>] - a1[<span class="number">1</span>]));</span><br><span class="line">            Set&lt;Integer&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">            q.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i, distanceThreshold&#125;);</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">int</span>[] edge = q.poll();</span><br><span class="line">                <span class="keyword">int</span> nextNode = edge[<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">int</span> limit = edge[<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (visited.contains(nextNode)) <span class="keyword">continue</span>;</span><br><span class="line">                visited.add(nextNode);</span><br><span class="line">                count++;</span><br><span class="line">                <span class="keyword">if</span> (edgeMap.containsKey(nextNode)) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry : edgeMap.get(nextNode).entrySet()) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (!visited.contains(entry.getKey()) &amp;&amp; entry.getValue() &lt;= limit) &#123;</span><br><span class="line">                            q.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;entry.getKey(), limit - entry.getValue()&#125;);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (count - <span class="number">1</span> &lt;= min) &#123;</span><br><span class="line">                min = count - <span class="number">1</span>;</span><br><span class="line">                result = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+        <tag>Graph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 743 - Network Delay Time</title>
+    <url>/2020/04/29/leetcode-743/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>There are N network nodes, labelled 1 to N.</p>
+<p>Given times, a list of travel times as directed edges times[i] = (u, v, w), where u is the source node, v is the target node, and w is the time it takes for a signal to travel from source to target.</p>
+<p>Now, we send a signal from a certain node K. How long will it take for all nodes to receive the signal? If it is impossible, return -1.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 31 ms, faster than 31.17% of Java online submissions.<br>Memory Usage: 43 MB, less than 90.48% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">networkDelayTime</span><span class="params">(<span class="keyword">int</span>[][] times, <span class="keyword">int</span> N, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, HashMap&lt;Integer, Integer&gt;&gt; timeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>[] time : times)&#123;</span><br><span class="line">            timeMap.putIfAbsent(time[<span class="number">0</span>], <span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">            timeMap.get(time[<span class="number">0</span>]).put(time[<span class="number">1</span>], time[<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[N+<span class="number">1</span>];</span><br><span class="line">        Queue&lt;<span class="keyword">int</span>[]&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;((a,b) -&gt; (a[<span class="number">0</span>] - b[<span class="number">0</span>]));</span><br><span class="line">        queue.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>, K&#125;);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span>[] cur = queue.remove();</span><br><span class="line">            <span class="keyword">int</span> curNode = cur[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> curDist = cur[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">if</span>(visited[curNode]) <span class="keyword">continue</span>;</span><br><span class="line">            visited[curNode] = <span class="keyword">true</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (timeMap.containsKey(curNode)) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> nextNode : timeMap.get(curNode).keySet()) &#123;</span><br><span class="line">                    queue.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;curDist + timeMap.get(curNode).get(nextNode), nextNode&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            result = curDist;</span><br><span class="line">            N--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> N == <span class="number">0</span> ? result : -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+        <tag>Graph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1146 - Snapshot Array</title>
+    <url>/2020/04/27/leetcode-1146/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Implement a SnapshotArray that supports the following interface:</p>
+<p>SnapshotArray(int length) initializes an array-like data structure with the given length.  Initially, each element equals 0.<br>void set(index, val) sets the element at the given index to be equal to val.<br>int snap() takes a snapshot of the array and returns the snap_id: the total number of times we called snap() minus 1.<br>int get(index, snap_id) returns the value at the given index, at the time we took the snapshot with the given snap_id</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 42 ms, faster than 35.60% of Java online submissions.<br>Memory Usage: 61.2 MB, less than 100.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SnapshotArray</span> </span>&#123;</span><br><span class="line">    List&lt;TreeMap&lt;Integer, Integer&gt;&gt; snapList;</span><br><span class="line">    <span class="keyword">int</span> snapNum = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SnapshotArray</span><span class="params">(<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        snapList = <span class="keyword">new</span> ArrayList&lt;&gt;(length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            snapList.add(<span class="keyword">new</span> TreeMap&lt;&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        snapList.get(index).put(snapNum, val);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">snap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> snapNum++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> index, <span class="keyword">int</span> snap_id)</span> </span>&#123;</span><br><span class="line">        Integer id = snapList.get(index).floorKey(snap_id);</span><br><span class="line">        <span class="keyword">if</span> (id == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> snapList.get(index).get(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your SnapshotArray object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * SnapshotArray obj = new SnapshotArray(length);</span></span><br><span class="line"><span class="comment"> * obj.set(index,val);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj.snap();</span></span><br><span class="line"><span class="comment"> * int param_3 = obj.get(index,snap_id);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1320 - Minimum Distance to Type a Word Using Two Fingers</title>
+    <url>/2020/04/24/leetcode-1320/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>You have a keyboard layout as shown above in the XY plane, where each English uppercase letter is located at some coordinate, for example, the letter A is located at coordinate (0,0), the letter B is located at coordinate (0,1), the letter P is located at coordinate (2,3) and the letter Z is located at coordinate (4,1).</p>
+<p>Given the string word, return the minimum total distance to type such string using only two fingers. The distance between coordinates (x1,y1) and (x2,y2) is |x1 - x2| + |y1 - y2|. </p>
+<p>Note that the initial positions of your two fingers are considered free so don’t count towards your total distance, also your two fingers do not have to start at the first letter or the first two letters.<br><a href="https://leetcode.com/problems/minimum-distance-to-type-a-word-using-two-fingers/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-distance-to-type-a-word-using-two-fingers/</a></p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 25 ms, faster than 53.43% of Java online submissions.<br>Memory Usage: 41.2 MB, less than 100.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDistance</span><span class="params">(String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (word == <span class="keyword">null</span> || word.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> n = word.length();</span><br><span class="line">        <span class="keyword">int</span>[][][] memo = <span class="keyword">new</span> <span class="keyword">int</span>[n][<span class="number">26</span>][<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[][] arr : memo) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span>[] tmp : arr) Arrays.fill(tmp, -<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// record location</span></span><br><span class="line">        Map&lt;Integer, <span class="keyword">int</span>[]&gt; posMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> row = <span class="number">0</span>; row &lt; <span class="number">5</span>; row++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; <span class="number">6</span>; col++) &#123;</span><br><span class="line">                posMap.put(c, <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;row, col&#125;);</span><br><span class="line">                c++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dfs(posMap, word, <span class="number">0</span>, -<span class="number">1</span>, -<span class="number">1</span>, memo);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(Map&lt;Integer, <span class="keyword">int</span>[]&gt; posMap, String word, <span class="keyword">int</span> index, <span class="keyword">int</span> pos1, <span class="keyword">int</span> pos2, <span class="keyword">int</span>[][][] memo)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> distance = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (index == word.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> distance;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pos1 &gt; -<span class="number">1</span> &amp;&amp; pos2 &gt; -<span class="number">1</span> &amp;&amp; memo[index][pos1][pos2] != -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> memo[index][pos1][pos2];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span> c = word.charAt(index);</span><br><span class="line">        <span class="comment">// figure 1</span></span><br><span class="line">        <span class="keyword">int</span> d1 = dfs(posMap, word, index + <span class="number">1</span>, c - <span class="string">'A'</span>, pos2, memo) + getDistance(c - <span class="string">'A'</span>, pos1, posMap);</span><br><span class="line">        <span class="comment">// figure 2</span></span><br><span class="line">        <span class="keyword">int</span> d2 = dfs(posMap, word, index + <span class="number">1</span>, pos1, c - <span class="string">'A'</span>, memo) + getDistance(c - <span class="string">'A'</span>, pos2, posMap);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(pos1 != -<span class="number">1</span> &amp;&amp; pos2 != -<span class="number">1</span>) &#123;</span><br><span class="line">            memo[index][pos1][pos2] = distance + Math.min(d1, d2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> distance + Math.min(d1, d2);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getDistance</span><span class="params">(<span class="keyword">int</span> c1, <span class="keyword">int</span> c2, Map&lt;Integer, <span class="keyword">int</span>[]&gt; posMap)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (c1 == -<span class="number">1</span> || c2 == -<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] pos1 = posMap.get(c1);</span><br><span class="line">        <span class="keyword">int</span>[] pos2 = posMap.get(c2);</span><br><span class="line">        <span class="keyword">return</span> Math.abs(pos1[<span class="number">0</span>] - pos2[<span class="number">0</span>]) + Math.abs(pos1[<span class="number">1</span>] - pos2[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>DFS</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 752 - Open the Lock</title>
+    <url>/2020/04/23/leetcode-752/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’. The wheels can rotate freely and wrap around: for example we can turn ‘9’ to be ‘0’, or ‘0’ to be ‘9’. Each move consists of turning one wheel one slot.</p>
+<p>The lock initially starts at ‘0000’, a string representing the state of the 4 wheels.</p>
+<p>You are given a list of deadends dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.</p>
+<p>Given a target representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 60 ms, faster than 84.56% of Java online submissions.<br>Memory Usage: 42.9 MB, less than 84.21% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">openLock</span><span class="params">(String[] deadends, String target)</span> </span>&#123;</span><br><span class="line">        Set&lt;String&gt; endSet = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String s : deadends) &#123;</span><br><span class="line">            endSet.add(s);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// BFS</span></span><br><span class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offer(<span class="string">"0000"</span>);</span><br><span class="line">        Set&lt;String&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        visited.add(<span class="string">"0000"</span>);</span><br><span class="line">        <span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (queue.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = queue.size();</span><br><span class="line">            <span class="keyword">while</span> (count-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                String s = queue.poll();</span><br><span class="line">                <span class="keyword">if</span> (endSet.contains(s)) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (s.equals(target)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> depth;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span>[] curLock = s.toCharArray();</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">                    <span class="keyword">char</span> tmp = curLock[i];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = -<span class="number">1</span>; j &lt;= <span class="number">1</span>; j+=<span class="number">2</span>) &#123;</span><br><span class="line">                        curLock[i] = (<span class="keyword">char</span>)(<span class="string">'0'</span> + ((tmp - <span class="string">'0'</span>) + <span class="number">10</span> + j) % <span class="number">10</span>);</span><br><span class="line">                        String newS = <span class="keyword">new</span> String(curLock);</span><br><span class="line">                        <span class="keyword">if</span> (!visited.contains(newS)) &#123;</span><br><span class="line">                            queue.offer(newS);</span><br><span class="line">                            visited.add(newS);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    curLock[i] = tmp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            depth++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Pending</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 846 - Hand of Straights</title>
+    <url>/2020/04/22/leetcode-846/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Alice has a hand of cards, given as an array of integers.</p>
+<p>Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards.</p>
+<p>Return true if and only if she can.</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 58 ms, faster than 26.43% of Java online submissions.<br>Memory Usage: 41.6 MB.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNStraightHand</span><span class="params">(<span class="keyword">int</span>[] hand, <span class="keyword">int</span> W)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hand==<span class="keyword">null</span> || hand.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(hand.length%W != <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//Convert the given hand into a TreeMap of &lt;Hand,Frequency&gt;</span></span><br><span class="line">        TreeMap&lt;Integer,Integer&gt; map=<span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i : hand)</span><br><span class="line">            map.put(i,map.getOrDefault(i,<span class="number">0</span>)+<span class="number">1</span>);    </span><br><span class="line">        </span><br><span class="line">        <span class="comment">//Delete groups of size W from TreeMap</span></span><br><span class="line">        <span class="keyword">while</span>(!map.isEmpty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> curr=map.firstKey();</span><br><span class="line">            updateTreeMap(map,curr);</span><br><span class="line">            <span class="keyword">int</span> count=<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(count!=W)</span><br><span class="line">            &#123;</span><br><span class="line">                Map.Entry&lt;Integer,Integer&gt; next=map.higherEntry(curr);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(next==<span class="keyword">null</span> || next.getKey()-curr != <span class="number">1</span>) </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                    updateTreeMap(map,next.getKey());</span><br><span class="line">                    curr=next.getKey();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateTreeMap</span><span class="params">(TreeMap&lt;Integer,Integer&gt; map,<span class="keyword">int</span> curr)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        map.put(curr,map.get(curr)-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(map.get(curr)==<span class="number">0</span>) </span><br><span class="line">            map.remove(curr);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Pending</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 127 - Word Ladder &amp; Leetcode 126 - Word Ladder II</title>
+    <url>/2020/04/18/leetcode-127/</url>
+    <content><![CDATA[<h2 id="Leetcode-127-Word-Ladder"><a href="#Leetcode-127-Word-Ladder" class="headerlink" title="Leetcode 127 - Word Ladder"></a>Leetcode 127 - Word Ladder</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given two words (beginWord and endWord), and a dictionary’s word list, find the length of shortest transformation sequence from beginWord to endWord, such that:</p>
+<ol>
+<li>Only one letter can be changed at a time.</li>
+<li>Each transformed word must exist in the word list.</li>
+</ol>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 61 ms, faster than 53.14% of Java online submissions.<br>Memory Usage: 40.8 MB, less than 72.26% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, List&lt;String&gt; wordList)</span> </span>&#123;</span><br><span class="line">        Set&lt;String&gt; dict = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String w : wordList) &#123;</span><br><span class="line">            dict.add(w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!dict.contains(endWord)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">          </span><br><span class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">        queue.add(beginWord);</span><br><span class="line">        <span class="keyword">int</span> size = queue.size();</span><br><span class="line">        <span class="keyword">int</span> level = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">          String w = queue.poll();</span><br><span class="line">          size--;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; w.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span>[] a = w.toCharArray();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> j = <span class="string">'a'</span>; j &lt;= <span class="string">'z'</span>; j++) &#123;</span><br><span class="line">              a[i] = j;</span><br><span class="line">              String newOne = <span class="keyword">new</span> String(a);</span><br><span class="line">              <span class="keyword">if</span> (newOne.equals(endWord))</span><br><span class="line">                <span class="keyword">return</span> level + <span class="number">1</span>;</span><br><span class="line">              <span class="keyword">if</span> (dict.contains(newOne)) &#123;</span><br><span class="line">                queue.add(newOne);</span><br><span class="line">                dict.remove(newOne);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">            size = queue.size();</span><br><span class="line">            level++;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Leetcode-126-Word-Ladder-II"><a href="#Leetcode-126-Word-Ladder-II" class="headerlink" title="Leetcode 126 - Word Ladder II"></a>Leetcode 126 - Word Ladder II</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>Given two words (beginWord and endWord), and a dictionary’s word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:</p>
+<ol>
+<li>Only one letter can be changed at a time</li>
+<li>Each transformed word must exist in the word list. Note that beginWord is not a transformed word.</li>
+</ol>
+<h3 id="Result-1"><a href="#Result-1" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 84 ms, faster than 70.21% of Java online submissions.<br>Memory Usage: 40.7 MB, less than 86.54% of Java online submissions.</p>
+<h3 id="Java-code-1"><a href="#Java-code-1" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;String&gt;&gt; findLadders(String beginWord, String endWord, List&lt;String&gt; wordList) &#123;</span><br><span class="line">        Set&lt;String&gt; dict = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String w : wordList) &#123;</span><br><span class="line">            dict.add(w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (dict.contains(beginWord)) dict.remove(beginWord);</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (!dict.contains(endWord) || beginWord.equals(endWord)) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// &lt;child, parent&gt;</span></span><br><span class="line">        Map&lt;String, List&lt;String&gt;&gt; prevMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Map&lt;String, List&lt;String&gt;&gt; neighborMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Set&lt;String&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</span><br><span class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(beginWord);</span><br><span class="line">        visited.add(beginWord);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = queue.size();</span><br><span class="line">            Set&lt;String&gt; nexts = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">            <span class="keyword">while</span> (count-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// traverse all neighbors</span></span><br><span class="line">                String cur = queue.poll();</span><br><span class="line">                List&lt;String&gt; neighbors = getNeighbors(cur, dict);</span><br><span class="line">                <span class="keyword">for</span> (String newOne : neighbors) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!visited.contains(newOne)) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (newOne.equals(endWord)) &#123;</span><br><span class="line">                            found = <span class="keyword">true</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        List&lt;String&gt; prevList = prevMap.getOrDefault(newOne, <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">                        prevList.add(cur);</span><br><span class="line">                        prevMap.put(newOne, prevList);</span><br><span class="line">                        nexts.add(newOne);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// if found</span></span><br><span class="line">            <span class="keyword">if</span> (found) <span class="keyword">break</span>;</span><br><span class="line">            <span class="comment">// add to queue</span></span><br><span class="line">            <span class="keyword">for</span> (String s: nexts) &#123;</span><br><span class="line">                queue.add(s);</span><br><span class="line">                visited.add(s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (found) &#123;</span><br><span class="line">            LinkedList&lt;String&gt; path = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            path.add(endWord);</span><br><span class="line">            dfs(endWord, path, prevMap, result);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> ArrayList&lt;String&gt; <span class="title">getNeighbors</span><span class="params">(String node, Set&lt;String&gt; dict)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="keyword">char</span> chs[] = node.toCharArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> ch =<span class="string">'a'</span>; ch &lt;= <span class="string">'z'</span>; ch++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chs.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (chs[i] == ch) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">char</span> old_ch = chs[i];</span><br><span class="line">                chs[i] = ch;</span><br><span class="line">                <span class="keyword">if</span> (dict.contains(String.valueOf(chs))) &#123;</span><br><span class="line">                    res.add(String.valueOf(chs));</span><br><span class="line">                &#125;</span><br><span class="line">                chs[i] = old_ch;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(String s, LinkedList&lt;String&gt; path, Map&lt;String, List&lt;String&gt;&gt; prevMap, List&lt;List&lt;String&gt;&gt; result)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!prevMap.containsKey(s)) &#123;</span><br><span class="line">            result.add(<span class="keyword">new</span> LinkedList&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (String pre : prevMap.get(s)) &#123;</span><br><span class="line">            path.addFirst(pre);</span><br><span class="line">            dfs(pre, path, prevMap, result);</span><br><span class="line">            path.removeFirst();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+        <tag>Hard</tag>
+        <tag>Frequent</tag>
+        <tag>LinkedIn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 354 - Russian Doll Envelopes</title>
+    <url>/2020/04/15/leetcode-354/</url>
+    <content><![CDATA[<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>You have a number of envelopes with widths and heights given as a pair of integers (w, h). One envelope can fit into another if and only if both the width and height of one envelope is greater than the width and height of the other envelope.<br>What is the maximum number of envelopes can you Russian doll? (put one inside other)</p>
+<a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 245 ms, faster than 21.38% of Java online submissions.<br>Memory Usage: 40.3 MB, less than 100.00% of Java online submissions.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxEnvelopes</span><span class="params">(<span class="keyword">int</span>[][] envelopes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (envelopes == <span class="keyword">null</span> || envelopes.length == <span class="number">0</span></span><br><span class="line">           || envelopes[<span class="number">0</span>].length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(envelopes, <span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] o1, <span class="keyword">int</span>[] o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o1[<span class="number">0</span>] - o2[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span> length = envelopes.length;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">            dp[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (envelopes[i][<span class="number">0</span>] == envelopes[j][<span class="number">0</span>]) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (envelopes[i][<span class="number">1</span>] &gt; envelopes[j][<span class="number">1</span>]) &#123;</span><br><span class="line">                    dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            result = Math.max(result, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Pending</tag>
+        <tag>Hard</tag>
+        <tag>Dynamic Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 315 - Count of Smaller Numbers After Self</title>
+    <url>/2020/04/14/leetcode-315/</url>
+    <content><![CDATA[<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 4 ms, faster than 92.22% of Java online submissions.<br>Memory Usage: 41.7 MB, less than 8.33% of Java online submissions.</p>
+<a id="more"></a>
+
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        Node left; </span><br><span class="line">        Node right;</span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.val = val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">countSmaller</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        LinkedList&lt;Integer&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">		<span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">		Node root = <span class="keyword">new</span> Node(nums[nums.length - <span class="number">1</span>]);</span><br><span class="line">		res.add(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = nums.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">			<span class="keyword">int</span> count = insertNode(root, nums[i]);</span><br><span class="line">			res.addFirst(count);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">insertNode</span><span class="params">(Node root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> thisCount = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(val &lt;= root.val) &#123;</span><br><span class="line">				root.count++;</span><br><span class="line">				<span class="keyword">if</span>(root.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">					root.left = <span class="keyword">new</span> Node(val); <span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					root = root.left;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				thisCount += root.count;</span><br><span class="line">				<span class="keyword">if</span>(root.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">					root.right = <span class="keyword">new</span> Node(val); <span class="keyword">break</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					root = root.right;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> thisCount;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+        <tag>Hard</tag>
+        <tag>LinkedList</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 81 - Search in Rotated Sorted Array II (Binary Search)</title>
+    <url>/2020/04/13/leetcode-81/</url>
+    <content><![CDATA[<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 0 ms, faster than 100.00% of Java online submissions for Search in Rotated Sorted Array II.<br>Memory Usage: 39.4 MB, less than 54.93% of Java online submissions for Search in Rotated Sorted Array II.</p>
+<a id="more"></a>
+
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(1).<br>Time Complexity: O(logN).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="comment">// if left part is sorted</span></span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[start]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &lt; nums[mid] &amp;&amp; target &gt;= nums[start]) &#123;</span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="comment">// if right part is sorted</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; nums[start]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &gt; nums[mid] &amp;&amp; target &lt; nums[start]) &#123;</span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                start ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Pending</tag>
+        <tag>Frequent</tag>
+        <tag>Binary Search</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Leetcode - Sliding Window</title>
     <url>/2020/04/12/leetcode-3/</url>
     <content><![CDATA[<p>3.Longest Substring Without Repeating Characters<br>76.Minimum Window Substring<br>862.Shortest Subarray with Sum at Least K</p>
@@ -68,11 +558,11 @@
         <tag>Leetcode</tag>
         <tag>Google</tag>
         <tag>Java</tag>
-        <tag>LinkedIn</tag>
-        <tag>Facebook</tag>
         <tag>Pending</tag>
-        <tag>Sliding Window</tag>
         <tag>Frequent</tag>
+        <tag>LinkedIn</tag>
+        <tag>Sliding Window</tag>
+        <tag>Facebook</tag>
       </tags>
   </entry>
   <entry>
@@ -93,9 +583,9 @@
         <tag>Leetcode</tag>
         <tag>Google</tag>
         <tag>Java</tag>
+        <tag>Frequent</tag>
         <tag>LinkedIn</tag>
         <tag>Sliding Window</tag>
-        <tag>Frequent</tag>
         <tag>Queue</tag>
       </tags>
   </entry>
@@ -115,10 +605,10 @@
         <tag>Leetcode</tag>
         <tag>Google</tag>
         <tag>Java</tag>
-        <tag>LinkedIn</tag>
-        <tag>Facebook</tag>
         <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>LinkedIn</tag>
+        <tag>Facebook</tag>
       </tags>
   </entry>
   <entry>
@@ -136,12 +626,12 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>Java</tag>
         <tag>Tree</tag>
-        <tag>LinkedIn</tag>
-        <tag>Facebook</tag>
+        <tag>Java</tag>
         <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>LinkedIn</tag>
+        <tag>Facebook</tag>
       </tags>
   </entry>
   <entry>
@@ -166,8 +656,8 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>LinkedIn</tag>
         <tag>Pending</tag>
+        <tag>LinkedIn</tag>
         <tag>Stack</tag>
         <tag>Apple</tag>
       </tags>
@@ -189,8 +679,8 @@
         <tag>Leetcode</tag>
         <tag>Google</tag>
         <tag>Java</tag>
-        <tag>LinkedIn</tag>
         <tag>Pending</tag>
+        <tag>LinkedIn</tag>
         <tag>Heap</tag>
       </tags>
   </entry>
@@ -276,8 +766,8 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>LinkedIn</tag>
         <tag>Pending</tag>
+        <tag>LinkedIn</tag>
       </tags>
   </entry>
   <entry>
@@ -296,11 +786,11 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>Array</tag>
         <tag>Java</tag>
-        <tag>HashMap</tag>
-        <tag>LinkedIn</tag>
+        <tag>Array</tag>
         <tag>Amazon</tag>
+        <tag>LinkedIn</tag>
+        <tag>HashMap</tag>
         <tag>Facebook</tag>
       </tags>
   </entry>
@@ -329,12 +819,12 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
+        <tag>DFS</tag>
+        <tag>Tree</tag>
         <tag>Google</tag>
         <tag>Java</tag>
-        <tag>Binary Search</tag>
-        <tag>Tree</tag>
-        <tag>DFS</tag>
         <tag>Pending</tag>
+        <tag>Binary Search</tag>
       </tags>
   </entry>
   <entry>
@@ -364,10 +854,10 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
+        <tag>DFS</tag>
+        <tag>Tree</tag>
         <tag>Google</tag>
         <tag>Java</tag>
-        <tag>Tree</tag>
-        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -383,9 +873,9 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
+        <tag>DFS</tag>
         <tag>Google</tag>
         <tag>Java</tag>
-        <tag>DFS</tag>
         <tag>LinkedList</tag>
       </tags>
   </entry>
@@ -407,10 +897,10 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>Array</tag>
-        <tag>Dynamic Programming</tag>
         <tag>Google</tag>
         <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
@@ -433,11 +923,12 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>Array</tag>
-        <tag>Dynamic Programming</tag>
-        <tag>Graph</tag>
         <tag>Google</tag>
         <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Pending</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>Graph</tag>
       </tags>
   </entry>
   <entry>
@@ -453,10 +944,10 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>Greedy</tag>
-        <tag>Array</tag>
         <tag>Google</tag>
         <tag>Java</tag>
+        <tag>Greedy</tag>
+        <tag>Array</tag>
         <tag>Pending</tag>
       </tags>
   </entry>
@@ -476,9 +967,9 @@
       </categories>
       <tags>
         <tag>Leetcode</tag>
-        <tag>Array</tag>
         <tag>Google</tag>
         <tag>Java</tag>
+        <tag>Array</tag>
         <tag>HashMap</tag>
       </tags>
   </entry>
@@ -558,7 +1049,7 @@
 <a id="more"></a>
 
 <p><strong>Not Started</strong><br>《夏目友人帐》 村井贞之<br>《清醒思考的艺术》 【德】罗尔夫·多贝里</p>
-<p><strong>Completed</strong><br>《Rich Daddy, Poor Daddy》 [US]Robert Kiyosaki, Sharon Lechter<br>《玛格丽特小镇》<br>《岛上书店》 加·泽文<br>《你今天真好看》 【美】利兹·克里莫<br>《解忧杂货店》 东野圭吾<br>《24个比利》 丹尼尔·凯斯<br>《三体》 刘慈欣<br>《黄金时代》 王小波<br>《无声告白》<br>《阿弥陀佛么么哒》 大冰<br>《目送》 龙应台<br>《福尔摩斯探案全集》 Conan Doyle A.</p>
+<p><strong>Completed</strong><br>《我们仨》杨绛<br>《边城》沈从文<br>《Rich Daddy, Poor Daddy》 [US]Robert Kiyosaki, Sharon Lechter<br>《玛格丽特小镇》<br>《岛上书店》 加·泽文<br>《你今天真好看》 【美】利兹·克里莫<br>《解忧杂货店》 东野圭吾<br>《24个比利》 丹尼尔·凯斯<br>《三体》 刘慈欣<br>《黄金时代》 王小波<br>《无声告白》<br>《阿弥陀佛么么哒》 大冰<br>《目送》 龙应台<br>《福尔摩斯探案全集》 Conan Doyle A.</p>
 <p><strong>To Be Continued…</strong></p>
 ]]></content>
       <categories>
