@@ -54,11 +54,10 @@
 <meta property="og:description" content="Leetcode 127 - Word LadderDescriptionGiven two words (beginWord and endWord), and a dictionary’s word list, find the length of shortest transformation sequence from beginWord to endWord, such that:  O">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-18T14:24:07.000Z">
-<meta property="article:modified_time" content="2020-05-10T14:31:02.120Z">
+<meta property="article:modified_time" content="2020-05-12T14:11:29.027Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Pending">
 <meta property="article:tag" content="Hard">
 <meta property="article:tag" content="Frequent">
 <meta property="article:tag" content="LinkedIn">
@@ -241,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-10 10:31:02" itemprop="dateModified" datetime="2020-05-10T10:31:02-04:00">2020-05-10</time>
+                <time title="Modified: 2020-05-12 10:11:29" itemprop="dateModified" datetime="2020-05-12T10:11:29-04:00">2020-05-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +265,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Leetcode-127-Word-Ladder"><a href="#Leetcode-127-Word-Ladder" class="headerlink" title="Leetcode 127 - Word Ladder"></a>Leetcode 127 - Word Ladder</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given two words (beginWord and endWord), and a dictionary’s word list, find the length of shortest transformation sequence from beginWord to endWord, such that:</p>
+        <h2 id="Leetcode-127-Word-Ladder"><a href="#Leetcode-127-Word-Ladder" class="headerlink" title="Leetcode 127 - Word Ladder"></a>Leetcode 127 - Word Ladder</h2><p><strong>Description</strong><br>Given two words (beginWord and endWord), and a dictionary’s word list, find the <strong>length</strong> of shortest transformation sequence from beginWord to endWord, such that:</p>
 <ol>
 <li>Only one letter can be changed at a time.</li>
 <li>Each transformed word must exist in the word list.</li>
@@ -277,7 +276,7 @@
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(String beginWord, String endWord, List&lt;String&gt; wordList)</span> </span>&#123;</span><br><span class="line">        Set&lt;String&gt; dict = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String w : wordList) &#123;</span><br><span class="line">            dict.add(w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!dict.contains(endWord)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">          </span><br><span class="line">        Queue&lt;String&gt; queue = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">        queue.add(beginWord);</span><br><span class="line">        <span class="keyword">int</span> size = queue.size();</span><br><span class="line">        <span class="keyword">int</span> level = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">          String w = queue.poll();</span><br><span class="line">          size--;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; w.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span>[] a = w.toCharArray();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> j = <span class="string">'a'</span>; j &lt;= <span class="string">'z'</span>; j++) &#123;</span><br><span class="line">              a[i] = j;</span><br><span class="line">              String newOne = <span class="keyword">new</span> String(a);</span><br><span class="line">              <span class="keyword">if</span> (newOne.equals(endWord))</span><br><span class="line">                <span class="keyword">return</span> level + <span class="number">1</span>;</span><br><span class="line">              <span class="keyword">if</span> (dict.contains(newOne)) &#123;</span><br><span class="line">                queue.add(newOne);</span><br><span class="line">                dict.remove(newOne);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">            size = queue.size();</span><br><span class="line">            level++;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Leetcode-126-Word-Ladder-II"><a href="#Leetcode-126-Word-Ladder-II" class="headerlink" title="Leetcode 126 - Word Ladder II"></a>Leetcode 126 - Word Ladder II</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>Given two words (beginWord and endWord), and a dictionary’s word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:</p>
+<h2 id="Leetcode-126-Word-Ladder-II"><a href="#Leetcode-126-Word-Ladder-II" class="headerlink" title="Leetcode 126 - Word Ladder II"></a>Leetcode 126 - Word Ladder II</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Given two words (beginWord and endWord), and a dictionary’s word list, find <strong>all shortest transformation sequence(s)</strong> from beginWord to endWord, such that:</p>
 <ol>
 <li>Only one letter can be changed at a time</li>
 <li>Each transformed word must exist in the word list. Note that beginWord is not a transformed word.</li>
@@ -294,7 +293,6 @@
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Pending/" rel="tag"># Pending</a>
               <a href="/tags/Hard/" rel="tag"># Hard</a>
               <a href="/tags/Frequent/" rel="tag"># Frequent</a>
               <a href="/tags/LinkedIn/" rel="tag"># LinkedIn</a>
@@ -310,8 +308,8 @@
       <i class="fa fa-chevron-left"></i> Leetcode 354 - Russian Doll Envelopes
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/04/22/leetcode-846/" rel="next" title="Leetcode 846 - Hand of Straights">
-      Leetcode 846 - Hand of Straights <i class="fa fa-chevron-right"></i>
+    <a href="/2020/04/22/leetcode-846/" rel="next" title="LeetCode 846 - Hand of Straights && LeetCode 1296 - Divide Array in Sets of K Consecutive Numbers">
+      LeetCode 846 - Hand of Straights && LeetCode 1296 - Divide Array in Sets of K Consecutive Numbers <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -372,7 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-127-Word-Ladder"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 127 - Word Ladder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.2.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.3.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-126-Word-Ladder-II"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 126 - Word Ladder II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description-1"><span class="nav-number">2.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Result-1"><span class="nav-number">2.2.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code-1"><span class="nav-number">2.3.</span> <span class="nav-text">Java code</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-127-Word-Ladder"><span class="nav-number">1.</span> <span class="nav-text">Leetcode 127 - Word Ladder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.2.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Leetcode-126-Word-Ladder-II"><span class="nav-number">2.</span> <span class="nav-text">Leetcode 126 - Word Ladder II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">2.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Result-1"><span class="nav-number">2.2.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code-1"><span class="nav-number">2.3.</span> <span class="nav-text">Java code</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -387,7 +385,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -400,7 +398,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

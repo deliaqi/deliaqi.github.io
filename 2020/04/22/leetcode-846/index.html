@@ -46,21 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="DescriptionAlice has a hand of cards, given as an array of integers. Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards. Return true if">
+  <meta name="description" content="LeetCode 846 - Hand of StraightsSimilar Questions659 - Split Array into Consecutive Subsequences1296 - Divide Array in Sets of K Consecutive Numbers DescriptionAlice has a hand of cards, given as an a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode 846 - Hand of Straights">
+<meta property="og:title" content="LeetCode 846 - Hand of Straights &amp;&amp; LeetCode 1296 - Divide Array in Sets of K Consecutive Numbers">
 <meta property="og:url" content="http://delia13.me/2020/04/22/leetcode-846/index.html">
 <meta property="og:site_name" content="Delia">
-<meta property="og:description" content="DescriptionAlice has a hand of cards, given as an array of integers. Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards. Return true if">
+<meta property="og:description" content="LeetCode 846 - Hand of StraightsSimilar Questions659 - Split Array into Consecutive Subsequences1296 - Divide Array in Sets of K Consecutive Numbers DescriptionAlice has a hand of cards, given as an a">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-22T14:38:17.000Z">
-<meta property="article:modified_time" content="2020-05-10T14:40:19.093Z">
+<meta property="article:modified_time" content="2020-05-12T15:06:26.375Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Google">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Array">
-<meta property="article:tag" content="Pending">
+<meta property="article:tag" content="Frequent">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://delia13.me/2020/04/22/leetcode-846/">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>Leetcode 846 - Hand of Straights | Delia</title>
+  <title>LeetCode 846 - Hand of Straights && LeetCode 1296 - Divide Array in Sets of K Consecutive Numbers | Delia</title>
   
 
 
@@ -222,7 +222,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Leetcode 846 - Hand of Straights
+          LeetCode 846 - Hand of Straights && LeetCode 1296 - Divide Array in Sets of K Consecutive Numbers
         </h1>
 
         <div class="post-meta">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-10 10:40:19" itemprop="dateModified" datetime="2020-05-10T10:40:19-04:00">2020-05-10</time>
+                <time title="Modified: 2020-05-12 11:06:26" itemprop="dateModified" datetime="2020-05-12T11:06:26-04:00">2020-05-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,13 +265,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Alice has a hand of cards, given as an array of integers.</p>
+        <h2 id="LeetCode-846-Hand-of-Straights"><a href="#LeetCode-846-Hand-of-Straights" class="headerlink" title="LeetCode 846 - Hand of Straights"></a>LeetCode 846 - Hand of Straights</h2><p><strong>Similar Questions</strong><br>659 - Split Array into Consecutive Subsequences<br>1296 - Divide Array in Sets of K Consecutive Numbers</p>
+<p><strong>Description</strong><br>Alice has a hand of cards, given as an array of integers.</p>
 <p>Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards.</p>
 <p>Return true if and only if she can.</p>
 <a id="more"></a>
 
 <h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 58 ms, faster than 26.43% of Java online submissions.<br>Memory Usage: 41.6 MB.</p>
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNStraightHand</span><span class="params">(<span class="keyword">int</span>[] hand, <span class="keyword">int</span> W)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(hand==<span class="keyword">null</span> || hand.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(hand.length%W != <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//Convert the given hand into a TreeMap of &lt;Hand,Frequency&gt;</span></span><br><span class="line">        TreeMap&lt;Integer,Integer&gt; map=<span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i : hand)</span><br><span class="line">            map.put(i,map.getOrDefault(i,<span class="number">0</span>)+<span class="number">1</span>);    </span><br><span class="line">        </span><br><span class="line">        <span class="comment">//Delete groups of size W from TreeMap</span></span><br><span class="line">        <span class="keyword">while</span>(!map.isEmpty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> curr=map.firstKey();</span><br><span class="line">            updateTreeMap(map,curr);</span><br><span class="line">            <span class="keyword">int</span> count=<span class="number">1</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(count!=W)</span><br><span class="line">            &#123;</span><br><span class="line">                Map.Entry&lt;Integer,Integer&gt; next=map.higherEntry(curr);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(next==<span class="keyword">null</span> || next.getKey()-curr != <span class="number">1</span>) </span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    count++;</span><br><span class="line">                    updateTreeMap(map,next.getKey());</span><br><span class="line">                    curr=next.getKey();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateTreeMap</span><span class="params">(TreeMap&lt;Integer,Integer&gt; map,<span class="keyword">int</span> curr)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        map.put(curr,map.get(curr)-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(map.get(curr)==<span class="number">0</span>) </span><br><span class="line">            map.remove(curr);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LeetCode-1296-Divide-Array-in-Sets-of-K-Consecutive"><a href="#LeetCode-1296-Divide-Array-in-Sets-of-K-Consecutive" class="headerlink" title="LeetCode 1296 - Divide Array in Sets of K Consecutive"></a>LeetCode 1296 - Divide Array in Sets of K Consecutive</h2><p><strong>Description</strong><br>Given an array of integers nums and a positive integer k, find whether it’s possible to divide this array into sets of k consecutive numbers<br>Return True if its possible otherwise return False.</p>
+<h3 id="Result-1"><a href="#Result-1" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 135 ms, faster than 49.21% of Java online submissions for Divide Array in Sets of K Consecutive Numbers.<br>Memory Usage: 54 MB, less than 100.00% of Java online submissions for Divide Array in Sets of K Consecutive Numbers.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n).</p>
+<h3 id="Java-Code"><a href="#Java-Code" class="headerlink" title="Java Code"></a>Java Code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPossibleDivide</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span> || k &lt;= <span class="number">0</span> || nums.length % k != <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        TreeMap&lt;Integer, Integer&gt; freqMap = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = freqMap.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">            freqMap.put(num, count);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!freqMap.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            Integer num = freqMap.firstKey();</span><br><span class="line">            <span class="keyword">while</span> (count++ &lt; k) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!freqMap.containsKey(num)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                updateMap(freqMap, num++);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">updateMap</span><span class="params">(TreeMap&lt;Integer, Integer&gt; freqMap, Integer num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> oldFreq = freqMap.get(num);</span><br><span class="line">        <span class="keyword">if</span> (oldFreq == <span class="number">1</span>) freqMap.remove(num);</span><br><span class="line">        <span class="keyword">else</span> freqMap.put(num, oldFreq - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -284,7 +290,7 @@
               <a href="/tags/Google/" rel="tag"># Google</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
               <a href="/tags/Array/" rel="tag"># Array</a>
-              <a href="/tags/Pending/" rel="tag"># Pending</a>
+              <a href="/tags/Frequent/" rel="tag"># Frequent</a>
           </div>
 
         
@@ -359,7 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">2.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">3.</span> <span class="nav-text">Java code</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode-846-Hand-of-Straights"><span class="nav-number">1.</span> <span class="nav-text">LeetCode 846 - Hand of Straights</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.2.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode-1296-Divide-Array-in-Sets-of-K-Consecutive"><span class="nav-number">2.</span> <span class="nav-text">LeetCode 1296 - Divide Array in Sets of K Consecutive</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result-1"><span class="nav-number">2.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">2.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-Code"><span class="nav-number">2.3.</span> <span class="nav-text">Java Code</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -374,7 +380,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -387,7 +393,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
