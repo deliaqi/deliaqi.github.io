@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-0.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-0.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon-0.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://delia13.me').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="DescriptionDesign a simplified version of Twitter where users can post tweets, follow&#x2F;unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should sup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 355 - Design Twitter">
+<meta property="og:url" content="http://delia13.me/2020/07/23/leetcode-355/index.html">
+<meta property="og:site_name" content="Delia">
+<meta property="og:description" content="DescriptionDesign a simplified version of Twitter where users can post tweets, follow&#x2F;unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should sup">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-23T14:19:28.000Z">
+<meta property="article:modified_time" content="2020-07-23T14:23:32.661Z">
+<meta property="article:author" content="Jiaqi Liu">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Frequent">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="OOD">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://delia13.me/2020/07/23/leetcode-355/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Leetcode 355 - Design Twitter | Delia</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Delia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/07/23/leetcode-355/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Leetcode 355 - Design Twitter
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-23 10:19:28 / Modified: 10:23:32" itemprop="dateCreated datePublished" datetime="2020-07-23T10:19:28-04:00">2020-07-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>Description</strong><br>Design a simplified version of Twitter where users can post tweets, follow/unfollow another user and is able to see the 10 most recent tweets in the user’s news feed. Your design should support the following methods:</p>
+<p>postTweet(userId, tweetId): Compose a new tweet.<br>getNewsFeed(userId): Retrieve the 10 most recent tweet ids in the user’s news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.<br>follow(followerId, followeeId): Follower follows a followee.<br>unfollow(followerId, followeeId): Follower unfollows a followee.<br>Example:</p>
+<p>Twitter twitter = new Twitter();</p>
+<p>// User 1 posts a new tweet (id = 5).<br>twitter.postTweet(1, 5);</p>
+<p>// User 1’s news feed should return a list with 1 tweet id -&gt; [5].<br>twitter.getNewsFeed(1);</p>
+<p>// User 1 follows user 2.<br>twitter.follow(1, 2);</p>
+<p>// User 2 posts a new tweet (id = 6).<br>twitter.postTweet(2, 6);</p>
+<p>// User 1’s news feed should return a list with 2 tweet ids -&gt; [6, 5].<br>// Tweet id 6 should precede tweet id 5 because it is posted after tweet id 5.<br>twitter.getNewsFeed(1);</p>
+<p>// User 1 unfollows user 2.<br>twitter.unfollow(1, 2);</p>
+<p>// User 1’s news feed should return a list with 1 tweet id -&gt; [5],<br>// since user 1 is no longer following user 2.<br>twitter.getNewsFeed(1);</p>
+<h2 id="Solution-One-TreeSet"><a href="#Solution-One-TreeSet" class="headerlink" title="Solution One: TreeSet"></a>Solution One: TreeSet</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 43 ms, faster than 38.40% of Java online submissions for Design Twitter.<br>Memory Usage: 50.9 MB, less than 5.22% of Java online submissions for Design Twitter.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(N).<br>Time Complexity: O(n) for postTweet, O(number of followees) for getNewsFeed, O(1) for follow/unfollow.</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Twitter</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Post</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> postId;</span><br><span class="line">        Integer timestamp;</span><br><span class="line">        <span class="keyword">int</span> userId;</span><br><span class="line">        Post(<span class="keyword">int</span> id1, <span class="keyword">int</span> time, <span class="keyword">int</span> id2) &#123;</span><br><span class="line">            postId = id1;</span><br><span class="line">            timestamp = time;</span><br><span class="line">            userId = id2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> currTime;</span><br><span class="line">    Map&lt;Integer, TreeSet&lt;Post&gt;&gt; postMap; <span class="comment">// &lt;user, posts&gt;</span></span><br><span class="line">    Map&lt;Integer, Set&lt;Integer&gt;&gt; followMap; <span class="comment">// &lt;follower, followees&gt;</span></span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Twitter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        currTime = <span class="number">0</span>;</span><br><span class="line">        postMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        followMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Compose a new tweet. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postTweet</span><span class="params">(<span class="keyword">int</span> userId, <span class="keyword">int</span> tweetId)</span> </span>&#123;</span><br><span class="line">        TreeSet&lt;Post&gt; posts = postMap.getOrDefault(userId, <span class="keyword">new</span> TreeSet&lt;&gt;(<span class="keyword">new</span> Comparator&lt;Post&gt;()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Post p1, Post p2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> p2.timestamp.compareTo(p1.timestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;));</span><br><span class="line">        posts.add(<span class="keyword">new</span> Post(tweetId, currTime++, userId));</span><br><span class="line">        postMap.put(userId, posts);</span><br><span class="line">        <span class="comment">// System.out.println("postTweet: " + postMap);</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getNewsFeed</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        PriorityQueue&lt;Post&gt; posts = <span class="keyword">new</span> PriorityQueue&lt;&gt;(<span class="keyword">new</span> Comparator&lt;Post&gt;()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Post p1, Post p2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> p2.timestamp.compareTo(p1.timestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// add one twitter for each followee</span></span><br><span class="line">        Set&lt;Integer&gt; followeeSet = followMap.getOrDefault(userId, <span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line">        followeeSet.add(userId);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> followee: followeeSet) &#123;</span><br><span class="line">            <span class="keyword">if</span> (postMap.containsKey(followee)) &#123;</span><br><span class="line">                posts.add(postMap.get(followee).first());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (ans.size() &lt; <span class="number">10</span> &amp;&amp; !posts.isEmpty()) &#123;</span><br><span class="line">            Post post = posts.poll();</span><br><span class="line">            ans.add(post.postId);</span><br><span class="line">            <span class="keyword">int</span> followee = post.userId;</span><br><span class="line">            Post next = postMap.get(followee).higher(post);</span><br><span class="line">            <span class="keyword">if</span> (next != <span class="keyword">null</span>) posts.add(next);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// System.out.println("getNewsFeed: " + ans);</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Follower follows a followee. If the operation is invalid, it should be a no-op. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">follow</span><span class="params">(<span class="keyword">int</span> followerId, <span class="keyword">int</span> followeeId)</span> </span>&#123;</span><br><span class="line">        Set&lt;Integer&gt; set = followMap.getOrDefault(followerId, <span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line">        set.add(followeeId);</span><br><span class="line">        followMap.put(followerId, set);</span><br><span class="line">        <span class="comment">// System.out.println("follow: " + followMap);</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unfollow</span><span class="params">(<span class="keyword">int</span> followerId, <span class="keyword">int</span> followeeId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!followMap.containsKey(followerId)) <span class="keyword">return</span>;</span><br><span class="line">        followMap.get(followerId).remove(followeeId);</span><br><span class="line">        <span class="comment">// System.out.println("unfollow: " + followMap);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your Twitter object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * Twitter obj = new Twitter();</span></span><br><span class="line"><span class="comment"> * obj.postTweet(userId,tweetId);</span></span><br><span class="line"><span class="comment"> * List&lt;Integer&gt; param_2 = obj.getNewsFeed(userId);</span></span><br><span class="line"><span class="comment"> * obj.follow(followerId,followeeId);</span></span><br><span class="line"><span class="comment"> * obj.unfollow(followerId,followeeId);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Solution-Two-Using-LinkedList-for-fast-getNewsFeed"><a href="#Solution-Two-Using-LinkedList-for-fast-getNewsFeed" class="headerlink" title="Solution Two: Using LinkedList for fast getNewsFeed"></a>Solution Two: Using LinkedList for fast getNewsFeed</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Twitter</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> timeStamp=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// easy to find if user exist</span></span><br><span class="line">	<span class="keyword">private</span> Map&lt;Integer, User&gt; userMap;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Tweet link to next Tweet so that we can save a lot of time</span></span><br><span class="line">	<span class="comment">// when we execute getNewsFeed(userId)</span></span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Tweet</span></span>&#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> time;</span><br><span class="line">		<span class="keyword">public</span> Tweet next;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Tweet</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.id = id;</span><br><span class="line">			time = timeStamp++;</span><br><span class="line">			next=<span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// OO design so User can follow, unfollow and post itself</span></span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">		<span class="keyword">public</span> Set&lt;Integer&gt; followed;</span><br><span class="line">		<span class="keyword">public</span> Tweet tweet_head;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.id=id;</span><br><span class="line">			followed = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">			follow(id); <span class="comment">// first follow itself</span></span><br><span class="line">			tweet_head = <span class="keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">follow</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">			followed.add(id);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unfollow</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">			followed.remove(id);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">// everytime user post a new tweet, add it to the head of tweet list.</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">post</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">			Tweet t = <span class="keyword">new</span> Tweet(id);</span><br><span class="line">			t.next=tweet_head;</span><br><span class="line">			tweet_head=t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Twitter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		userMap = <span class="keyword">new</span> HashMap&lt;Integer, User&gt;();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Compose a new tweet. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postTweet</span><span class="params">(<span class="keyword">int</span> userId, <span class="keyword">int</span> tweetId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!userMap.containsKey(userId))&#123;</span><br><span class="line">			User u = <span class="keyword">new</span> User(userId);</span><br><span class="line">			userMap.put(userId, u);</span><br><span class="line">		&#125;</span><br><span class="line">		userMap.get(userId).post(tweetId);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Best part of this.</span></span><br><span class="line">	<span class="comment">// first get all tweets lists from one user including itself and all people it followed.</span></span><br><span class="line">	<span class="comment">// Second add all heads into a max heap. Every time we poll a tweet with </span></span><br><span class="line">	<span class="comment">// largest time stamp from the heap, then we add its next tweet into the heap.</span></span><br><span class="line">	<span class="comment">// So after adding all heads we only need to add 9 tweets at most into this </span></span><br><span class="line">	<span class="comment">// heap before we get the 10 most recent tweet.</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">getNewsFeed</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">		List&lt;Integer&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(!userMap.containsKey(userId))   <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">		Set&lt;Integer&gt; users = userMap.get(userId).followed;</span><br><span class="line">		PriorityQueue&lt;Tweet&gt; q = <span class="keyword">new</span> PriorityQueue&lt;Tweet&gt;(users.size(), (a,b)-&gt;(b.time-a.time));</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> user: users)&#123;</span><br><span class="line">			Tweet t = userMap.get(user).tweet_head;</span><br><span class="line">			<span class="comment">// very imporant! If we add null to the head we are screwed.</span></span><br><span class="line">			<span class="keyword">if</span>(t!=<span class="keyword">null</span>)&#123;</span><br><span class="line">				q.add(t);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(!q.isEmpty() &amp;&amp; n&lt;<span class="number">10</span>)&#123;</span><br><span class="line">		  Tweet t = q.poll();</span><br><span class="line">		  res.add(t.id);</span><br><span class="line">		  n++;</span><br><span class="line">		  <span class="keyword">if</span>(t.next!=<span class="keyword">null</span>)</span><br><span class="line">			q.add(t.next);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Follower follows a followee. If the operation is invalid, it should be a no-op. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">follow</span><span class="params">(<span class="keyword">int</span> followerId, <span class="keyword">int</span> followeeId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!userMap.containsKey(followerId))&#123;</span><br><span class="line">			User u = <span class="keyword">new</span> User(followerId);</span><br><span class="line">			userMap.put(followerId, u);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!userMap.containsKey(followeeId))&#123;</span><br><span class="line">			User u = <span class="keyword">new</span> User(followeeId);</span><br><span class="line">			userMap.put(followeeId, u);</span><br><span class="line">		&#125;</span><br><span class="line">		userMap.get(followerId).follow(followeeId);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unfollow</span><span class="params">(<span class="keyword">int</span> followerId, <span class="keyword">int</span> followeeId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!userMap.containsKey(followerId) || followerId==followeeId)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		userMap.get(followerId).unfollow(followeeId);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Frequent/" rel="tag"># Frequent</a>
+              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
+              <a href="/tags/OOD/" rel="tag"># OOD</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/23/leetcode-350/" rel="prev" title="Leetcode 350 - Intersection of Two Arrays II">
+      <i class="fa fa-chevron-left"></i> Leetcode 350 - Intersection of Two Arrays II
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/23/leetcode-359/" rel="next" title="Leetcode 359 - Logger Rate Limiter">
+      Leetcode 359 - Logger Rate Limiter <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-One-TreeSet"><span class="nav-number">1.</span> <span class="nav-text">Solution One: TreeSet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.3.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Two-Using-LinkedList-for-fast-getNewsFeed"><span class="nav-number">2.</span> <span class="nav-text">Solution Two: Using LinkedList for fast getNewsFeed</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jiaqi Liu"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jiaqi Liu</p>
+  <div class="site-description" itemprop="description">Meow</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">264</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/wuhoumiao77" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;wuhoumiao77" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaqi Liu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

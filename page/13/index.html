@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/15/leetcode-609/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/22/leetcode-20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -216,7 +216,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/15/leetcode-609/" class="post-title-link" itemprop="url">Leetcode 609 - Find Duplicate File in System</a>
+            <a href="/2020/06/22/leetcode-20/" class="post-title-link" itemprop="url">Leetcode 20 -  Valid Parentheses</a>
         </h1>
 
         <div class="post-meta">
@@ -228,7 +228,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-15 09:17:15 / Modified: 09:21:42" itemprop="dateCreated datePublished" datetime="2020-06-15T09:17:15-04:00">2020-06-15</time>
+              <time title="Created: 2020-06-22 08:36:14 / Modified: 08:37:31" itemprop="dateCreated datePublished" datetime="2020-06-22T08:36:14-04:00">2020-06-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,362 +253,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Given a list of directory info including directory path, and all the files with contents in this directory, you need to find out all the groups of duplicate files in the file system in terms of their paths.</p>
-<p>A group of duplicate files consists of at least two files that have exactly the same content.</p>
-<p>A single directory info string in the input list has the following format:</p>
-<p>“root/d1/d2/…/dm f1.txt(f1_content) f2.txt(f2_content) … fn.txt(fn_content)”</p>
-<p>It means there are n files (f1.txt, f2.txt … fn.txt with content f1_content, f2_content … fn_content, respectively) in directory root/d1/d2/…/dm. Note that n &gt;= 1 and m &gt;= 0. If m = 0, it means the directory is just the root directory.</p>
-<p>The output is a list of group of duplicate file paths. For each group, it contains all the file paths of the files that have the same content. A file path is a string that has the following format:</p>
-<p>“directory_path/file_name.txt”</p>
+          <p><strong>Description</strong><br>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.</p>
+<p>An input string is valid if:</p>
+<p>Open brackets must be closed by the same type of brackets.<br>Open brackets must be closed in the correct order.<br>Note that an empty string is also considered valid.</p>
 <p>Example 1:</p>
-<p>Input:<br>[“root/a 1.txt(abcd) 2.txt(efgh)”, “root/c 3.txt(abcd)”, “root/c/d 4.txt(efgh)”, “root 4.txt(efgh)”]<br>Output:<br>[[“root/a/2.txt”,”root/c/d/4.txt”,”root/4.txt”],[“root/a/1.txt”,”root/c/3.txt”]]</p>
-<h2 id="Solution-One-Using-HashMap"><a href="#Solution-One-Using-HashMap" class="headerlink" title="Solution One: Using HashMap"></a>Solution One: Using HashMap</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/15/leetcode-609/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/15/leetcode-362/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/15/leetcode-362/" class="post-title-link" itemprop="url">Leetcode 362 - Design Hit Counter</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-15 07:29:13 / Modified: 07:30:52" itemprop="dateCreated datePublished" datetime="2020-06-15T07:29:13-04:00">2020-06-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>Design a hit counter which counts the number of hits received in the past 5 minutes.</p>
-<p>Each function accepts a timestamp parameter (in seconds granularity) and you may assume that calls are being made to the system in chronological order (ie, the timestamp is monotonically increasing). You may assume that the earliest timestamp starts at 1.</p>
-<p>It is possible that several hits arrive roughly at the same time.</p>
-<p>Example:</p>
-<p>HitCounter counter = new HitCounter();</p>
-<p>// hit at timestamp 1.<br>counter.hit(1);</p>
-<p>// hit at timestamp 2.<br>counter.hit(2);</p>
-<p>// hit at timestamp 3.<br>counter.hit(3);</p>
-<p>// get hits at timestamp 4, should return 3.<br>counter.getHits(4);</p>
-<p>// hit at timestamp 300.<br>counter.hit(300);</p>
-<p>// get hits at timestamp 300, should return 4.<br>counter.getHits(300);</p>
-<p>// get hits at timestamp 301, should return 3.<br>counter.getHits(301);<br>Follow up:<br>What if the number of hits per second could be very large? Does your design scale?</p>
-<h2 id="Solution-One-Binary-Search"><a href="#Solution-One-Binary-Search" class="headerlink" title="Solution One: Binary Search"></a>Solution One: Binary Search</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/15/leetcode-362/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/13/leetcode-91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/13/leetcode-91/" class="post-title-link" itemprop="url">Leetcode 91 - Decode Ways</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-13 09:28:58 / Modified: 09:33:35" itemprop="dateCreated datePublished" datetime="2020-06-13T09:28:58-04:00">2020-06-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>A message containing letters from A-Z is being encoded to numbers using the following mapping:</p>
-<p>‘A’ -&gt; 1<br>‘B’ -&gt; 2<br>…<br>‘Z’ -&gt; 26<br>Given a non-empty string containing only digits, determine the total number of ways to decode it.</p>
-<p>Example 1:</p>
-<p>Input: “12”<br>Output: 2<br>Explanation: It could be decoded as “AB” (1 2) or “L” (12).<br>Example 2:</p>
-<p>Input: “226”<br>Output: 3<br>Explanation: It could be decoded as “BZ” (2 26), “VF” (22 6), or “BBF” (2 2 6).</p>
-<h2 id="Solution-One-Dynamic-Programming"><a href="#Solution-One-Dynamic-Programming" class="headerlink" title="Solution One: Dynamic Programming"></a>Solution One: Dynamic Programming</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/13/leetcode-91/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/13/leetcode-981/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/13/leetcode-981/" class="post-title-link" itemprop="url">Leetcode 981 - Time Based Key-Value Store</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-13 09:14:34 / Modified: 09:16:29" itemprop="dateCreated datePublished" datetime="2020-06-13T09:14:34-04:00">2020-06-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>Create a timebased key-value store class TimeMap, that supports two operations.</p>
-<ol>
-<li>set(string key, string value, int timestamp)</li>
-</ol>
-<p>Stores the key and value, along with the given timestamp.<br>2. get(string key, int timestamp)</p>
-<p>Returns a value such that set(key, value, timestamp_prev) was called previously, with timestamp_prev &lt;= timestamp.<br>If there are multiple such values, it returns the one with the largest timestamp_prev.<br>If there are no values, it returns the empty string (“”).</p>
-<h2 id="Solution-One-HashMap-TreeMap"><a href="#Solution-One-HashMap-TreeMap" class="headerlink" title="Solution One: HashMap + TreeMap"></a>Solution One: HashMap + TreeMap</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/13/leetcode-981/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/12/leetcode-224/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/12/leetcode-224/" class="post-title-link" itemprop="url">Leetcode 224 - Basic Calculator I & II</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-12 20:19:40" itemprop="dateCreated datePublished" datetime="2020-06-12T20:19:40-04:00">2020-06-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-15 20:18:16" itemprop="dateModified" datetime="2020-06-15T20:18:16-04:00">2020-06-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>Implement a basic calculator to evaluate a simple expression string.</p>
-<p>The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .</p>
+<p>Input: “()”<br>Output: true<br>Example 2:</p>
+<p>Input: “()[]{}”<br>Output: true</p>
 <h2 id="Solution-One-Stack"><a href="#Solution-One-Stack" class="headerlink" title="Solution One: Stack"></a>Solution One: Stack</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/12/leetcode-224/#more" rel="contents">
+              <a class="btn" href="/2020/06/22/leetcode-20/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -632,7 +286,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/12/leetcode-289/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/22/leetcode-18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -646,7 +300,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/12/leetcode-289/" class="post-title-link" itemprop="url">Leetcode 289 - Game of Life</a>
+            <a href="/2020/06/22/leetcode-18/" class="post-title-link" itemprop="url">Leetcode 18 - 4Sum</a>
         </h1>
 
         <div class="post-meta">
@@ -658,7 +312,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-06-12 10:02:33 / Modified: 10:04:25" itemprop="dateCreated datePublished" datetime="2020-06-12T10:02:33-04:00">2020-06-12</time>
+              <time title="Created: 2020-06-22 08:23:41 / Modified: 08:25:36" itemprop="dateCreated datePublished" datetime="2020-06-22T08:23:41-04:00">2020-06-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -683,267 +337,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>According to the Wikipedia’s article: “The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.”</p>
-<p>Given a board with m by n cells, each cell has an initial state live (1) or dead (0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):</p>
-<p>Any live cell with fewer than two live neighbors dies, as if caused by under-population.<br>Any live cell with two or three live neighbors lives on to the next generation.<br>Any live cell with more than three live neighbors dies, as if by over-population..<br>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.<br>Write a function to compute the next state (after one update) of the board given its current state. The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously.</p>
-<p>Example:</p>
-<p>Input:<br>[<br>  [0,1,0],<br>  [0,0,1],<br>  [1,1,1],<br>  [0,0,0]<br>]<br>Output:<br>[<br>  [0,0,0],<br>  [1,0,1],<br>  [0,1,1],<br>  [0,1,0]<br>]<br>Follow up:</p>
-<p>Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.<br>In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?</p>
-<h2 id="Solution-One-Record-status"><a href="#Solution-One-Record-status" class="headerlink" title="Solution One: Record status"></a>Solution One: Record status</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/12/leetcode-289/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/12/leetcode-773/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/12/leetcode-773/" class="post-title-link" itemprop="url">Leetcode 773 - Sliding Puzzle</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-12 09:15:42 / Modified: 09:18:26" itemprop="dateCreated datePublished" datetime="2020-06-12T09:15:42-04:00">2020-06-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>On a 2x3 board, there are 5 tiles represented by the integers 1 through 5, and an empty square represented by 0.</p>
-<p>A move consists of choosing 0 and a 4-directionally adjacent number and swapping it.</p>
-<p>The state of the board is solved if and only if the board is [[1,2,3],[4,5,0]].</p>
-<p>Given a puzzle board, return the least number of moves required so that the state of the board is solved. If it is impossible for the state of the board to be solved, return -1.</p>
-<p>Examples:</p>
-<p>Input: board = [[1,2,3],[4,0,5]]<br>Output: 1<br>Explanation: Swap the 0 and the 5 in one move.<br>Input: board = [[1,2,3],[5,4,0]]<br>Output: -1<br>Explanation: No number of moves will make the board solved.<br>Input: board = [[4,1,2],[5,0,3]]<br>Output: 5<br>Explanation: 5 is the smallest number of moves that solves the board.<br>An example path:<br>After move 0: [[4,1,2],[5,0,3]]<br>After move 1: [[4,1,2],[0,5,3]]<br>After move 2: [[0,1,2],[4,5,3]]<br>After move 3: [[1,0,2],[4,5,3]]<br>After move 4: [[1,2,0],[4,5,3]]<br>After move 5: [[1,2,3],[4,5,0]]</p>
-<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/12/leetcode-773/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/11/leetcode-7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/11/leetcode-7/" class="post-title-link" itemprop="url">Leetcode 7 - Reverse Integer</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-11 09:51:22 / Modified: 09:54:12" itemprop="dateCreated datePublished" datetime="2020-06-11T09:51:22-04:00">2020-06-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>Given a 32-bit signed integer, reverse digits of an integer.</p>
-<p>Example 1:</p>
-<p>Input: 123<br>Output: 321<br>Example 2:</p>
-<p>Input: -123<br>Output: -321<br>Example 3:</p>
-<p>Input: 120<br>Output: 21<br>Note:<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</p>
-<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/11/leetcode-7/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/11/leetcode-68/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/11/leetcode-68/" class="post-title-link" itemprop="url">Leetcode 68 - Text Justification</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-06-11 09:28:04 / Modified: 09:28:55" itemprop="dateCreated datePublished" datetime="2020-06-11T09:28:04-04:00">2020-06-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>Given an array of words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.</p>
-<p>You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ‘ ‘ when necessary so that each line has exactly maxWidth characters.</p>
-<p>Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line do not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.</p>
-<p>For the last line of text, it should be left justified and no extra space is inserted between words.</p>
+          <p><strong>Description</strong><br>Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.</p>
 <p>Note:</p>
-<p>A word is defined as a character sequence consisting of non-space characters only.<br>Each word’s length is guaranteed to be greater than 0 and not exceed maxWidth.<br>The input array words contains at least one word.</p>
+<p>The solution set must not contain duplicate quadruplets.</p>
+<p>Example:</p>
+<p>Given array nums = [1, 0, -1, 0, -2, 2], and target = 0.</p>
+<p>A solution set is:<br>[<br>  [-1,  0, 0, 1],<br>  [-2, -1, 1, 2],<br>  [-2,  0, 0, 2]<br>]</p>
 <h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/11/leetcode-68/#more" rel="contents">
+              <a class="btn" href="/2020/06/22/leetcode-18/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -967,7 +370,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/11/leetcode-53/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/20/leetcode-438/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -981,7 +384,95 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/11/leetcode-53/" class="post-title-link" itemprop="url">Leetcode 53 - Maximum Subarray</a>
+            <a href="/2020/06/20/leetcode-438/" class="post-title-link" itemprop="url">Leetcode 438 - Find All Anagrams in a String</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-20 10:49:01 / Modified: 11:33:34" itemprop="dateCreated datePublished" datetime="2020-06-20T10:49:01-04:00">2020-06-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>Given a string s and a non-empty string p, find all the start indices of p’s anagrams in s.</p>
+<p>Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.</p>
+<p>The order of output does not matter.</p>
+<p>Example 1:</p>
+<p>Input:<br>s: “cbaebabacd” p: “abc”</p>
+<p>Output:<br>[0, 6]</p>
+<p>Explanation:<br>The substring with start index = 0 is “cba”, which is an anagram of “abc”.<br>The substring with start index = 6 is “bac”, which is an anagram of “abc”.<br>Example 2:</p>
+<p>Input:<br>s: “abab” p: “ab”</p>
+<p>Output:<br>[0, 1, 2]</p>
+<p>Explanation:<br>The substring with start index = 0 is “ab”, which is an anagram of “ab”.<br>The substring with start index = 1 is “ba”, which is an anagram of “ab”.<br>The substring with start index = 2 is “ab”, which is an anagram of “ab”.</p>
+<h2 id="Solution-One-Build-Anagram-Set"><a href="#Solution-One-Build-Anagram-Set" class="headerlink" title="Solution One: Build Anagram Set"></a>Solution One: Build Anagram Set</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/20/leetcode-438/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/19/leetcode-135/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/leetcode-135/" class="post-title-link" itemprop="url">Leetcode 135 - Candy</a>
         </h1>
 
         <div class="post-meta">
@@ -992,14 +483,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-06-11 08:56:18" itemprop="dateCreated datePublished" datetime="2020-06-11T08:56:18-04:00">2020-06-11</time>
+              <time title="Created: 2020-06-19 14:25:36" itemprop="dateCreated datePublished" datetime="2020-06-19T14:25:36-04:00">2020-06-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-23 19:10:48" itemprop="dateModified" datetime="2020-06-23T19:10:48-04:00">2020-06-23</time>
+                <time title="Modified: 2020-06-20 10:11:04" itemprop="dateModified" datetime="2020-06-20T10:11:04-04:00">2020-06-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1024,14 +515,516 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
-<p>Example:</p>
-<p>Input: [-2,1,-3,4,-1,2,1,-5,4],<br>Output: 6<br>Explanation: [4,-1,2,1] has the largest sum = 6.<br>Follow up:</p>
-<p>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
-<h2 id="Solution-One-Greedy"><a href="#Solution-One-Greedy" class="headerlink" title="Solution One: Greedy"></a>Solution One: Greedy</h2>
+          <p><strong>Description</strong><br>There are N children standing in a line. Each child is assigned a rating value.</p>
+<p>You are giving candies to these children subjected to the following requirements:</p>
+<p>Each child must have at least one candy.<br>Children with a higher rating get more candies than their neighbors.<br>What is the minimum candies you must give?</p>
+<p>Example 1:</p>
+<p>Input: [1,0,2]<br>Output: 5<br>Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.<br>Example 2:</p>
+<p>Input: [1,2,2]<br>Output: 4<br>Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.<br>             The third child gets 1 candy because it satisfies the above two conditions.</p>
+<h2 id="Solution-One-Brute-Force"><a href="#Solution-One-Brute-Force" class="headerlink" title="Solution One: Brute Force"></a>Solution One: Brute Force</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/11/leetcode-53/#more" rel="contents">
+              <a class="btn" href="/2020/06/19/leetcode-135/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/19/leetcode-253/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/leetcode-253/" class="post-title-link" itemprop="url">Leetcode 253 - Meeting Rooms II</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-19 09:54:34 / Modified: 09:58:58" itemprop="dateCreated datePublished" datetime="2020-06-19T09:54:34-04:00">2020-06-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],…] (si &lt; ei), find the minimum number of conference rooms required.</p>
+<p>Example 1:</p>
+<p>Input: [[0, 30],[5, 10],[15, 20]]<br>Output: 2<br>Example 2:</p>
+<p>Input: [[7,10],[2,4]]<br>Output: 1<br>NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.</p>
+<h2 id="Solution-One-Sort-and-TreeMap"><a href="#Solution-One-Sort-and-TreeMap" class="headerlink" title="Solution One: Sort and TreeMap"></a>Solution One: Sort and TreeMap</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/19/leetcode-253/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/18/leetcode-460/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/18/leetcode-460/" class="post-title-link" itemprop="url">Leetcode 460 - LFU Cache</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-18 18:28:09 / Modified: 18:32:01" itemprop="dateCreated datePublished" datetime="2020-06-18T18:28:09-04:00">2020-06-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.</p>
+<p>get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br>put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.</p>
+<p>Note that the number of times an item is used is the number of calls to the get and put functions for that item since it was inserted. This number is set to zero when the item is removed.</p>
+<p>Follow up:<br>Could you do both operations in O(1) time complexity?</p>
+<h2 id="Solution-One-Two-Map-and-Inner-class"><a href="#Solution-One-Two-Map-and-Inner-class" class="headerlink" title="Solution One: Two Map and Inner class"></a>Solution One: Two Map and Inner class</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/18/leetcode-460/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/18/leetcode-496/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/18/leetcode-496/" class="post-title-link" itemprop="url">Leetcode 496 - Next Greater Element I & II & III</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-18 09:59:29" itemprop="dateCreated datePublished" datetime="2020-06-18T09:59:29-04:00">2020-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-19 09:26:22" itemprop="dateModified" datetime="2020-06-19T09:26:22-04:00">2020-06-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>You are given two arrays (without duplicates) nums1 and nums2 where nums1’s elements are subset of nums2. Find all the next greater numbers for nums1’s elements in the corresponding places of nums2.</p>
+<p>The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.</p>
+<p>Example 1:<br>Input: nums1 = [4,1,2], nums2 = [1,3,4,2].<br>Output: [-1,3,-1]<br>Explanation:<br>    For number 4 in the first array, you cannot find the next greater number for it in the second array, so output -1.<br>    For number 1 in the first array, the next greater number for it in the second array is 3.<br>    For number 2 in the first array, there is no next greater number for it in the second array, so output -1.<br>Example 2:<br>Input: nums1 = [2,4], nums2 = [1,2,3,4].<br>Output: [3,-1]<br>Explanation:<br>    For number 2 in the first array, the next greater number for it in the second array is 3.<br>    For number 4 in the first array, there is no next greater number for it in the second array, so output -1.<br>Note:<br>All elements in nums1 and nums2 are unique.<br>The length of both nums1 and nums2 would not exceed 1000.</p>
+<h2 id="Solution-One-Monotonic-Stack"><a href="#Solution-One-Monotonic-Stack" class="headerlink" title="Solution One: Monotonic Stack"></a>Solution One: Monotonic Stack</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/18/leetcode-496/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/18/leetcode-339/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/18/leetcode-339/" class="post-title-link" itemprop="url">Leetcode 339 - Nested List Weight Sum I && II</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-18 09:41:24 / Modified: 09:44:19" itemprop="dateCreated datePublished" datetime="2020-06-18T09:41:24-04:00">2020-06-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>Given a nested list of integers, return the sum of all integers in the list weighted by their depth.</p>
+<p>Each element is either an integer, or a list – whose elements may also be integers or other lists.</p>
+<p>Example 1:</p>
+<p>Input: [[1,1],2,[1,1]]<br>Output: 10<br>Explanation: Four 1’s at depth 2, one 2 at depth 1.<br>Example 2:</p>
+<p>Input: [1,[4,[6]]]<br>Output: 27<br>Explanation: One 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4<em>2 + 6</em>3 = 27.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/18/leetcode-339/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/18/leetcode-565/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/18/leetcode-565/" class="post-title-link" itemprop="url">Leetcode 565 - Array Nesting</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-18 09:01:14 / Modified: 09:02:25" itemprop="dateCreated datePublished" datetime="2020-06-18T09:01:14-04:00">2020-06-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>A zero-indexed array A of length N contains all integers from 0 to N-1. Find and return the longest length of set S, where S[i] = {A[i], A[A[i]], A[A[A[i]]], … } subjected to the rule below.</p>
+<p>Suppose the first element in S starts with the selection of element A[i] of index = i, the next element in S should be A[A[i]], and then A[A[A[i]]]… By that analogy, we stop adding right before a duplicate element occurs in S.</p>
+<p>Example 1:</p>
+<p>Input: A = [5,4,0,3,1,6,2]<br>Output: 4<br>Explanation:<br>A[0] = 5, A[1] = 4, A[2] = 0, A[3] = 3, A[4] = 1, A[5] = 6, A[6] = 2.</p>
+<p>One of the longest S[K]:<br>S[0] = {A[0], A[5], A[6], A[2]} = {5, 6, 2, 0}</p>
+<p>Note:</p>
+<p>N is an integer within the range [1, 20,000].<br>The elements of A are all distinct.<br>Each element of A is an integer within the range [0, N-1].</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/18/leetcode-565/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/06/18/leetcode-209/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/18/leetcode-209/" class="post-title-link" itemprop="url">Leetcode 209 - Minimum Size Subarray Sum</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-18 08:41:29 / Modified: 08:43:13" itemprop="dateCreated datePublished" datetime="2020-06-18T08:41:29-04:00">2020-06-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn’t one, return 0 instead.</p>
+<p>Example: </p>
+<p>Input: s = 7, nums = [2,3,1,2,4,3]<br>Output: 2<br>Explanation: the subarray [4,3] has the minimal length under the problem constraint.<br>Follow up:<br>If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n). </p>
+<h2 id="Solution-One-Using-Binary-search-or-TreeMap"><a href="#Solution-One-Using-Binary-search-or-TreeMap" class="headerlink" title="Solution One: Using Binary search or TreeMap"></a>Solution One: Using Binary search or TreeMap</h2><h2 id="Solution-Two-Two-Pointers"><a href="#Solution-Two-Two-Pointers" class="headerlink" title="Solution Two: Two Pointers"></a>Solution Two: Two Pointers</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/18/leetcode-209/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1055,7 +1048,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1122,7 +1115,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">244</span>
+          <span class="site-state-item-count">264</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1135,7 +1128,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
