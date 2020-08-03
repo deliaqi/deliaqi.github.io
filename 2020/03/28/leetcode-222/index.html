@@ -54,15 +54,15 @@
 <meta property="og:description" content="ResultRuntime: 0 ms, faster than 100.00% of Java online submissions for Count Complete Tree Nodes. Memory Usage: 42.5 MB, less than 9.76% of Java online submissions for Count Complete Tree Nodes. Anal">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-28T19:27:32.000Z">
-<meta property="article:modified_time" content="2020-04-13T01:03:07.194Z">
+<meta property="article:modified_time" content="2020-07-30T15:42:03.383Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="DFS">
 <meta property="article:tag" content="Tree">
 <meta property="article:tag" content="Google">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Pending">
 <meta property="article:tag" content="Binary Search">
+<meta property="article:tag" content="Starred">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://delia13.me/2020/03/28/leetcode-222/">
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-12 21:03:07" itemprop="dateModified" datetime="2020-04-12T21:03:07-04:00">2020-04-12</time>
+                <time title="Modified: 2020-07-30 11:42:03" itemprop="dateModified" datetime="2020-07-30T11:42:03-04:00">2020-07-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,7 +283,8 @@
 <li>Use iteration for computing depth</li>
 <li>Use binary search for checking existence</li>
 </ol>
-
+<p><strong>Result</strong><br>Runtime: 0 ms, faster than 100.00% of Java online submissions for Count Complete Tree Nodes.<br>Memory Usage: 47.5 MB, less than 5.03% of Java online submissions for Count Complete Tree Nodes.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 07/30/2020</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> depth = checkDepth(root);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> curParent = <span class="number">1</span>, curDepth = <span class="number">1</span>;</span><br><span class="line">        TreeNode curNode = root;</span><br><span class="line">        <span class="keyword">while</span> (curDepth &lt; depth) &#123;</span><br><span class="line">            TreeNode left = curNode.left, right = curNode.right;</span><br><span class="line">            <span class="keyword">if</span> (right == <span class="keyword">null</span>) <span class="keyword">return</span> curParent * <span class="number">2</span>; <span class="comment">// last level</span></span><br><span class="line">            <span class="comment">// check right subtree</span></span><br><span class="line">            TreeNode tmp = right;</span><br><span class="line">            <span class="keyword">int</span> rightDepth = curDepth;</span><br><span class="line">            <span class="keyword">while</span> (tmp != <span class="keyword">null</span>) &#123;</span><br><span class="line">                rightDepth++;</span><br><span class="line">                tmp = tmp.left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (rightDepth == depth) &#123;</span><br><span class="line">                curNode = right;</span><br><span class="line">                curParent = curParent * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// maxDepth &lt; depth</span></span><br><span class="line">                curNode = left;</span><br><span class="line">                curParent = curParent * <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            curDepth++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> curParent;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">checkDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> checkDepth(root.left) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -297,8 +298,8 @@
               <a href="/tags/Tree/" rel="tag"># Tree</a>
               <a href="/tags/Google/" rel="tag"># Google</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Pending/" rel="tag"># Pending</a>
               <a href="/tags/Binary-Search/" rel="tag"># Binary Search</a>
+              <a href="/tags/Starred/" rel="tag"># Starred</a>
           </div>
 
         
@@ -388,7 +389,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">264</span>
+          <span class="site-state-item-count">269</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -401,7 +402,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
