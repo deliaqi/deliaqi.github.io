@@ -54,14 +54,15 @@
 <meta property="og:description" content="DescriptionGiven an array nums of n integers where n &gt; 1,  return an array output such that output[i] is equal to the product of all the elements of nums except nums[i]. Example: Input:  [1,2,3,4]O">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-27T00:41:41.000Z">
-<meta property="article:modified_time" content="2020-05-27T00:46:06.461Z">
+<meta property="article:modified_time" content="2020-08-11T20:41:35.470Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Array">
-<meta property="article:tag" content="Pending">
 <meta property="article:tag" content="Frequent">
 <meta property="article:tag" content="Facebook">
+<meta property="article:tag" content="Two Pointers">
+<meta property="article:tag" content="Starred">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://delia13.me/2020/05/26/leetcode-238/">
@@ -233,10 +234,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-05-26 20:41:41 / Modified: 20:46:06" itemprop="dateCreated datePublished" datetime="2020-05-26T20:41:41-04:00">2020-05-26</time>
+              <time title="Created: 2020-05-26 20:41:41" itemprop="dateCreated datePublished" datetime="2020-05-26T20:41:41-04:00">2020-05-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-11 16:41:35" itemprop="dateModified" datetime="2020-08-11T16:41:35-04:00">2020-08-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -272,8 +279,15 @@
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> nums;</span><br><span class="line">        <span class="keyword">int</span> length = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line">        <span class="keyword">if</span> (length == <span class="number">1</span>) <span class="keyword">return</span> ans;</span><br><span class="line">        <span class="keyword">int</span>[] record1 = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line">        <span class="keyword">int</span>[] record2 = <span class="keyword">new</span> <span class="keyword">int</span>[length];</span><br><span class="line">        </span><br><span class="line">        record1[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">            record1[i] = record1[i-<span class="number">1</span>] * nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        record2[length - <span class="number">1</span>] = nums[length - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            record2[i] = record2[i+<span class="number">1</span>] * nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            ans[i] = record1[i-<span class="number">1</span>] * record2[i+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        ans[<span class="number">0</span>] = record2[<span class="number">1</span>];</span><br><span class="line">        ans[length - <span class="number">1</span>] = record1[length - <span class="number">2</span>];</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Solution-Two-O-1-space-approach"><a href="#Solution-Two-O-1-space-approach" class="headerlink" title="Solution Two: O(1) space approach"></a>Solution Two: O(1) space approach</h2><h3 id="Result-1"><a href="#Result-1" class="headerlink" title="Result"></a>Result</h3><h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n^2).</p>
-<h3 id="Java-code-1"><a href="#Java-code-1" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Solution-Two-O-1-space-approach"><a href="#Solution-Two-O-1-space-approach" class="headerlink" title="Solution Two: O(1) space approach"></a>Solution Two: O(1) space approach</h2><h3 id="Result-1"><a href="#Result-1" class="headerlink" title="Result"></a>Result</h3><h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(1), Time Complexity: O(n).</p>
+<h3 id="Java-code-1"><a href="#Java-code-1" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="comment">// ans - store products of right parts</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            ans[i] = i == (n - <span class="number">1</span>) ? nums[i] : (nums[i] * ans[i + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// nums - store products of left parts</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            nums[i] = i == <span class="number">0</span> ? nums[i] : (nums[i - <span class="number">1</span>] * nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// final result</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> left = i == <span class="number">0</span> ? <span class="number">1</span> : nums[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> right = i == n - <span class="number">1</span> ? <span class="number">1</span> : ans[i + <span class="number">1</span>];</span><br><span class="line">            ans[i] = left * right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Similar-Questions"><a href="#Similar-Questions" class="headerlink" title="Similar Questions"></a>Similar Questions</h1><ol start="42">
+<li>Trapping Rain Water</li>
+<li>Maximum Product Subarray<br>Paint House II</li>
+</ol>
+
     </div>
 
     
@@ -285,9 +299,10 @@
               <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
               <a href="/tags/Array/" rel="tag"># Array</a>
-              <a href="/tags/Pending/" rel="tag"># Pending</a>
               <a href="/tags/Frequent/" rel="tag"># Frequent</a>
               <a href="/tags/Facebook/" rel="tag"># Facebook</a>
+              <a href="/tags/Two-Pointers/" rel="tag"># Two Pointers</a>
+              <a href="/tags/Starred/" rel="tag"># Starred</a>
           </div>
 
         
@@ -362,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-One-with-extra-array"><span class="nav-number">1.</span> <span class="nav-text">Solution One: with extra array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.3.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Two-O-1-space-approach"><span class="nav-number">2.</span> <span class="nav-text">Solution Two: O(1) space approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result-1"><span class="nav-number">2.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-1"><span class="nav-number">2.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code-1"><span class="nav-number">2.3.</span> <span class="nav-text">Java code</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-One-with-extra-array"><span class="nav-number">1.</span> <span class="nav-text">Solution One: with extra array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.3.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Two-O-1-space-approach"><span class="nav-number">2.</span> <span class="nav-text">Solution Two: O(1) space approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result-1"><span class="nav-number">2.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis-1"><span class="nav-number">2.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code-1"><span class="nav-number">2.3.</span> <span class="nav-text">Java code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Similar-Questions"><span class="nav-number"></span> <span class="nav-text">Similar Questions</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -377,7 +392,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">269</span>
+          <span class="site-state-item-count">276</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -390,7 +405,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">62</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

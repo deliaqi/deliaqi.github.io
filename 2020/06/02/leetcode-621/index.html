@@ -54,15 +54,15 @@
 <meta property="og:description" content="DescriptionGiven a char array representing tasks CPU need to do. It contains capital letters A to Z where different letters represent different tasks. Tasks could be done without original order. Each">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-03T02:30:44.000Z">
-<meta property="article:modified_time" content="2020-06-04T13:41:01.893Z">
+<meta property="article:modified_time" content="2020-08-12T19:11:12.402Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Greedy">
 <meta property="article:tag" content="Array">
-<meta property="article:tag" content="Pending">
 <meta property="article:tag" content="Frequent">
 <meta property="article:tag" content="Facebook">
+<meta property="article:tag" content="Starred">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://delia13.me/2020/06/02/leetcode-621/">
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-04 09:41:01" itemprop="dateModified" datetime="2020-06-04T09:41:01-04:00">2020-06-04</time>
+                <time title="Modified: 2020-08-12 15:11:12" itemprop="dateModified" datetime="2020-08-12T15:11:12-04:00">2020-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,6 +276,8 @@
 <h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(26), Time Complexity: O(n).</p>
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="keyword">char</span>[] tasks, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] countArr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">int</span> maxFreq = <span class="number">0</span>, maxCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> t : tasks) &#123;</span><br><span class="line">            <span class="keyword">int</span> freq = countArr[t - <span class="string">'A'</span>] + <span class="number">1</span>;</span><br><span class="line">            countArr[t - <span class="string">'A'</span>] = freq;</span><br><span class="line">            <span class="keyword">if</span> (freq &gt; maxFreq) &#123;</span><br><span class="line">                maxFreq = freq;</span><br><span class="line">                maxCount = <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (freq == maxFreq) &#123;</span><br><span class="line">                maxCount++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> mainTasks = maxFreq * maxCount;</span><br><span class="line">        <span class="keyword">int</span> emptyCol = n - Math.min(n, maxCount - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> emptySlots = emptyCol * (maxFreq - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> otherTasks = tasks.length - mainTasks;</span><br><span class="line">        <span class="keyword">int</span> idles = Math.max(<span class="number">0</span>, emptySlots - otherTasks);</span><br><span class="line">        <span class="keyword">return</span> tasks.length + idles;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">leastInterval</span><span class="params">(<span class="keyword">char</span>[] tasks, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] freqs = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">int</span> maxFreq = <span class="number">0</span>, maxCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> task : tasks) &#123;</span><br><span class="line">            <span class="keyword">int</span> freq = ++freqs[task - <span class="string">'A'</span>];</span><br><span class="line">            <span class="keyword">if</span> (freq &gt; maxFreq) &#123;</span><br><span class="line">                maxFreq = freq;</span><br><span class="line">                maxCount = <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (freq == maxFreq) &#123;</span><br><span class="line">                maxCount++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> EstimateSlots = (maxFreq - <span class="number">1</span>) * (n + <span class="number">1</span>) + maxCount;</span><br><span class="line">        <span class="keyword">return</span> Math.max(tasks.length, EstimateSlots);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -288,9 +290,9 @@
               <a href="/tags/Java/" rel="tag"># Java</a>
               <a href="/tags/Greedy/" rel="tag"># Greedy</a>
               <a href="/tags/Array/" rel="tag"># Array</a>
-              <a href="/tags/Pending/" rel="tag"># Pending</a>
               <a href="/tags/Frequent/" rel="tag"># Frequent</a>
               <a href="/tags/Facebook/" rel="tag"># Facebook</a>
+              <a href="/tags/Starred/" rel="tag"># Starred</a>
           </div>
 
         
@@ -380,7 +382,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">269</span>
+          <span class="site-state-item-count">276</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -393,7 +395,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">62</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
