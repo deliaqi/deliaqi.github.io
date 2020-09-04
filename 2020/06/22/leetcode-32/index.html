@@ -54,13 +54,15 @@
 <meta property="og:description" content="DescriptionGiven a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring. Example 1: Input: “(()”Output: 2Explanation: The longest">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-22T14:06:58.000Z">
-<meta property="article:modified_time" content="2020-06-22T14:08:13.829Z">
+<meta property="article:modified_time" content="2020-08-14T14:02:23.872Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Pending">
 <meta property="article:tag" content="Hard">
 <meta property="article:tag" content="String">
+<meta property="article:tag" content="Starred">
+<meta property="article:tag" content="To Improve">
+<meta property="article:tag" content="To Implement">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://delia13.me/2020/06/22/leetcode-32/">
@@ -232,10 +234,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-06-22 10:06:58 / Modified: 10:08:13" itemprop="dateCreated datePublished" datetime="2020-06-22T10:06:58-04:00">2020-06-22</time>
+              <time title="Created: 2020-06-22 10:06:58" itemprop="dateCreated datePublished" datetime="2020-06-22T10:06:58-04:00">2020-06-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-14 10:02:23" itemprop="dateModified" datetime="2020-08-14T10:02:23-04:00">2020-08-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -270,7 +278,7 @@
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> size = s.length();</span><br><span class="line">        <span class="comment">// longest length from i to j, both inclusive</span></span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> cur = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (cur == <span class="string">')'</span>) &#123; </span><br><span class="line">                <span class="keyword">if</span> (s.charAt(i - <span class="number">1</span>) == <span class="string">'('</span>) </span><br><span class="line">                    dp[i] = i == <span class="number">1</span> ? <span class="number">2</span> : (dp[i - <span class="number">2</span>] + <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="comment">// search from right to left</span></span><br><span class="line">                    <span class="keyword">int</span> start = i - <span class="number">1</span>; <span class="comment">// ')'</span></span><br><span class="line">                    <span class="keyword">while</span> (start &gt;= <span class="number">0</span> &amp;&amp; dp[start] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">int</span> pos = start - dp[start];</span><br><span class="line">                        <span class="keyword">if</span> (pos &gt;= <span class="number">0</span> &amp;&amp; s.charAt(pos) == <span class="string">'('</span>) &#123;</span><br><span class="line">                            dp[i] = i - pos + <span class="number">1</span>;</span><br><span class="line">                            <span class="keyword">if</span> (pos &gt; <span class="number">0</span>) dp[i] += dp[pos - <span class="number">1</span>];</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            start = pos;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ans = Math.max(ans, dp[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Solution-Two"><a href="#Solution-Two" class="headerlink" title="Solution Two:"></a>Solution Two:</h2>
+<h2 id="Solution-Two-Stack"><a href="#Solution-Two-Stack" class="headerlink" title="Solution Two: Stack"></a>Solution Two: Stack</h2><h2 id="Solution-Three-Two-Pass"><a href="#Solution-Three-Two-Pass" class="headerlink" title="Solution Three: Two Pass"></a>Solution Three: Two Pass</h2>
     </div>
 
     
@@ -281,9 +289,11 @@
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Pending/" rel="tag"># Pending</a>
               <a href="/tags/Hard/" rel="tag"># Hard</a>
               <a href="/tags/String/" rel="tag"># String</a>
+              <a href="/tags/Starred/" rel="tag"># Starred</a>
+              <a href="/tags/To-Improve/" rel="tag"># To Improve</a>
+              <a href="/tags/To-Implement/" rel="tag"># To Implement</a>
           </div>
 
         
@@ -358,7 +368,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-One-Dynamic-Programming"><span class="nav-number">1.</span> <span class="nav-text">Solution One: Dynamic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.3.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Two"><span class="nav-number">2.</span> <span class="nav-text">Solution Two:</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-One-Dynamic-Programming"><span class="nav-number">1.</span> <span class="nav-text">Solution One: Dynamic Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Result"><span class="nav-number">1.1.</span> <span class="nav-text">Result</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-code"><span class="nav-number">1.3.</span> <span class="nav-text">Java code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Two-Stack"><span class="nav-number">2.</span> <span class="nav-text">Solution Two: Stack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-Three-Two-Pass"><span class="nav-number">3.</span> <span class="nav-text">Solution Three: Two Pass</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -373,7 +383,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">276</span>
+          <span class="site-state-item-count">294</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -386,7 +396,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

@@ -54,12 +54,13 @@
 <meta property="og:description" content="DescriptionGiven an integer, write a function to determine if it is a power of two. Example 1: Input: 1Output: trueExplanation: 20 &#x3D; 1Example 2: Input: 16Output: trueExplanation: 24 &#x3D; 16Example 3: Inp">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-05T21:09:27.000Z">
-<meta property="article:modified_time" content="2020-07-05T21:10:34.144Z">
+<meta property="article:modified_time" content="2020-08-15T13:34:58.038Z">
 <meta property="article:author" content="Jiaqi Liu">
 <meta property="article:tag" content="Leetcode">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Pending">
-<meta property="article:tag" content="Bit Operations">
+<meta property="article:tag" content="Bit Manipulation">
+<meta property="article:tag" content="Starred">
+<meta property="article:tag" content="To Improve">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://delia13.me/2020/07/05/leetcode-231/">
@@ -231,10 +232,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-07-05 17:09:27 / Modified: 17:10:34" itemprop="dateCreated datePublished" datetime="2020-07-05T17:09:27-04:00">2020-07-05</time>
+              <time title="Created: 2020-07-05 17:09:27" itemprop="dateCreated datePublished" datetime="2020-07-05T17:09:27-04:00">2020-07-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-15 09:34:58" itemprop="dateModified" datetime="2020-08-15T09:34:58-04:00">2020-08-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -270,7 +277,10 @@
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">0</span> &amp;&amp; isPowerOfTwo(n / <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Solution-Two-Bitwise"><a href="#Solution-Two-Bitwise" class="headerlink" title="Solution Two: Bitwise"></a>Solution Two: Bitwise</h2>
+<h2 id="Solution-Two-Bitwise"><a href="#Solution-Two-Bitwise" class="headerlink" title="Solution Two: Bitwise"></a>Solution Two: Bitwise</h2><ol start="231">
+<li>Power of Two</li>
+</ol>
+
     </div>
 
     
@@ -281,8 +291,9 @@
           <div class="post-tags">
               <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Pending/" rel="tag"># Pending</a>
-              <a href="/tags/Bit-Operations/" rel="tag"># Bit Operations</a>
+              <a href="/tags/Bit-Manipulation/" rel="tag"># Bit Manipulation</a>
+              <a href="/tags/Starred/" rel="tag"># Starred</a>
+              <a href="/tags/To-Improve/" rel="tag"># To Improve</a>
           </div>
 
         
@@ -372,7 +383,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">276</span>
+          <span class="site-state-item-count">294</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -385,7 +396,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

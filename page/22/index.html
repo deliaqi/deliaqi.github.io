@@ -202,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/26/leetcode-85/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/31/leetcode-41/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -216,7 +216,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/26/leetcode-85/" class="post-title-link" itemprop="url">Leetcode 85 - Maximal Rectangle</a>
+            <a href="/2020/05/31/leetcode-41/" class="post-title-link" itemprop="url">Leetcode 41 - First Missing Positive</a>
         </h1>
 
         <div class="post-meta">
@@ -227,14 +227,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-05-26 14:35:44" itemprop="dateCreated datePublished" datetime="2020-05-26T14:35:44-04:00">2020-05-26</time>
+              <time title="Created: 2020-05-31 18:18:09" itemprop="dateCreated datePublished" datetime="2020-05-31T18:18:09-04:00">2020-05-31</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-27 08:53:55" itemprop="dateModified" datetime="2020-06-27T08:53:55-04:00">2020-06-27</time>
+                <time title="Modified: 2020-08-12 11:30:53" itemprop="dateModified" datetime="2020-08-12T11:30:53-04:00">2020-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,11 +259,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Given a 2D binary matrix filled with 0’s and 1’s, find the largest rectangle containing only 1’s and return its area.</p>
-<h2 id="Solution-One-Dynamic-Programming-Better-Brute-Force-on-Histograms"><a href="#Solution-One-Dynamic-Programming-Better-Brute-Force-on-Histograms" class="headerlink" title="Solution One: Dynamic Programming - Better Brute Force on Histograms"></a>Solution One: Dynamic Programming - Better Brute Force on Histograms</h2>
+          <p><strong>Description</strong><br>Given an unsorted integer array, find the smallest missing positive integer.</p>
+<p>Example 1:</p>
+<p>Input: [1,2,0]<br>Output: 3<br>Example 2:</p>
+<p>Input: [3,4,-1,1]<br>Output: 2<br>Example 3:</p>
+<p>Input: [7,8,9,11,12]<br>Output: 1<br>Note:</p>
+<p>Your algorithm should run in O(n) time and uses constant extra space.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/26/leetcode-85/#more" rel="contents">
+              <a class="btn" href="/2020/05/31/leetcode-41/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -287,7 +292,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/25/leetcode-1277/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/31/leetcode-543/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -301,7 +306,92 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/25/leetcode-1277/" class="post-title-link" itemprop="url">Leetcode 1277 - Count Square Submatrices with All Ones</a>
+            <a href="/2020/05/31/leetcode-543/" class="post-title-link" itemprop="url">Leetcode 543 - Diameter of Binary Tree</a>
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-31 10:19:01" itemprop="dateCreated datePublished" datetime="2020-05-31T10:19:01-04:00">2020-05-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-11 17:51:50" itemprop="dateModified" datetime="2020-08-11T17:51:50-04:00">2020-08-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/work/" itemprop="url" rel="index">
+                    <span itemprop="name">work</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Description</strong><br>Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.</p>
+<h2 id="Solution-DFS-with-depth"><a href="#Solution-DFS-with-depth" class="headerlink" title="Solution: DFS with depth"></a>Solution: DFS with depth</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/31/leetcode-543/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/31/leetcode-680/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jiaqi Liu">
+      <meta itemprop="description" content="Meow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Delia">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/31/leetcode-680/" class="post-title-link" itemprop="url">Leetcode 680 - Valid Palindrome II</a>
         </h1>
 
         <div class="post-meta">
@@ -313,7 +403,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-25 19:33:24 / Modified: 19:35:11" itemprop="dateCreated datePublished" datetime="2020-05-25T19:33:24-04:00">2020-05-25</time>
+              <time title="Created: 2020-05-31 10:00:02 / Modified: 10:02:48" itemprop="dateCreated datePublished" datetime="2020-05-31T10:00:02-04:00">2020-05-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -338,11 +428,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.</p>
-<h2 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h2>
+          <p><strong>Description</strong><br>Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.</p>
+<h2 id="Solution-One-StringBuilder"><a href="#Solution-One-StringBuilder" class="headerlink" title="Solution One: StringBuilder"></a>Solution One: StringBuilder</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/25/leetcode-1277/#more" rel="contents">
+              <a class="btn" href="/2020/05/31/leetcode-680/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -366,7 +456,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/25/leetcode-93/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/30/leetcode-88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -380,7 +470,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/25/leetcode-93/" class="post-title-link" itemprop="url">Leetcode 93 - Restore IP Addresses</a>
+            <a href="/2020/05/30/leetcode-88/" class="post-title-link" itemprop="url">Leetcode 88 - Merge Sorted Array</a>
         </h1>
 
         <div class="post-meta">
@@ -391,14 +481,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-05-25 15:19:48" itemprop="dateCreated datePublished" datetime="2020-05-25T15:19:48-04:00">2020-05-25</time>
+              <time title="Created: 2020-05-30 18:35:57" itemprop="dateCreated datePublished" datetime="2020-05-30T18:35:57-04:00">2020-05-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-03 20:50:03" itemprop="dateModified" datetime="2020-08-03T20:50:03-04:00">2020-08-03</time>
+                <time title="Modified: 2020-08-11 17:50:55" itemprop="dateModified" datetime="2020-08-11T17:50:55-04:00">2020-08-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -423,14 +513,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Given a string containing only digits, restore it by returning all possible valid IP address combinations.</p>
-<p>A valid IP address consists of exactly four integers (each integer is between 0 and 255) separated by single points.</p>
-<p>Example:</p>
-<p>Input: “25525511135”<br>Output: [“255.255.11.135”, “255.255.111.35”]</p>
-<h2 id="Solution-One-Backtracking-DFS"><a href="#Solution-One-Backtracking-DFS" class="headerlink" title="Solution One: Backtracking (DFS)"></a>Solution One: Backtracking (DFS)</h2>
+          <p><strong>Description</strong><br>Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.</p>
+<p>Note:</p>
+<p>The number of elements initialized in nums1 and nums2 are m and n respectively.<br>You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.<br>Example:</p>
+<p>Input:<br>nums1 = [1,2,3,0,0,0], m = 3<br>nums2 = [2,5,6],       n = 3</p>
+<p>Output: [1,2,2,3,5,6]</p>
+<h2 id="Solution-One-Two-pointer-start-from-left"><a href="#Solution-One-Two-pointer-start-from-left" class="headerlink" title="Solution One: Two pointer, start from left"></a>Solution One: Two pointer, start from left</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/25/leetcode-93/#more" rel="contents">
+              <a class="btn" href="/2020/05/30/leetcode-88/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -454,7 +545,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/25/leetcode-1376/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/30/leetcode-199/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -468,7 +559,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/25/leetcode-1376/" class="post-title-link" itemprop="url">Leetcode 1376 - Time Needed to Inform All Employees</a>
+            <a href="/2020/05/30/leetcode-199/" class="post-title-link" itemprop="url">Leetcode 199 - Binary Tree Right Side View</a>
         </h1>
 
         <div class="post-meta">
@@ -480,7 +571,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-25 11:41:30 / Modified: 11:45:10" itemprop="dateCreated datePublished" datetime="2020-05-25T11:41:30-04:00">2020-05-25</time>
+              <time title="Created: 2020-05-30 18:23:40 / Modified: 18:25:42" itemprop="dateCreated datePublished" datetime="2020-05-30T18:23:40-04:00">2020-05-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -505,15 +596,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>A company has n employees with a unique ID for each employee from 0 to n - 1. The head of the company has is the one with headID.</p>
-<p>Each employee has one direct manager given in the manager array where manager[i] is the direct manager of the i-th employee, manager[headID] = -1. Also it’s guaranteed that the subordination relationships have a tree structure.</p>
-<p>The head of the company wants to inform all the employees of the company of an urgent piece of news. He will inform his direct subordinates and they will inform their subordinates and so on until all employees know about the urgent news.</p>
-<p>The i-th employee needs informTime[i] minutes to inform all of his direct subordinates (i.e After informTime[i] minutes, all his direct subordinates can start spreading the news).</p>
-<p>Return the number of minutes needed to inform all the employees about the urgent news.</p>
-<h2 id="Solution-DFS-up-to-bottom"><a href="#Solution-DFS-up-to-bottom" class="headerlink" title="Solution: DFS, up to bottom"></a>Solution: DFS, up to bottom</h2>
+          <p><strong>Description</strong><br>Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.</p>
+<h2 id="Solution-One-BFS"><a href="#Solution-One-BFS" class="headerlink" title="Solution One: BFS"></a>Solution One: BFS</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/25/leetcode-1376/#more" rel="contents">
+              <a class="btn" href="/2020/05/30/leetcode-199/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -537,7 +624,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/25/leetcode-833/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/30/leetcode-17/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -551,7 +638,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/25/leetcode-833/" class="post-title-link" itemprop="url">Leetcode 833 - Find And Replace in String</a>
+            <a href="/2020/05/30/leetcode-17/" class="post-title-link" itemprop="url">Leetcode 17 - Letter Combinations of a Phone Number</a>
         </h1>
 
         <div class="post-meta">
@@ -563,7 +650,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-25 10:49:14 / Modified: 10:54:25" itemprop="dateCreated datePublished" datetime="2020-05-25T10:49:14-04:00">2020-05-25</time>
+              <time title="Created: 2020-05-30 15:53:39 / Modified: 15:56:10" itemprop="dateCreated datePublished" datetime="2020-05-30T15:53:39-04:00">2020-05-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -588,15 +675,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>To some string S, we will perform some replacement operations that replace groups of letters with new ones (not necessarily the same size).</p>
-<p>Each replacement operation has 3 parameters: a starting index i, a source word x and a target word y.  The rule is that if x starts at position i in the original string S, then we will replace that occurrence of x with y.  If not, we do nothing.</p>
-<p>For example, if we have S = “abcd” and we have some replacement operation i = 2, x = “cd”, y = “ffff”, then because “cd” starts at position 2 in the original string S, we will replace it with “ffff”.</p>
-<p>Using another example on S = “abcd”, if we have both the replacement operation i = 0, x = “ab”, y = “eee”, as well as another replacement operation i = 2, x = “ec”, y = “ffff”, this second operation does nothing because in the original string S[2] = ‘c’, which doesn’t match x[0] = ‘e’.</p>
-<p>All these operations occur simultaneously.  It’s guaranteed that there won’t be any overlap in replacement: for example, S = “abc”, indexes = [0, 1], sources = [“ab”,”bc”] is not a valid test case.</p>
-<h2 id="Solution-One-For-left-to-right-recording-length-change"><a href="#Solution-One-For-left-to-right-recording-length-change" class="headerlink" title="Solution One: For left to right, recording length change"></a>Solution One: For left to right, recording length change</h2>
+          <p><strong>Description</strong><br>Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.</p>
+<p>A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.</p>
+<h2 id="Solution-Backtracking"><a href="#Solution-Backtracking" class="headerlink" title="Solution: Backtracking"></a>Solution: Backtracking</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/25/leetcode-833/#more" rel="contents">
+              <a class="btn" href="/2020/05/30/leetcode-17/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -620,7 +704,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/24/leetcode-951/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/30/leetcode-215/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -634,7 +718,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/24/leetcode-951/" class="post-title-link" itemprop="url">Leetcode 951 - Flip Equivalent Binary Trees</a>
+            <a href="/2020/05/30/leetcode-215/" class="post-title-link" itemprop="url">Leetcode 215 - Kth Largest Element in an Array</a>
         </h1>
 
         <div class="post-meta">
@@ -645,14 +729,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-05-24 22:31:33" itemprop="dateCreated datePublished" datetime="2020-05-24T22:31:33-04:00">2020-05-24</time>
+              <time title="Created: 2020-05-30 12:03:20" itemprop="dateCreated datePublished" datetime="2020-05-30T12:03:20-04:00">2020-05-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-04 20:29:47" itemprop="dateModified" datetime="2020-08-04T20:29:47-04:00">2020-08-04</time>
+                <time title="Modified: 2020-07-20 09:17:24" itemprop="dateModified" datetime="2020-07-20T09:17:24-04:00">2020-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -677,13 +761,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>For a binary tree T, we can define a flip operation as follows: choose any node, and swap the left and right child subtrees.</p>
-<p>A binary tree X is flip equivalent to a binary tree Y if and only if we can make X equal to Y after some number of flip operations.</p>
-<p>Write a function that determines whether two binary trees are flip equivalent.  The trees are given by root nodes root1 and root2.</p>
-<h2 id="Solution-One-Recursive"><a href="#Solution-One-Recursive" class="headerlink" title="Solution One: Recursive"></a>Solution One: Recursive</h2>
+          <p><strong>Description</strong><br>Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.</p>
+<h2 id="Solution-Quick-Select"><a href="#Solution-Quick-Select" class="headerlink" title="Solution: Quick Select"></a>Solution: Quick Select</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/24/leetcode-951/#more" rel="contents">
+              <a class="btn" href="/2020/05/30/leetcode-215/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -707,7 +789,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/24/leetcode-54/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/30/leetcode-415/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -721,7 +803,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/24/leetcode-54/" class="post-title-link" itemprop="url">Leetcode 54 - Spiral Matrix</a>
+            <a href="/2020/05/30/leetcode-415/" class="post-title-link" itemprop="url">Leetcode 415 - Add Strings && Leetcode 67 - Add Binary</a>
         </h1>
 
         <div class="post-meta">
@@ -732,14 +814,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-05-24 17:46:20" itemprop="dateCreated datePublished" datetime="2020-05-24T17:46:20-04:00">2020-05-24</time>
+              <time title="Created: 2020-05-30 08:52:03" itemprop="dateCreated datePublished" datetime="2020-05-30T08:52:03-04:00">2020-05-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-24 19:56:02" itemprop="dateModified" datetime="2020-06-24T19:56:02-04:00">2020-06-24</time>
+                <time title="Modified: 2020-05-31 10:29:20" itemprop="dateModified" datetime="2020-05-31T10:29:20-04:00">2020-05-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -764,10 +846,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.</p>
+          <h1 id="Leetcode-415-Add-Strings"><a href="#Leetcode-415-Add-Strings" class="headerlink" title="Leetcode 415 - Add Strings"></a>Leetcode 415 - Add Strings</h1><p><strong>Description</strong><br>Given two non-negative integers num1 and num2 represented as string, return the sum of num1 and num2.</p>
+<p>Note:</p>
+<p>The length of both num1 and num2 is &lt; 5100.<br>Both num1 and num2 contains only digits 0-9.<br>Both num1 and num2 does not contain any leading zero.<br>You must not use any built-in BigInteger library or convert the inputs to integer directly.</p>
+<h2 id="Solution-from-right-to-left-with-StringBuilder"><a href="#Solution-from-right-to-left-with-StringBuilder" class="headerlink" title="Solution: from right to left with StringBuilder"></a>Solution: from right to left with StringBuilder</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/24/leetcode-54/#more" rel="contents">
+              <a class="btn" href="/2020/05/30/leetcode-415/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -791,7 +876,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/23/leetcode-134/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/29/leetcode-419/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -805,94 +890,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/23/leetcode-134/" class="post-title-link" itemprop="url">Leetcode 134 - Gas Station</a>
-        </h1>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-23 20:52:32" itemprop="dateCreated datePublished" datetime="2020-05-23T20:52:32-04:00">2020-05-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-03 20:51:35" itemprop="dateModified" datetime="2020-08-03T20:51:35-04:00">2020-08-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/work/" itemprop="url" rel="index">
-                    <span itemprop="name">work</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>Description</strong><br>There are N gas stations along a circular route, where the amount of gas at station i is gas[i].</p>
-<p>You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.</p>
-<p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
-<h2 id="Solution-One-Two-pass"><a href="#Solution-One-Two-pass" class="headerlink" title="Solution One: Two pass"></a>Solution One: Two pass</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/23/leetcode-134/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/23/leetcode-399/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Jiaqi Liu">
-      <meta itemprop="description" content="Meow">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Delia">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/23/leetcode-399/" class="post-title-link" itemprop="url">Leetcode 399 - Evaluate Division</a>
+            <a href="/2020/05/29/leetcode-419/" class="post-title-link" itemprop="url">Leetcode 419 - Battleships in a Board</a>
         </h1>
 
         <div class="post-meta">
@@ -904,7 +902,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-23 20:49:07 / Modified: 20:52:02" itemprop="dateCreated datePublished" datetime="2020-05-23T20:49:07-04:00">2020-05-23</time>
+              <time title="Created: 2020-05-29 20:48:46 / Modified: 20:50:43" itemprop="dateCreated datePublished" datetime="2020-05-29T20:48:46-04:00">2020-05-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -929,11 +927,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number (floating point number). Given some queries, return the answers. If the answer does not exist, return -1.0.</p>
-<h2 id="Solution-DFS"><a href="#Solution-DFS" class="headerlink" title="Solution: DFS"></a>Solution: DFS</h2>
+          <p><strong>Description</strong><br>Given an 2D board, count how many battleships are in it. The battleships are represented with ‘X’s, empty slots are represented with ‘.’s. You may assume the following rules:<br>You receive a valid board, made of only battleships or empty slots.<br>Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1 row, N columns) or Nx1 (N rows, 1 column), where N can be of any size.<br>At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.</p>
+<h2 id="Solution-transverse-with-memo"><a href="#Solution-transverse-with-memo" class="headerlink" title="Solution: transverse with memo"></a>Solution: transverse with memo</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/23/leetcode-399/#more" rel="contents">
+              <a class="btn" href="/2020/05/29/leetcode-419/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -957,7 +955,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/22/leetcode-124/">
+    <link itemprop="mainEntityOfPage" href="http://delia13.me/2020/05/29/leetcode-139/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -971,7 +969,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/22/leetcode-124/" class="post-title-link" itemprop="url">Leetcode 124 - Binary Tree Maximum Path Sum</a>
+            <a href="/2020/05/29/leetcode-139/" class="post-title-link" itemprop="url">Leetcode 139 - Word Break</a>
         </h1>
 
         <div class="post-meta">
@@ -982,14 +980,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-05-22 17:02:39" itemprop="dateCreated datePublished" datetime="2020-05-22T17:02:39-04:00">2020-05-22</time>
+              <time title="Created: 2020-05-29 10:06:57" itemprop="dateCreated datePublished" datetime="2020-05-29T10:06:57-04:00">2020-05-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-04 20:54:18" itemprop="dateModified" datetime="2020-08-04T20:54:18-04:00">2020-08-04</time>
+                <time title="Modified: 2020-08-11 17:22:35" itemprop="dateModified" datetime="2020-08-11T17:22:35-04:00">2020-08-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1014,12 +1012,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>Description</strong><br>Given a non-empty binary tree, find the maximum path sum.</p>
-<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.</p>
-<h2 id="Solution-DFS"><a href="#Solution-DFS" class="headerlink" title="Solution: DFS"></a>Solution: DFS</h2>
+          <p><strong>Description</strong><br>Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.</p>
+<p>Note:</p>
+<p>The same word in the dictionary may be reused multiple times in the segmentation.<br>You may assume the dictionary does not contain duplicate words.<br>Example 1:</p>
+<p>Input: s = “leetcode”, wordDict = [“leet”, “code”]<br>Output: true<br>Explanation: Return true because “leetcode” can be segmented as “leet code”.<br>Example 2:</p>
+<p>Input: s = “applepenapple”, wordDict = [“apple”, “pen”]<br>Output: true<br>Explanation: Return true because “applepenapple” can be segmented as “apple pen apple”.<br>             Note that you are allowed to reuse a dictionary word.<br>Example 3:</p>
+<p>Input: s = “catsandog”, wordDict = [“cats”, “dog”, “sand”, “and”, “cat”]<br>Output: false</p>
+<h2 id="Solution-One-Recursive-with-memorization"><a href="#Solution-One-Recursive-with-memorization" class="headerlink" title="Solution One: Recursive with memorization"></a>Solution One: Recursive with memorization</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/22/leetcode-124/#more" rel="contents">
+              <a class="btn" href="/2020/05/29/leetcode-139/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1043,7 +1045,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1110,7 +1112,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">276</span>
+          <span class="site-state-item-count">294</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1123,7 +1125,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

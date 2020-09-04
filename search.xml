@@ -1,6 +1,563 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Leetcode 368 - Largest Divisible Subset</title>
+    <url>/2020/08/29/leetcode-368/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a set of distinct positive integers, find the largest subset such that every pair (Si, Sj) of elements in this subset satisfies:</p>
+<p>Si % Sj = 0 or Sj % Si = 0.</p>
+<p>If there are multiple solutions, return any subset is fine.</p>
+<p>Example 1:</p>
+<p>Input: [1,2,3]<br>Output: [1,2] (of course, [1,3] will also be ok)<br>Example 2:</p>
+<p>Input: [1,2,4,8]<br>Output: [1,2,4,8]</p>
+<h2 id="Solution-One-Recursion-with-Memoization"><a href="#Solution-One-Recursion-with-Memoization" class="headerlink" title="Solution One: Recursion with Memoization"></a>Solution One: Recursion with Memoization</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 31 ms, faster than 25.55% of Java online submissions for Largest Divisible Subset.<br>Memory Usage: 39.7 MB, less than 70.21% of Java online submissions for Largest Divisible Subset.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n^2), Time Complexity: O(n^2).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> finalMaxSize = <span class="number">0</span>;</span><br><span class="line">    List&lt;Integer&gt; finalAns = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    Map&lt;Integer, List&lt;Integer&gt;&gt; memo;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">largestDivisibleSubset</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> size = nums.length;</span><br><span class="line">        memo = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            backtrack(nums, i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> finalAns;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// from right to left</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> List&lt;Integer&gt; <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (memo.containsKey(start)) <span class="keyword">return</span> memo.get(start);</span><br><span class="line">        LinkedList&lt;Integer&gt; ans = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> curNum = nums[start], maxSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = start - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (curNum % nums[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                List&lt;Integer&gt; nextList = backtrack(nums, i);</span><br><span class="line">                <span class="keyword">if</span> (nextList.size() &gt; maxSize) &#123;</span><br><span class="line">                    ans = <span class="keyword">new</span> LinkedList&lt;&gt;(nextList);</span><br><span class="line">                    maxSize = nextList.size();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ans.addLast(curNum);</span><br><span class="line">        <span class="keyword">if</span> (ans.size() &gt; finalMaxSize) &#123;</span><br><span class="line">            finalAns = ans;</span><br><span class="line">            finalMaxSize = ans.size();</span><br><span class="line">        &#125;</span><br><span class="line">        memo.put(start, ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>Memorization</tag>
+        <tag>Adobe</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 953 - Verifying an Alien Dictionary</title>
+    <url>/2020/08/28/leetcode-953/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>In an alien language, surprisingly they also use english lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters.</p>
+<p>Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographicaly in this alien language.</p>
+<p>Example 1:</p>
+<p>Input: words = [“hello”,”leetcode”], order = “hlabcdefgijkmnopqrstuvwxyz”<br>Output: true<br>Explanation: As ‘h’ comes before ‘l’ in this language, then the sequence is sorted.<br>Example 2:</p>
+<p>Input: words = [“word”,”world”,”row”], order = “worldabcefghijkmnpqstuvxyz”<br>Output: false<br>Explanation: As ‘d’ comes after ‘l’ in this language, then words[0] &gt; words[1], hence the sequence is unsorted.<br>Example 3:</p>
+<p>Input: words = [“apple”,”app”], order = “abcdefghijklmnopqrstuvwxyz”<br>Output: false<br>Explanation: The first three characters “app” match, and the second string is shorter (in size.) According to lexicographical rules “apple” &gt; “app”, because ‘l’ &gt; ‘∅’, where ‘∅’ is defined as the blank character which is less than any other character (More info).</p>
+<p>Constraints:</p>
+<p>1 &lt;= words.length &lt;= 100<br>1 &lt;= words[i].length &lt;= 20<br>order.length == 26<br>All characters in words[i] and order are English lowercase letters.</p>
+<h2 id="Solution-One-Compare-One-by-One"><a href="#Solution-One-Compare-One-by-One" class="headerlink" title="Solution One: Compare One by One"></a>Solution One: Compare One by One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 1 ms, faster than 61.70% of Java online submissions for Verifying an Alien Dictionary.<br>Memory Usage: 39.7 MB, less than 33.79% of Java online submissions for Verifying an Alien Dictionary.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(1), Time Complexity: O(n * L).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isAlienSorted</span><span class="params">(String[] words, String order)</span> </span>&#123;</span><br><span class="line">        Map&lt;Character, Integer&gt; orderMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">            orderMap.put(order.charAt(i), i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        String preWord = words[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; words.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (compare(preWord, words[i], orderMap) &gt; <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            preWord = words[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String a, String b, Map&lt;Character, Integer&gt; orderMap)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sizeA = a.length(), sizeB = b.length();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; sizeA || i &lt; sizeB) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == sizeA &amp;&amp; i &lt; sizeB) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; sizeA &amp;&amp; i == sizeB) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">char</span> c1 = a.charAt(i), c2 = b.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (orderMap.get(c1) &gt; orderMap.get(c2)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderMap.get(c1) &lt; orderMap.get(c2)) &#123;</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>Facebook</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 239 - Sliding Window Maximum</title>
+    <url>/2020/08/27/leetcode-239/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window.</p>
+<p>Follow up:<br>Could you solve it in linear time?</p>
+<p>Example:</p>
+<p>Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3<br>Output: [3,3,5,5,6,7]<br>Explanation: </p>
+<p>Window position                Max</p>
+<hr>
+<p>[1  3  -1] -3  5  3  6  7       3<br> 1 [3  -1  -3] 5  3  6  7       3<br> 1  3 [-1  -3  5] 3  6  7       5<br> 1  3  -1 [-3  5  3] 6  7       5<br> 1  3  -1  -3 [5  3  6] 7       6<br> 1  3  -1  -3  5 [3  6  7]      7</p>
+<p>Constraints:</p>
+<p>1 &lt;= nums.length &lt;= 10^5<br>-10^4 &lt;= nums[i] &lt;= 10^4<br>1 &lt;= k &lt;= nums.length</p>
+<h2 id="Solution-One-Deque"><a href="#Solution-One-Deque" class="headerlink" title="Solution One: Deque"></a>Solution One: Deque</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 9 ms, faster than 88.95% of Java online submissions for Sliding Window Maximum.<br>Memory Usage: 53.6 MB, less than 55.27% of Java online submissions for Sliding Window Maximum.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        ArrayDeque&lt;Integer&gt; stack = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peekFirst() &lt; nums[i]) &#123;</span><br><span class="line">                stack.pollFirst();</span><br><span class="line">            &#125;</span><br><span class="line">            stack.addFirst(nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i &gt;= k &amp;&amp; stack.peekLast() == nums[i - k]) </span><br><span class="line">                    stack.pollLast();</span><br><span class="line">                ans[i - k + <span class="number">1</span>] = stack.peekLast();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution-Two-Two-Arrays"><a href="#Solution-Two-Two-Arrays" class="headerlink" title="Solution Two: Two Arrays"></a>Solution Two: Two Arrays</h2>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Sliding Window</tag>
+        <tag>Monotonic Stack</tag>
+        <tag>Databricks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1329 - Sort the Matrix Diagonally</title>
+    <url>/2020/08/25/leetcode-1329/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a m * n matrix mat of integers, sort it diagonally in ascending order from the top-left to the bottom-right then return the sorted array.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 2 ms, faster than 95.37% of Java online submissions for Sort the Matrix Diagonally.<br>Memory Usage: 40.6 MB, less than 50.56% of Java online submissions for Sort the Matrix Diagonally.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(1), Time Complexity: O((M+N) * min(M,N) ^ 2).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rowNum, colNum;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] diagonalSort(<span class="keyword">int</span>[][] mat) &#123;</span><br><span class="line">        rowNum = mat.length;</span><br><span class="line">        colNum = mat[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rowNum; i++) &#123;</span><br><span class="line">            insertionSort(mat, i, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; colNum; j++) &#123;</span><br><span class="line">            insertionSort(mat, <span class="number">0</span>, j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mat;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">int</span>[][] mat, <span class="keyword">int</span> startRow, <span class="keyword">int</span> startCol)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = startRow + <span class="number">1</span>; i &lt; rowNum; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> j = startCol + (i - startRow);</span><br><span class="line">            <span class="keyword">if</span> (j &gt;= colNum) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">int</span> val = mat[i][j];</span><br><span class="line">            <span class="keyword">int</span> insertRow = i, insertCol = j;</span><br><span class="line">            <span class="keyword">while</span> (insertRow &gt; <span class="number">0</span> &amp;&amp; insertCol &gt; <span class="number">0</span></span><br><span class="line">                   &amp;&amp; mat[insertRow - <span class="number">1</span>][insertCol - <span class="number">1</span>] &gt; val) &#123;</span><br><span class="line">                mat[insertRow][insertCol] = mat[--insertRow][--insertCol];</span><br><span class="line">            &#125;</span><br><span class="line">            mat[insertRow][insertCol] = val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Solution-Two-PriorityQueue"><a href="#Solution-Two-PriorityQueue" class="headerlink" title="Solution Two: PriorityQueue"></a>Solution Two: PriorityQueue</h2><h3 id="Analysis-1"><a href="#Analysis-1" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(M + N), Time Complexity: O(MNlogD), D is min(M, N).</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] diagonalSort(<span class="keyword">int</span>[][] A) &#123;</span><br><span class="line">        <span class="keyword">int</span> m = A.length, n = A[<span class="number">0</span>].length;</span><br><span class="line">        HashMap&lt;Integer, PriorityQueue&lt;Integer&gt;&gt; d = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;</span><br><span class="line">                d.putIfAbsent(i - j, <span class="keyword">new</span> PriorityQueue&lt;&gt;());</span><br><span class="line">                d.get(i - j).add(A[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">                A[i][j] = d.get(i - j).poll();</span><br><span class="line">        <span class="keyword">return</span> A;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>Sort</tag>
+        <tag>Databricks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 662 - Maximum Width of Binary Tree</title>
+    <url>/2020/08/25/leetcode-662/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a binary tree, write a function to get the maximum width of the given tree. The maximum width of a tree is the maximum width among all levels.</p>
+<p>The width of one level is defined as the length between the end-nodes (the leftmost and right most non-null nodes in the level, where the null nodes between the end-nodes are also counted into the length calculation.</p>
+<p>It is guaranteed that the answer will in the range of 32-bit signed integer.</p>
+<p>Example 1:</p>
+<p>Input: </p>
+<pre><code>     1
+   /   \
+  3     2
+ / \     \  
+5   3     9 </code></pre><p>Output: 4<br>Explanation: The maximum width existing in the third level with the length 4 (5,3,null,9).<br>Example 2:</p>
+<p>Input: </p>
+<pre><code>    1
+   /  
+  3    
+ / \       
+5   3     </code></pre><p>Output: 2<br>Explanation: The maximum width existing in the third level with the length 2 (5,3).<br>Example 3:</p>
+<p>Input: </p>
+<pre><code>    1
+   / \
+  3   2 
+ /        
+5      </code></pre><p>Output: 2<br>Explanation: The maximum width existing in the second level with the length 2 (3,2).<br>Example 4:</p>
+<p>Input: </p>
+<pre><code>      1
+     / \
+    3   2
+   /     \  
+  5       9 
+ /         \
+6           7</code></pre><p>Output: 8<br>Explanation:The maximum width existing in the fourth level with the length 8 (6,null,null,null,null,null,null,7).</p>
+<h2 id="Solution-One-BFS"><a href="#Solution-One-BFS" class="headerlink" title="Solution One: BFS"></a>Solution One: BFS</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 2 ms, faster than 68.77% of Java online submissions for Maximum Width of Binary Tree.<br>Memory Usage: 39.1 MB, less than 89.14% of Java online submissions for Maximum Width of Binary Tree.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">widthOfBinaryTree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> maxWidth = <span class="number">1</span>;</span><br><span class="line">        ArrayDeque&lt;Pair&lt;TreeNode, Integer&gt;&gt; queue = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        queue.offer(<span class="keyword">new</span> Pair(root, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = queue.peekFirst().getValue(), max = min;</span><br><span class="line">            <span class="keyword">int</span> count = queue.size();</span><br><span class="line">            <span class="keyword">while</span> (count-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                Pair&lt;TreeNode, Integer&gt; cur = queue.poll();</span><br><span class="line">                TreeNode node = cur.getKey();</span><br><span class="line">                <span class="keyword">int</span> num = cur.getValue();</span><br><span class="line">                max = num;</span><br><span class="line">                <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) queue.offer(<span class="keyword">new</span> Pair(node.left, num * <span class="number">2</span>));</span><br><span class="line">                <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) queue.offer(<span class="keyword">new</span> Pair(node.right, num * <span class="number">2</span> + <span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            maxWidth = Math.max(maxWidth, max - min + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxWidth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Tree</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>BFS</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 722 - Remove Comments</title>
+    <url>/2020/08/24/leetcode-722/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a C++ program, remove comments from it. The program source is an array where source[i] is the i-th line of the source code. This represents the result of splitting the original source code string by the newline character \n.</p>
+<p>In C++, there are two types of comments, line comments, and block comments.</p>
+<p>The string // denotes a line comment, which represents that it and rest of the characters to the right of it in the same line should be ignored.</p>
+<p>The string /* denotes a block comment, which represents that all characters until the next (non-overlapping) occurrence of <em>/ should be ignored. (Here, occurrences happen in reading order: line by line from left to right.) To be clear, the string /</em>/ does not yet end the block comment, as the ending would be overlapping the beginning.</p>
+<p>The first effective comment takes precedence over others: if the string // occurs in a block comment, it is ignored. Similarly, if the string /* occurs in a line or block comment, it is also ignored.</p>
+<p>If a certain line of code is empty after removing comments, you must not output that line: each string in the answer list will be non-empty.</p>
+<p>There will be no control characters, single quote, or double quote characters. For example, source = “string s = “/* Not a comment. */“;” will not be a test case. (Also, nothing else such as defines or macros will interfere with the comments.)</p>
+<p>It is guaranteed that every open block comment will eventually be closed, so /* outside of a line or block comment always starts a new comment.</p>
+<p>Finally, implicit newline characters can be deleted by block comments. Please see the examples below for details.</p>
+<p>After removing the comments from the source code, return the source code in the same format.</p>
+<a id="more"></a>
+
+<p>Example 1:<br>Input:<br>source = [“/<em>Test program */“, “int main()”, “{ “, “  // variable declaration “, “int a, b, c;”, “/</em> This is a test”, “   multiline  “, “   comment for “, “   testing */“, “a = b + c;”, “}”]</p>
+<p>The line by line code is visualized as below:<br>/<em>Test program */<br>int main()<br>{<br>  // variable declaration<br>int a, b, c;<br>/</em> This is a test<br>   multiline<br>   comment for<br>   testing */<br>a = b + c;<br>}</p>
+<p>Output: [“int main()”,”{ “,”  “,”int a, b, c;”,”a = b + c;”,”}”]</p>
+<p>The line by line code is visualized as below:<br>int main()<br>{ </p>
+<p>int a, b, c;<br>a = b + c;<br>}</p>
+<p>Explanation:<br>The string /* denotes a block comment, including line 1 and lines 6-9. The string // denotes line 4 as comments.<br>Example 2:<br>Input:<br>source = [“a/<em>comment”, “line”, “more_comment</em>/b”]<br>Output: [“ab”]<br>Explanation: The original source string is “a/<em>comment\nline\nmore_comment</em>/b”, where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string “ab”, which when delimited by newline characters becomes [“ab”].<br>Note:</p>
+<p>The length of source is in the range [1, 100].<br>The length of source[i] is in the range [0, 80].<br>Every open block comment is eventually closed.<br>There are no single-quote, double-quote, or control characters in the source code.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 1 ms, faster than 57.89% of Java online submissions for Remove Comments.<br>Memory Usage: 37.9 MB, less than 84.86% of Java online submissions for Remove Comments.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">removeComments</span><span class="params">(String[] source)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> isBlockComment = <span class="keyword">false</span>;</span><br><span class="line">        List&lt;String&gt; ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        String pre = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span> (String line : source) &#123;</span><br><span class="line">            String s = line;</span><br><span class="line">            <span class="keyword">if</span> (isBlockComment) &#123;</span><br><span class="line">                <span class="keyword">int</span> index = line.indexOf(<span class="string">"*/"</span>);</span><br><span class="line">                <span class="keyword">if</span> (index == -<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">                isBlockComment = <span class="keyword">false</span>;</span><br><span class="line">                s = pre + line.substring(index + <span class="number">2</span>);</span><br><span class="line">                pre = <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (s.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> index1 = s.indexOf(<span class="string">"//"</span>), index2 = s.indexOf(<span class="string">"/*"</span>);</span><br><span class="line">                <span class="keyword">if</span> (index1 == -<span class="number">1</span> &amp;&amp; index2 == -<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> ((index1 == -<span class="number">1</span> &amp;&amp; index2 != -<span class="number">1</span>)</span><br><span class="line">                        || (index1 != -<span class="number">1</span> &amp;&amp; index2 != -<span class="number">1</span> &amp;&amp; index1 &gt; index2)) &#123;</span><br><span class="line">                    pre = s.substring(<span class="number">0</span>, index2);</span><br><span class="line">                    <span class="comment">// whether same line</span></span><br><span class="line">                    <span class="keyword">int</span> index3 = s.indexOf(<span class="string">"*/"</span>, index2 + <span class="number">2</span>);</span><br><span class="line">                    <span class="keyword">if</span> (index3 == -<span class="number">1</span>) &#123;</span><br><span class="line">                        isBlockComment = <span class="keyword">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        s = pre + s.substring(index3 + <span class="number">2</span>);</span><br><span class="line">                        pre = <span class="string">""</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((index1 != -<span class="number">1</span> &amp;&amp; index2 == -<span class="number">1</span>)</span><br><span class="line">                          || (index1 != -<span class="number">1</span> &amp;&amp; index2 != -<span class="number">1</span> &amp;&amp; index1 &lt; index2)) &#123;</span><br><span class="line">                    s = pre + s.substring(<span class="number">0</span>, index1);</span><br><span class="line">                    pre = <span class="string">""</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (s.length() &gt; <span class="number">0</span> &amp;&amp; !isBlockComment) ans.add(s);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>String</tag>
+        <tag>Databricks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 402 - Remove K Digits</title>
+    <url>/2020/08/24/leetcode-402/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a non-negative integer num represented as a string, remove k digits from the number so that the new number is the smallest possible.</p>
+<p>Note:<br>The length of num is less than 10002 and will be ≥ k.<br>The given num does not contain any leading zero.<br>Example 1:</p>
+<p>Input: num = “1432219”, k = 3<br>Output: “1219”<br>Explanation: Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest.<br>Example 2:</p>
+<p>Input: num = “10200”, k = 1<br>Output: “200”<br>Explanation: Remove the leading 1 and the number is 200. Note that the output must not contain leading zeroes.<br>Example 3:</p>
+<p>Input: num = “10”, k = 2<br>Output: “0”<br>Explanation: Remove all the digits from the number and it is left with nothing which is 0.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n^2).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">removeKdigits</span><span class="params">(String num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = num.length();</span><br><span class="line">        <span class="keyword">if</span> (k == size) <span class="keyword">return</span> <span class="string">"0"</span>;</span><br><span class="line">        <span class="keyword">char</span>[] arr = num.toCharArray();</span><br><span class="line">        ArrayDeque&lt;Character&gt; queue = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> ch = arr[i];</span><br><span class="line">            <span class="keyword">while</span> (k &gt; <span class="number">0</span> &amp;&amp; !queue.isEmpty() &amp;&amp; queue.peekFirst() &gt; ch) &#123;</span><br><span class="line">                queue.pollFirst();</span><br><span class="line">                k--;</span><br><span class="line">            &#125;</span><br><span class="line">            queue.addFirst(ch);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (k-- &gt; <span class="number">0</span>) queue.pollFirst();</span><br><span class="line">        <span class="comment">// remove leading zeroes</span></span><br><span class="line">        <span class="keyword">while</span> (queue.size() &gt; <span class="number">1</span> &amp;&amp; queue.peekLast() == <span class="string">'0'</span>) queue.pollLast();</span><br><span class="line">        <span class="comment">// get result</span></span><br><span class="line">        String ans = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) ans += queue.pollLast();</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Pending</tag>
+        <tag>Frequent</tag>
+        <tag>String</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 797 - All Paths From Source to Target</title>
+    <url>/2020/08/24/leetcode-797/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a directed acyclic graph of N nodes. Find all possible paths from node 0 to node N-1, and return them in any order.</p>
+<p>The graph is given as follows:  the nodes are 0, 1, …, graph.length - 1.  graph[i] is a list of all nodes j for which the edge (i, j) exists.</p>
+<p>Example:<br>Input: [[1,2],[3],[3],[]]<br>Output: [[0,1,3],[0,2,3]]<br>Explanation: The graph looks like this:<br>0—&gt;1<br>|    |<br>v    v<br>2—&gt;3<br>There are two paths: 0 -&gt; 1 -&gt; 3 and 0 -&gt; 2 -&gt; 3.</p>
+<p>Constraints:</p>
+<p>The number of nodes in the graph will be in the range [2, 15].<br>You can print different paths in any order, but you should keep the order of nodes inside one path.</p>
+<h2 id="Solution-One-DFS"><a href="#Solution-One-DFS" class="headerlink" title="Solution One: DFS"></a>Solution One: DFS</h2><a id="more"></a>
+
+
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; ans;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; allPathsSourceTarget(<span class="keyword">int</span>[][] graph) &#123;</span><br><span class="line">        ans = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> N = graph.length;</span><br><span class="line">        helper(<span class="number">0</span>, N - <span class="number">1</span>, graph, <span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span> current, <span class="keyword">int</span> target, <span class="keyword">int</span>[][] graph, LinkedList&lt;Integer&gt; path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (current == target) &#123;</span><br><span class="line">            List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;(path);</span><br><span class="line">            list.add(target);</span><br><span class="line">            ans.add(list);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        path.add(current);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> next : graph[current]) &#123;</span><br><span class="line">            helper(next, target, graph, path);</span><br><span class="line">        &#125;</span><br><span class="line">        path.removeLast();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>DFS</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Graph</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1155 - Number of Dice Rolls With Target Sum</title>
+    <url>/2020/08/20/leetcode-1155/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>You have d dice, and each die has f faces numbered 1, 2, …, f.</p>
+<p>Return the number of possible ways (out of fd total ways) modulo 10^9 + 7 to roll the dice so the sum of the face up numbers equals target.</p>
+<p>Example 1:</p>
+<p>Input: d = 1, f = 6, target = 3<br>Output: 1<br>Explanation:<br>You throw one die with 6 faces.  There is only one way to get a sum of 3.<br>Example 2:</p>
+<p>Input: d = 2, f = 6, target = 7<br>Output: 6<br>Explanation:<br>You throw two dice, each with 6 faces.  There are 6 ways to get a sum of 7:<br>1+6, 2+5, 3+4, 4+3, 5+2, 6+1.<br>Example 3:</p>
+<p>Input: d = 2, f = 5, target = 10<br>Output: 1<br>Explanation:<br>You throw two dice, each with 5 faces.  There is only one way to get a sum of 10: 5+5.<br>Example 4:</p>
+<p>Input: d = 1, f = 2, target = 3<br>Output: 0<br>Explanation:<br>You throw one die with 2 faces.  There is no way to get a sum of 3.<br>Example 5:</p>
+<p>Input: d = 30, f = 30, target = 500<br>Output: 222616187<br>Explanation:<br>The answer must be returned modulo 10^9 + 7.</p>
+<p>Constraints:</p>
+<p>1 &lt;= d, f &lt;= 30<br>1 &lt;= target &lt;= 1000</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 178 ms, faster than 9.11% of Java online submissions for Number of Dice Rolls With Target Sum.<br>Memory Usage: 38.5 MB, less than 73.48% of Java online submissions for Number of Dice Rolls With Target Sum.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(d * target), Time Complexity: O(d * f * target).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numRollsToTarget</span><span class="params">(<span class="keyword">int</span> d, <span class="keyword">int</span> f, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; d) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span>[][] dp = <span class="keyword">new</span> <span class="keyword">long</span>[d + <span class="number">1</span>][target + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= Math.min(f, target); k++) dp[<span class="number">1</span>][k] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= d; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= target; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= f; k++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (j - k &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        dp[i][j] += dp[i - <span class="number">1</span>][j - k];</span><br><span class="line">                        dp[i][j] %= (<span class="keyword">long</span>)(Math.pow(<span class="number">10</span>, <span class="number">9</span>) + <span class="number">7</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)dp[d][target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>Math</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 684 - Redundant Connection</title>
+    <url>/2020/08/19/leetcode-684/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>In this problem, a tree is an undirected graph that is connected and has no cycles.</p>
+<p>The given input is a graph that started as a tree with N nodes (with distinct values 1, 2, …, N), with one additional edge added. The added edge has two different vertices chosen from 1 to N, and was not an edge that already existed.</p>
+<p>The resulting graph is given as a 2D-array of edges. Each element of edges is a pair [u, v] with u &lt; v, that represents an undirected edge connecting nodes u and v.</p>
+<p>Return an edge that can be removed so that the resulting graph is a tree of N nodes. If there are multiple answers, return the answer that occurs last in the given 2D-array. The answer edge [u, v] should be in the same format, with u &lt; v.</p>
+<p>Example 1:<br>Input: [[1,2], [1,3], [2,3]]<br>Output: [2,3]<br>Explanation: The given undirected graph will be like this:<br>  1<br> / <br>2 - 3<br>Example 2:<br>Input: [[1,2], [2,3], [3,4], [1,4], [1,5]]<br>Output: [1,4]<br>Explanation: The given undirected graph will be like this:<br>5 - 1 - 2<br>    |   |<br>    4 - 3<br>Note:<br>The size of the input 2D-array will be between 3 and 1000.<br>Every integer represented in the 2D-array will be between 1 and N, where N is the size of the input array.</p>
+<p>Update (2017-09-26):<br>We have overhauled the problem description + test cases and specified clearly the graph is an undirected graph. For the directed graph follow up please see Redundant Connection II). We apologize for any inconvenience caused.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 1 ms, faster than 76.26% of Java online submissions for Redundant Connection.<br>Memory Usage: 39 MB, less than 99.84% of Java online submissions for Redundant Connection.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(N), Time Complexity: O(N).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxSize;</span><br><span class="line">    <span class="keyword">int</span>[] rank, parent;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] findRedundantConnection(<span class="keyword">int</span>[][] edges) &#123;</span><br><span class="line">        maxSize = <span class="number">1000</span> + <span class="number">1</span>;</span><br><span class="line">        rank = <span class="keyword">new</span> <span class="keyword">int</span>[maxSize];</span><br><span class="line">        parent = <span class="keyword">new</span> <span class="keyword">int</span>[maxSize];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; maxSize; i++) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] edge : edges) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!union(edge[<span class="number">0</span>], edge[<span class="number">1</span>])) <span class="keyword">return</span> edge;</span><br><span class="line">            <span class="comment">// System.out.println(Arrays.toString(parent));</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">findRoot</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (parent[node] != node) parent[node] = findRoot(parent[node]);</span><br><span class="line">        <span class="keyword">return</span> parent[node];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">union</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rootX = findRoot(x), rootY = findRoot(y);</span><br><span class="line">        <span class="keyword">if</span> (rootX == rootY) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (rank[rootX] &lt; rank[rootY]) &#123;</span><br><span class="line">            parent[rootX] = rootY;</span><br><span class="line">            rank[rootY]++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            parent[rootY] = rootX;</span><br><span class="line">            rank[rootX]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Tree</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Graph</tag>
+        <tag>Union Find</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1312 - Minimum Insertion Steps to Make a String Palindrome</title>
+    <url>/2020/08/18/leetcode-1312/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a string s. In one step you can insert any character at any index of the string.</p>
+<p>Return the minimum number of steps to make s palindrome.</p>
+<p>A Palindrome String is one that reads the same backward as well as forward.</p>
+<p>Example 1:</p>
+<p>Input: s = “zzazz”<br>Output: 0<br>Explanation: The string “zzazz” is already palindrome we don’t need any insertions.<br>Example 2:</p>
+<p>Input: s = “mbadm”<br>Output: 2<br>Explanation: String can be “mbdadbm” or “mdbabdm”.<br>Example 3:</p>
+<p>Input: s = “leetcode”<br>Output: 5<br>Explanation: Inserting 5 characters the string becomes “leetcodocteel”.<br>Example 4:</p>
+<p>Input: s = “g”<br>Output: 0<br>Example 5:</p>
+<p>Input: s = “no”<br>Output: 1</p>
+<p>Constraints:</p>
+<p>1 &lt;= s.length &lt;= 500<br>All characters of s are lower case English letters.</p>
+<h2 id="Solution-One-Memorization"><a href="#Solution-One-Memorization" class="headerlink" title="Solution One: Memorization"></a>Solution One: Memorization</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 1370 ms, faster than 5.08% of Java online submissions for Minimum Insertion Steps to Make a String Palindrome.<br>Memory Usage: 174.2 MB, less than 5.09% of Java online submissions for Minimum Insertion Steps to Make a String Palindrome.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n^2).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Map&lt;Pair&lt;Integer, Integer&gt;, Integer&gt; memo;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minInsertions</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        memo = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> length = s.length();</span><br><span class="line">        <span class="keyword">return</span> helper(s.toCharArray(), <span class="number">0</span>, length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">char</span>[] arr, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (start == end + <span class="number">1</span> || start == end) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        Pair&lt;Integer, Integer&gt; range = <span class="keyword">new</span> Pair(start, end);</span><br><span class="line">        <span class="keyword">if</span> (memo.containsKey(range)) <span class="keyword">return</span> memo.get(range);</span><br><span class="line">        <span class="keyword">int</span> ans = end - start + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (arr[start] == arr[end]) </span><br><span class="line">            ans = Math.min(ans, helper(arr, start + <span class="number">1</span>, end - <span class="number">1</span>));</span><br><span class="line">        ans = Math.min(ans, helper(arr, start + <span class="number">1</span>, end) + <span class="number">1</span>);</span><br><span class="line">        ans = Math.min(ans, helper(arr, start, end - <span class="number">1</span>) + <span class="number">1</span>);</span><br><span class="line">        memo.put(range, ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Solution-Two-Dynamic-Programming"><a href="#Solution-Two-Dynamic-Programming" class="headerlink" title="Solution Two: Dynamic Programming"></a>Solution Two: Dynamic Programming</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minInsertions</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = s.length();</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>][n+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">            dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = s.charAt(i) == s.charAt(n - <span class="number">1</span> - j) ? dp[i][j] + <span class="number">1</span> : Math.max(dp[i][j + <span class="number">1</span>], dp[i + <span class="number">1</span>][j]);</span><br><span class="line">    <span class="keyword">return</span> n - dp[n][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Dynamic Programming</tag>
+        <tag>String</tag>
+        <tag>Memorization</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 393 - UTF-8 Validation</title>
+    <url>/2020/08/18/leetcode-393/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>A character in UTF8 can be from 1 to 4 bytes long, subjected to the following rules:</p>
+<p>For 1-byte character, the first bit is a 0, followed by its unicode code.<br>For n-bytes character, the first n-bits are all one’s, the n+1 bit is 0, followed by n-1 bytes with most significant 2 bits being 10.<br>This is how the UTF-8 encoding would work:</p>
+<p>   Char. number range  |        UTF-8 octet sequence<br>      (hexadecimal)    |              (binary)<br>   ——————–+———————————————<br>   0000 0000-0000 007F | 0xxxxxxx<br>   0000 0080-0000 07FF | 110xxxxx 10xxxxxx<br>   0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx<br>   0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx<br>Given an array of integers representing the data, return whether it is a valid utf-8 encoding.</p>
+<p>Note:<br>The input is an array of integers. Only the least significant 8 bits of each integer is used to store the data. This means each integer represents only 1 byte of data.</p>
+<p>Example 1:</p>
+<p>data = [197, 130, 1], which represents the octet sequence: 11000101 10000010 00000001.</p>
+<p>Return true.<br>It is a valid utf-8 encoding for a 2-bytes character followed by a 1-byte character.<br>Example 2:</p>
+<p>data = [235, 140, 4], which represented the octet sequence: 11101011 10001100 00000100.</p>
+<p>Return false.<br>The first 3 bits are all one’s and the 4th bit is 0 means it is a 3-bytes character.<br>The next byte is a continuation byte which starts with 10 and that’s correct.<br>But the second continuation byte does not start with 10, so it is invalid.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 1 ms, faster than 99.58% of Java online submissions for UTF-8 Validation.<br>Memory Usage: 40.3 MB, less than 64.80% of Java online submissions for UTF-8 Validation.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(1), Time Complexity: O(n).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">validUtf8</span><span class="params">(<span class="keyword">int</span>[] data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (data == <span class="keyword">null</span> || data.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">// check number of one's for ith data</span></span><br><span class="line">        <span class="keyword">int</span> remainByte = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> leadingOnes = countLeadingOnes(data[i]);</span><br><span class="line">            <span class="keyword">if</span> (leadingOnes == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (remainByte &gt; <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (leadingOnes == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (remainByte == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                remainByte--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// leadingOnes &gt; 1</span></span><br><span class="line">                <span class="keyword">if</span> (remainByte &gt; <span class="number">0</span> || leadingOnes &gt; <span class="number">4</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                remainByte = leadingOnes - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> remainByte == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countLeadingOnes</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> tmp = num &lt;&lt; <span class="number">24</span>;</span><br><span class="line">        <span class="keyword">while</span> ((tmp &amp; <span class="number">0x80000000</span>) == <span class="number">0x80000000</span>) &#123;</span><br><span class="line">            count++;</span><br><span class="line">            tmp &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// System.out.println(num + "," + count);</span></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Bit Manipulation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1054 -  Distant Barcodes</title>
+    <url>/2020/08/17/leetcode-1054/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>In a warehouse, there is a row of barcodes, where the i-th barcode is barcodes[i].</p>
+<p>Rearrange the barcodes so that no two adjacent barcodes are equal.  You may return any answer, and it is guaranteed an answer exists.</p>
+<p>Example 1:</p>
+<p>Input: [1,1,1,2,2,2]<br>Output: [2,1,2,1,2,1]<br>Example 2:</p>
+<p>Input: [1,1,1,1,2,2,3,3]<br>Output: [1,3,1,3,2,1,2,1]</p>
+<p>Note:</p>
+<p>1 &lt;= barcodes.length &lt;= 10000<br>1 &lt;= barcodes[i] &lt;= 10000</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 24 ms, faster than 85.20% of Java online submissions for Distant Barcodes.<br>Memory Usage: 42.8 MB, less than 52.96% of Java online submissions for Distant Barcodes.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] rearrangeBarcodes(<span class="keyword">int</span>[] barcodes) &#123;</span><br><span class="line">        <span class="keyword">int</span> maxFreq = <span class="number">1</span>;</span><br><span class="line">        Map&lt;Integer, Integer&gt; freqs = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; maxFreqCodes = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> code : barcodes) &#123;</span><br><span class="line">            <span class="keyword">int</span> freq = freqs.getOrDefault(code, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">            freqs.put(code, freq);</span><br><span class="line">            <span class="keyword">if</span> (maxFreq &lt;= freq) &#123;</span><br><span class="line">                <span class="keyword">if</span> (maxFreq &lt; freq) maxFreqCodes.clear();</span><br><span class="line">                maxFreq = freq;</span><br><span class="line">                maxFreqCodes.add(code);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; groups = <span class="keyword">new</span> ArrayList&lt;&gt;(maxFreq);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxFreq; i++) &#123;</span><br><span class="line">            groups.add(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> groupIndex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> code : maxFreqCodes) &#123;</span><br><span class="line">            <span class="keyword">int</span> freq = freqs.get(code);</span><br><span class="line">            <span class="keyword">while</span> (freq-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                groups.get(groupIndex++).add(code);</span><br><span class="line">                <span class="keyword">if</span> (groupIndex == maxFreq) groupIndex = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> code : freqs.keySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!maxFreqCodes.contains(code)) &#123;</span><br><span class="line">                <span class="keyword">int</span> freq = freqs.get(code);</span><br><span class="line">                <span class="keyword">while</span> (freq-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    groups.get(groupIndex++).add(code);</span><br><span class="line">                    <span class="keyword">if</span> (groupIndex == maxFreq) groupIndex = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[barcodes.length];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (List&lt;Integer&gt; group : groups) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> code : group) &#123;</span><br><span class="line">                ans[i++] = code;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Solution-Two"><a href="#Solution-Two" class="headerlink" title="Solution Two:"></a>Solution Two:</h2>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1347 - Minimum Number of Steps to Make Two Strings Anagram</title>
+    <url>/2020/08/17/leetcode-1347/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given two equal-size strings s and t. In one step you can choose any character of t and replace it with another character.</p>
+<p>Return the minimum number of steps to make t an anagram of s.</p>
+<p>An Anagram of a string is a string that contains the same characters with a different (or the same) ordering.</p>
+<p>Example 1:</p>
+<p>Input: s = “bab”, t = “aba”<br>Output: 1<br>Explanation: Replace the first ‘a’ in t with b, t = “bba” which is anagram of s.<br>Example 2:</p>
+<p>Input: s = “leetcode”, t = “practice”<br>Output: 5<br>Explanation: Replace ‘p’, ‘r’, ‘a’, ‘i’ and ‘c’ from t with proper characters to make t anagram of s.<br>Example 3:</p>
+<p>Input: s = “anagram”, t = “mangaar”<br>Output: 0<br>Explanation: “anagram” and “mangaar” are anagrams.<br>Example 4:</p>
+<p>Input: s = “xxyyzz”, t = “xxyyzz”<br>Output: 0<br>Example 5:</p>
+<p>Input: s = “friend”, t = “family”<br>Output: 4</p>
+<p>Constraints:</p>
+<p>1 &lt;= s.length &lt;= 50000<br>s.length == t.length<br>s and t contain lower-case English letters only.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 15 ms, faster than 58.87% of Java online submissions for Minimum Number of Steps to Make Two Strings Anagram.<br>Memory Usage: 40.3 MB, less than 59.79% of Java online submissions for Minimum Number of Steps to Make Two Strings Anagram.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(1), Time Complexity: O(max(M, N)).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSteps</span><span class="params">(String s, String t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] countS = countChar(s);</span><br><span class="line">        <span class="keyword">char</span>[] countT = countChar(t);</span><br><span class="line">        <span class="keyword">int</span> diff = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">            diff += Math.abs(countS[i] - countT[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> diff / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">char</span>[] countChar(String s) &#123;</span><br><span class="line">        <span class="keyword">char</span>[] count = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            count[s.charAt(i) - <span class="string">'a'</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1145 - Binary Tree Coloring Game</title>
+    <url>/2020/08/17/leetcode-1145/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Two players play a turn based game on a binary tree.  We are given the root of this binary tree, and the number of nodes n in the tree.  n is odd, and each node has a distinct value from 1 to n.</p>
+<p>Initially, the first player names a value x with 1 &lt;= x &lt;= n, and the second player names a value y with 1 &lt;= y &lt;= n and y != x.  The first player colors the node with value x red, and the second player colors the node with value y blue.</p>
+<p>Then, the players take turns starting with the first player.  In each turn, that player chooses a node of their color (red if player 1, blue if player 2) and colors an uncolored neighbor of the chosen node (either the left child, right child, or parent of the chosen node.)</p>
+<p>If (and only if) a player cannot choose such a node in this way, they must pass their turn.  If both players pass their turn, the game ends, and the winner is the player that colored more nodes.</p>
+<p>You are the second player.  If it is possible to choose such a y to ensure you win the game, return true.  If it is not possible, return false.</p>
+<p>Example 1:</p>
+<p>Input: root = [1,2,3,4,5,6,7,8,9,10,11], n = 11, x = 3<br>Output: true<br>Explanation: The second player can choose the node with value 2.</p>
+<p>Constraints:</p>
+<p>root is the root of a binary tree with n nodes and distinct node values from 1 to n.<br>n is odd.<br>1 &lt;= x &lt;= n &lt;= 100</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 0 ms, faster than 100.00% of Java online submissions for Binary Tree Coloring Game.<br>Memory Usage: 37.3 MB, less than 76.20% of Java online submissions for Binary Tree Coloring Game.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(H), Time Complexity: O(N).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    TreeNode xNode;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">btreeGameWinningMove</span><span class="params">(TreeNode root, <span class="keyword">int</span> n, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> threshold = n / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (root.val != x &amp;&amp; countNum(root, x) &gt; threshold) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (xNode == <span class="keyword">null</span>) xNode = root;</span><br><span class="line">        <span class="keyword">return</span> countNum(xNode.left, x) &gt; threshold</span><br><span class="line">            || countNum(xNode.right, x) &gt; threshold;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">countNum</span><span class="params">(TreeNode root, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root.val == x) &#123; </span><br><span class="line">            xNode = root;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        ans += countNum(root.left, x);</span><br><span class="line">        ans += countNum(root.right, x);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>DFS</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1438 - Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit</title>
+    <url>/2020/08/16/leetcode-1438/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the absolute difference between any two elements of this subarray is less than or equal to limit.</p>
+<p>Example 1:</p>
+<p>Input: nums = [8,2,4,7], limit = 4<br>Output: 2<br>Explanation: All subarrays are:<br>[8] with maximum absolute diff |8-8| = 0 &lt;= 4.<br>[8,2] with maximum absolute diff |8-2| = 6 &gt; 4.<br>[8,2,4] with maximum absolute diff |8-2| = 6 &gt; 4.<br>[8,2,4,7] with maximum absolute diff |8-2| = 6 &gt; 4.<br>[2] with maximum absolute diff |2-2| = 0 &lt;= 4.<br>[2,4] with maximum absolute diff |2-4| = 2 &lt;= 4.<br>[2,4,7] with maximum absolute diff |2-7| = 5 &gt; 4.<br>[4] with maximum absolute diff |4-4| = 0 &lt;= 4.<br>[4,7] with maximum absolute diff |4-7| = 3 &lt;= 4.<br>[7] with maximum absolute diff |7-7| = 0 &lt;= 4.<br>Therefore, the size of the longest subarray is 2.<br>Example 2:</p>
+<p>Input: nums = [10,1,2,4,7,2], limit = 5<br>Output: 4<br>Explanation: The subarray [2,4,7,2] is the longest since the maximum absolute diff is |2-7| = 5 &lt;= 5.<br>Example 3:</p>
+<p>Input: nums = [4,2,2,2,4,4,2,2], limit = 0<br>Output: 3</p>
+<p>Constraints:</p>
+<p>1 &lt;= nums.length &lt;= 10^5<br>1 &lt;= nums[i] &lt;= 10^9<br>0 &lt;= limit &lt;= 10^9</p>
+<h2 id="Solution-One-Two-Deques"><a href="#Solution-One-Two-Deques" class="headerlink" title="Solution One: Two Deques"></a>Solution One: Two Deques</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 21 ms, faster than 97.48% of Java online submissions for Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit.<br>Memory Usage: 49.1 MB, less than 76.32% of Java online submissions for Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestSubarray</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> limit)</span> </span>&#123;</span><br><span class="line">        ArrayDeque&lt;Integer&gt; maxQ = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        ArrayDeque&lt;Integer&gt; minQ = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> right = <span class="number">0</span>; right &lt; nums.length; right++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!maxQ.isEmpty() &amp;&amp; maxQ.peekLast() &lt; nums[right])</span><br><span class="line">                maxQ.pollLast();</span><br><span class="line">            <span class="keyword">while</span> (!minQ.isEmpty() &amp;&amp; minQ.peekLast() &gt; nums[right])</span><br><span class="line">                minQ.pollLast();</span><br><span class="line">            maxQ.addLast(nums[right]);</span><br><span class="line">            minQ.addLast(nums[right]);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> (maxQ.peekFirst() - minQ.peekFirst() &gt; limit) &#123;</span><br><span class="line">                <span class="keyword">if</span> (maxQ.peekFirst() == nums[left]) maxQ.pollFirst();</span><br><span class="line">                <span class="keyword">if</span> (minQ.peekFirst() == nums[left]) minQ.pollFirst();</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans = Math.max(ans, right - left + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Related-Questions"><a href="#Related-Questions" class="headerlink" title="Related Questions"></a>Related Questions</h1><p>1425 - Constrained Subsequence Sum<br>239 - Sliding Window Maximum</p>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Google</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>Monotonic Stack</tag>
+        <tag>Starred</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 1297 - Maximum Number of Occurrences of a Substring</title>
+    <url>/2020/08/14/leetcode-1297/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given a string s, return the maximum number of ocurrences of any substring under the following rules:</p>
+<p>The number of unique characters in the substring must be less than or equal to maxLetters.<br>The substring size must be between minSize and maxSize inclusive.</p>
+<p>Example 1:</p>
+<p>Input: s = “aababcaab”, maxLetters = 2, minSize = 3, maxSize = 4<br>Output: 2<br>Explanation: Substring “aab” has 2 ocurrences in the original string.<br>It satisfies the conditions, 2 unique letters and size 3 (between minSize and maxSize).<br>Example 2:</p>
+<p>Input: s = “aaaa”, maxLetters = 1, minSize = 3, maxSize = 3<br>Output: 2<br>Explanation: Substring “aaa” occur 2 times in the string. It can overlap.<br>Example 3:</p>
+<p>Input: s = “aabcabcab”, maxLetters = 2, minSize = 2, maxSize = 3<br>Output: 3<br>Example 4:</p>
+<p>Input: s = “abcde”, maxLetters = 2, minSize = 3, maxSize = 3<br>Output: 0</p>
+<p>Constraints:</p>
+<p>1 &lt;= s.length &lt;= 10^5<br>1 &lt;= maxLetters &lt;= 26<br>1 &lt;= minSize &lt;= maxSize &lt;= min(26, s.length)<br>s only contains lowercase English letters.</p>
+<h2 id="Solution-One-Sliding-Window"><a href="#Solution-One-Sliding-Window" class="headerlink" title="Solution One: Sliding Window"></a>Solution One: Sliding Window</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 230 ms, faster than 32.45% of Java online submissions for Maximum Number of Occurrences of a Substring.<br>Memory Usage: 136 MB, less than 18.09% of Java online submissions for Maximum Number of Occurrences of a Substring.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(n), Time Complexity: O(n^2).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxFreq</span><span class="params">(String s, <span class="keyword">int</span> maxLetters, <span class="keyword">int</span> minSize, <span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> winStart = <span class="number">0</span>, uniqueCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = s.length();</span><br><span class="line">        <span class="keyword">int</span>[] counts = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">        Map&lt;String, Integer&gt; freqs = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> ch = s.charAt(i);</span><br><span class="line">            counts[ch - <span class="string">'a'</span>]++;</span><br><span class="line">            <span class="keyword">if</span> (counts[ch - <span class="string">'a'</span>] == <span class="number">1</span>) uniqueCount++;</span><br><span class="line">            <span class="keyword">while</span> (uniqueCount &gt; maxLetters) &#123;</span><br><span class="line">                <span class="keyword">char</span> left = s.charAt(winStart++);</span><br><span class="line">                counts[left - <span class="string">'a'</span>]--;</span><br><span class="line">                <span class="keyword">if</span> (counts[left - <span class="string">'a'</span>] == <span class="number">0</span>) uniqueCount--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> curSize = i - winStart + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (curSize &gt;= minSize) &#123;</span><br><span class="line">                <span class="comment">// add all possible substring</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = winStart; j &lt;= i - minSize + <span class="number">1</span>; j++) &#123;</span><br><span class="line">                    String cur = s.substring(j, i + <span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">int</span> freq = freqs.getOrDefault(cur, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">                    freqs.put(cur, freq);</span><br><span class="line">                    ans = Math.max(ans, freq);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Solution-Two-Only-count-minSize"><a href="#Solution-Two-Only-count-minSize" class="headerlink" title="Solution Two: Only count minSize"></a>Solution Two: Only count minSize</h2>]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Array</tag>
+        <tag>Frequent</tag>
+        <tag>Sliding Window</tag>
+        <tag>To Improve</tag>
+        <tag>Bloomberg</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode 29 - Divide Two Integers</title>
+    <url>/2020/08/13/leetcode-29/</url>
+    <content><![CDATA[<p><strong>Description</strong><br>Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.</p>
+<p>Return the quotient after dividing dividend by divisor.</p>
+<p>The integer division should truncate toward zero, which means losing its fractional part. For example, truncate(8.345) = 8 and truncate(-2.7335) = -2.</p>
+<p>Example 1:</p>
+<p>Input: dividend = 10, divisor = 3<br>Output: 3<br>Explanation: 10/3 = truncate(3.33333..) = 3.<br>Example 2:</p>
+<p>Input: dividend = 7, divisor = -3<br>Output: -2<br>Explanation: 7/-3 = truncate(-2.33333..) = -2.<br>Note:</p>
+<p>Both dividend and divisor will be 32-bit signed integers.<br>The divisor will never be 0.<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 231 − 1 when the division result overflows.</p>
+<h2 id="Solution-One"><a href="#Solution-One" class="headerlink" title="Solution One"></a>Solution One</h2><a id="more"></a>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 1 ms, faster than 100.00% of Java online submissions for Divide Two Integers.<br>Memory Usage: 36.8 MB, less than 67.62% of Java online submissions for Divide Two Integers.</p>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(1), Time Complexity: O(logn).</p>
+<h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (dividend == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (divisor == <span class="number">1</span>) <span class="keyword">return</span> dividend;</span><br><span class="line">        <span class="keyword">if</span> (divisor == -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dividend == Integer.MIN_VALUE) <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">return</span> -dividend;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> ((dividend &lt; <span class="number">0</span> &amp;&amp; divisor &gt; <span class="number">0</span>) || (dividend &gt; <span class="number">0</span> &amp;&amp; divisor &lt; <span class="number">0</span>))</span><br><span class="line">            flag = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> n1 = Math.abs((<span class="keyword">long</span>)dividend), n2 = Math.abs((<span class="keyword">long</span>)divisor);</span><br><span class="line">        <span class="keyword">if</span> (n1 &lt; n2) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (n1 == n2) <span class="keyword">return</span> flag;</span><br><span class="line">        <span class="comment">// binary search</span></span><br><span class="line">        <span class="keyword">long</span> start = <span class="number">1</span>, end = n1 / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            <span class="keyword">long</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (mid * n2 &gt; n1) &#123;</span><br><span class="line">                end = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// System.out.println("end: " + end + "," + flag);</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)end * flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>work</category>
+      </categories>
+      <tags>
+        <tag>Leetcode</tag>
+        <tag>Java</tag>
+        <tag>Frequent</tag>
+        <tag>Facebook</tag>
+        <tag>Math</tag>
+        <tag>Starred</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Leetcode 991 - Broken Calculator</title>
     <url>/2020/08/12/leetcode-991/</url>
     <content><![CDATA[<p><strong>Description</strong><br>On a broken calculator that has a number showing on its display, we can perform two operations:</p>
@@ -237,9 +794,10 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Greedy</tag>
-        <tag>Pending</tag>
+        <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Uber</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -329,8 +887,10 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Game</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -360,6 +920,7 @@
         <tag>Frequent</tag>
         <tag>Binary Search</tag>
         <tag>Heap</tag>
+        <tag>To Improve</tag>
       </tags>
   </entry>
   <entry>
@@ -388,9 +949,10 @@
         <tag>Java</tag>
         <tag>Greedy</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Starred</tag>
+        <tag>To Improve</tag>
       </tags>
   </entry>
   <entry>
@@ -493,10 +1055,11 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>OOD</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -688,9 +1251,9 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Bit Manipulation</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -715,11 +1278,11 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
         <tag>Trie</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -744,9 +1307,10 @@
         <tag>Leetcode</tag>
         <tag>Tree</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Graph</tag>
         <tag>BFS</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -871,9 +1435,11 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Sort</tag>
+        <tag>Premium</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -921,10 +1487,11 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Greedy</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -958,7 +1525,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Leetcode 1163 -</title>
+    <title>Leetcode 1163 - Last Substring in Lexicographical Order</title>
     <url>/2020/07/17/leetcode-1163/</url>
     <content><![CDATA[<p><strong>Description</strong><br>Given a string s, return the last substring of s in lexicographical order.</p>
 <p>Example 1:</p>
@@ -978,11 +1545,12 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
         <tag>Goldman</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1011,10 +1579,11 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1053,10 +1622,10 @@
         <tag>DFS</tag>
         <tag>Tree</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>BFS</tag>
         <tag>Premium</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -1109,9 +1678,11 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Premium</tag>
         <tag>Union Find</tag>
+        <tag>Starred</tag>
+        <tag>To Improve</tag>
       </tags>
   </entry>
   <entry>
@@ -1139,9 +1710,10 @@
         <tag>DFS</tag>
         <tag>Tree</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Graph</tag>
         <tag>BFS</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -1234,9 +1806,11 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>Premium</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1309,8 +1883,9 @@
         <tag>DFS</tag>
         <tag>Tree</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1361,8 +1936,11 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Backtracking</tag>
+        <tag>Game</tag>
+        <tag>Premium</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1622,9 +2200,11 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Graph</tag>
+        <tag>Premium</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1653,6 +2233,7 @@
         <tag>Array</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Premium</tag>
       </tags>
   </entry>
   <entry>
@@ -1680,10 +2261,12 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Graph</tag>
+        <tag>Premium</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1711,9 +2294,10 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1775,10 +2359,11 @@
         <tag>DFS</tag>
         <tag>Java</tag>
         <tag>Greedy</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
         <tag>Memorization</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1884,10 +2469,11 @@
         <tag>DFS</tag>
         <tag>Tree</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Graph</tag>
         <tag>BFS</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -1945,9 +2531,9 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
-        <tag>Bit Operations</tag>
+        <tag>Bit Manipulation</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -1971,10 +2557,10 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
-        <tag>Dynamic Programmming</tag>
+        <tag>Dynamic Programming</tag>
         <tag>Premium</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -2184,6 +2770,8 @@
         <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Calculator</tag>
+        <tag>Memorization</tag>
+        <tag>Recursion</tag>
       </tags>
   </entry>
   <entry>
@@ -2201,15 +2789,19 @@
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">0</span> &amp;&amp; isPowerOfTwo(n / <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Solution-Two-Bitwise"><a href="#Solution-Two-Bitwise" class="headerlink" title="Solution Two: Bitwise"></a>Solution Two: Bitwise</h2>]]></content>
+<h2 id="Solution-Two-Bitwise"><a href="#Solution-Two-Bitwise" class="headerlink" title="Solution Two: Bitwise"></a>Solution Two: Bitwise</h2><ol start="231">
+<li>Power of Two</li>
+</ol>
+]]></content>
       <categories>
         <category>work</category>
       </categories>
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
-        <tag>Bit Operations</tag>
+        <tag>Bit Manipulation</tag>
+        <tag>Starred</tag>
+        <tag>To Improve</tag>
       </tags>
   </entry>
   <entry>
@@ -2235,8 +2827,9 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2262,9 +2855,10 @@
         <tag>Leetcode</tag>
         <tag>Tree</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>BST</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2314,8 +2908,9 @@
         <tag>Google</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Design</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -2344,11 +2939,12 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Stack</tag>
         <tag>Apple</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2397,7 +2993,7 @@
         <tag>Java</tag>
         <tag>Array</tag>
         <tag>Frequent</tag>
-        <tag>Bit Operations</tag>
+        <tag>Bit Manipulation</tag>
       </tags>
   </entry>
   <entry>
@@ -2426,6 +3022,7 @@
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>To Improve</tag>
       </tags>
   </entry>
   <entry>
@@ -2453,7 +3050,7 @@
         <tag>Array</tag>
         <tag>Frequent</tag>
         <tag>Binary Search</tag>
-        <tag>Bit Operations</tag>
+        <tag>Bit Manipulation</tag>
       </tags>
   </entry>
   <entry>
@@ -2564,9 +3161,9 @@
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -2597,9 +3194,10 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2650,11 +3248,11 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Frequent</tag>
-        <tag>Bit Operations</tag>
+        <tag>Bit Manipulation</tag>
       </tags>
   </entry>
   <entry>
-    <title>Leetcode 198 - House Robber &amp; 213 - House Robber II</title>
+    <title>Leetcode 198 - House Robber (Series)</title>
     <url>/2020/07/01/leetcode-198/</url>
     <content><![CDATA[<p><strong>Description</strong><br>You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.</p>
 <p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
@@ -2705,9 +3303,10 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2736,8 +3335,10 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Starred</tag>
+        <tag>To Improve</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2759,7 +3360,9 @@
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
+        <tag>Premium</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2811,9 +3414,10 @@ AB -&gt; 28
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Math</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -2956,7 +3560,8 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> Integer.MIN_VALUE;</span><br><span class="line">        <span class="comment">// find max</span></span><br><span class="line">        <span class="keyword">int</span> size = nums.length;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = size - <span class="number">1</span>, mid = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (mid == size - <span class="number">1</span> || nums[mid] &gt; nums[mid + <span class="number">1</span>]) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt;= nums[left]) left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (mid == size - <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">return</span> nums[mid + <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h1 id="Leetcode-154-Find-Minimum-in-Rotated-Sorted-Array-II"><a href="#Leetcode-154-Find-Minimum-in-Rotated-Sorted-Array-II" class="headerlink" title="Leetcode 154 - Find Minimum in Rotated Sorted Array II"></a>Leetcode 154 - Find Minimum in Rotated Sorted Array II</h1>]]></content>
+<h1 id="Leetcode-154-Find-Minimum-in-Rotated-Sorted-Array-II"><a href="#Leetcode-154-Find-Minimum-in-Rotated-Sorted-Array-II" class="headerlink" title="Leetcode 154 - Find Minimum in Rotated Sorted Array II"></a>Leetcode 154 - Find Minimum in Rotated Sorted Array II</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; nums[end]) &#123;</span><br><span class="line">                end = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; nums[end]) &#123;</span><br><span class="line">                start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                end--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[start];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>work</category>
       </categories>
@@ -2988,9 +3593,9 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -3040,10 +3645,12 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Calculator</tag>
         <tag>Math</tag>
+        <tag>Starred</tag>
+        <tag>To Improve</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3068,10 +3675,11 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Math</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3098,9 +3706,10 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>LinkedList</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3182,11 +3791,12 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3307,10 +3917,11 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Monotonic Stack</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3366,11 +3977,12 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
         <tag>Apple</tag>
         <tag>Game</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3462,9 +4074,10 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Binary Search</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3513,6 +4126,9 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
 <h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>Runtime: 11 ms, faster than 9.33% of Java online submissions for Edit Distance.<br>Memory Usage: 41.5 MB, less than 7.17% of Java online submissions for Edit Distance.</p>
 <h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><p>Space Complexity: O(m * n), Time Complexity: O(m * n).</p>
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (word1 == <span class="keyword">null</span> || word2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = word1.length(), n = word2.length();</span><br><span class="line">        <span class="keyword">if</span> (m == <span class="number">0</span> || n == <span class="number">0</span>) <span class="keyword">return</span> m + n;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                <span class="keyword">int</span> remove = dp[i - <span class="number">1</span>][j] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> insert = dp[i][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> replace = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (word1.charAt(i - <span class="number">1</span>) != word2.charAt(j - <span class="number">1</span>)) replace++;</span><br><span class="line">                dp[i][j] = Math.min(insert, Math.min(remove, replace));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Related-Questions"><a href="#Related-Questions" class="headerlink" title="Related Questions"></a>Related Questions</h1><p>Regular Expression Matching</p>
 ]]></content>
       <categories>
         <category>work</category>
@@ -3520,11 +4136,13 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Dynamic Programming</tag>
         <tag>String</tag>
+        <tag>Backtracking</tag>
+        <tag>Memorization</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -3759,9 +4377,10 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Java</tag>
         <tag>Greedy</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3858,9 +4477,9 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Backtracking</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -3905,16 +4524,18 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> size = s.length();</span><br><span class="line">        <span class="comment">// longest length from i to j, both inclusive</span></span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> cur = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (cur == <span class="string">')'</span>) &#123; </span><br><span class="line">                <span class="keyword">if</span> (s.charAt(i - <span class="number">1</span>) == <span class="string">'('</span>) </span><br><span class="line">                    dp[i] = i == <span class="number">1</span> ? <span class="number">2</span> : (dp[i - <span class="number">2</span>] + <span class="number">2</span>);</span><br><span class="line">                <span class="keyword">else</span> &#123; <span class="comment">// search from right to left</span></span><br><span class="line">                    <span class="keyword">int</span> start = i - <span class="number">1</span>; <span class="comment">// ')'</span></span><br><span class="line">                    <span class="keyword">while</span> (start &gt;= <span class="number">0</span> &amp;&amp; dp[start] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">int</span> pos = start - dp[start];</span><br><span class="line">                        <span class="keyword">if</span> (pos &gt;= <span class="number">0</span> &amp;&amp; s.charAt(pos) == <span class="string">'('</span>) &#123;</span><br><span class="line">                            dp[i] = i - pos + <span class="number">1</span>;</span><br><span class="line">                            <span class="keyword">if</span> (pos &gt; <span class="number">0</span>) dp[i] += dp[pos - <span class="number">1</span>];</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            start = pos;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                ans = Math.max(ans, dp[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Solution-Two"><a href="#Solution-Two" class="headerlink" title="Solution Two:"></a>Solution Two:</h2>]]></content>
+<h2 id="Solution-Two-Stack"><a href="#Solution-Two-Stack" class="headerlink" title="Solution Two: Stack"></a>Solution Two: Stack</h2><h2 id="Solution-Three-Two-Pass"><a href="#Solution-Three-Two-Pass" class="headerlink" title="Solution Three: Two Pass"></a>Solution Three: Two Pass</h2>]]></content>
       <categories>
         <category>work</category>
       </categories>
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
+        <tag>To Improve</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -3945,8 +4566,8 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Two Pointers</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -4102,11 +4723,12 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
+        <tag>Greedy</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Microsoft</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -4137,10 +4759,10 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Sort</tag>
         <tag>Intervals</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -4199,6 +4821,7 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
 
 
 <h3 id="Improvement"><a href="#Improvement" class="headerlink" title="Improvement"></a>Improvement</h3><p>change Arrays.sort() to reverse</p>
+<h2 id="Related-Questions"><a href="#Related-Questions" class="headerlink" title="Related Questions"></a>Related Questions</h2><p>Next Permutations<br>739. Daily Temperatures</p>
 ]]></content>
       <categories>
         <category>work</category>
@@ -4206,10 +4829,11 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Stack</tag>
         <tag>Monotonic Stack</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -4291,9 +4915,10 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Two Pointers</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -4460,9 +5085,9 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -4559,9 +5184,9 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
       </tags>
   </entry>
   <entry>
@@ -4621,6 +5246,7 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Java</tag>
         <tag>Frequent</tag>
         <tag>Design</tag>
+        <tag>Databricks</tag>
       </tags>
   </entry>
   <entry>
@@ -4696,10 +5322,11 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>String</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -4825,8 +5452,9 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Java</tag>
         <tag>Greedy</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -4883,10 +5511,11 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Leetcode</tag>
         <tag>Java</tag>
         <tag>Array</tag>
-        <tag>Pending</tag>
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Microsoft</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -5041,9 +5670,10 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
       <tags>
         <tag>Leetcode</tag>
         <tag>Java</tag>
-        <tag>Pending</tag>
         <tag>Frequent</tag>
         <tag>Backtracking</tag>
+        <tag>Starred</tag>
+        <tag>To Implement</tag>
       </tags>
   </entry>
   <entry>
@@ -6204,6 +6834,8 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
 <h3 id="Java-code"><a href="#Java-code" class="headerlink" title="Java code"></a>Java code</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (root == p || root == q) <span class="keyword">return</span> root;</span><br><span class="line">        TreeNode left = lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        TreeNode right = lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        <span class="keyword">if</span> (left != <span class="keyword">null</span> &amp;&amp; right != <span class="keyword">null</span>) <span class="keyword">return</span> root;</span><br><span class="line">        <span class="keyword">if</span> (left == <span class="keyword">null</span> &amp;&amp; right == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (left != <span class="keyword">null</span>) <span class="keyword">return</span> left;</span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Value of current node or parent node.</span></span><br><span class="line">        <span class="keyword">int</span> parentVal = root.val;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Value of p</span></span><br><span class="line">        <span class="keyword">int</span> pVal = p.val;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Value of q;</span></span><br><span class="line">        <span class="keyword">int</span> qVal = q.val;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pVal &gt; parentVal &amp;&amp; qVal &gt; parentVal) &#123;</span><br><span class="line">            <span class="comment">// If both p and q are greater than parent</span></span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pVal &lt; parentVal &amp;&amp; qVal &lt; parentVal) &#123;</span><br><span class="line">            <span class="comment">// If both p and q are lesser than parent</span></span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// We have found the split point, i.e. the LCA node.</span></span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="Solution-Two-Iterative"><a href="#Solution-Two-Iterative" class="headerlink" title="Solution Two: Iterative"></a>Solution Two: Iterative</h2>]]></content>
       <categories>
         <category>work</category>
@@ -6659,6 +7291,7 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Hard</tag>
         <tag>Frequent</tag>
         <tag>Facebook</tag>
+        <tag>Databricks</tag>
       </tags>
   </entry>
   <entry>
@@ -6727,6 +7360,7 @@ Returns:    int</code></pre><p>Note: buf[] is destination not source, you will n
         <tag>Frequent</tag>
         <tag>LinkedList</tag>
         <tag>Facebook</tag>
+        <tag>Databricks</tag>
       </tags>
   </entry>
   <entry>
@@ -7600,6 +8234,7 @@ Integers in each column are sorted in ascending from top to bottom.</code></pre>
         <tag>LinkedIn</tag>
         <tag>HashMap</tag>
         <tag>Facebook</tag>
+        <tag>Databricks</tag>
       </tags>
   </entry>
   <entry>
